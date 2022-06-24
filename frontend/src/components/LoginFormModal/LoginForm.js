@@ -12,9 +12,12 @@ function LoginForm() {
   const [isActive, setIsActive] = useState(false)
 
 
-  const handleClick = e => {
-    
-  }
+  // const handleClick = e => {
+  //   setIsActive(current => !current);
+  //   className={isActive ? 'hidden' : ''} onClick={handleClick}
+  // }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -44,19 +47,16 @@ function LoginForm() {
           </ul>
         </div>
         <div id="input-container">
-          {/* <label>
-            Username or Email */}
           <input
             style={{backgroundColor: ' white'}}
             className={'form-input'}
             type="text"
             value={credential}
             placeholder="Username or Email"
-            onClick={()}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-          <hr onClick={() => }/>
+          <hr />
           <input
             style={{backgroundColor: ' white'}}
             className={'form-input'}
@@ -70,7 +70,7 @@ function LoginForm() {
         </div>
 
         <button type="submit">Log In</button>
-        <button type="submit">Demo</button>
+        <button type="submit" >Demo</button>
       </form>
     </div>
   );
