@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import './LoginFormModal.css';
+import '../../index.css';
 
 function LoginForm() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isActive, setIsActive] = useState(false)
 
+
+  const handleClick = e => {
+    
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -20,33 +27,54 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
-    </form>
+    <div id='form-wrapper'>
+
+      <div id='form-header'>
+        <p>Log In</p>
+      </div>
+
+
+      <form onSubmit={handleSubmit} id='form-content'>
+        <h3 id="form-title">Welcome to ScareBnB</h3>
+        <div id='errors'>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        </div>
+        <div id="input-container">
+          {/* <label>
+            Username or Email */}
+          <input
+            style={{backgroundColor: ' white'}}
+            className={'form-input'}
+            type="text"
+            value={credential}
+            placeholder="Username or Email"
+            onClick={()}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+          <hr onClick={() => }/>
+          <input
+            style={{backgroundColor: ' white'}}
+            className={'form-input'}
+            type="password"
+            value={password}
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {/* </label> */}
+        </div>
+
+        <button type="submit">Log In</button>
+        <button type="submit">Demo</button>
+      </form>
+    </div>
   );
 }
+
 
 export default LoginForm;
