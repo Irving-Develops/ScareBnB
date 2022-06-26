@@ -9,6 +9,7 @@ router.get('/', asyncHandler(async(req,res) => {
     const images = await Image.findAll()
     console.log(res.json(images))
     console.log(res.json(spots))
+    return res.json(spots)
 }))
 
 module.exports = router;
