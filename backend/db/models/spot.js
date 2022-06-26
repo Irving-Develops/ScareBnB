@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     history: DataTypes.TEXT
   }, {});
   Spot.associate = function(models) {
-    // associations can be defined here
-        Spot.belongsTo(models.User, {foreignKey: 'userId'})
+    Spot.belongsTo(models.User, {foreignKey: 'userId'})
+    Spot.hasMany(models.Image, {foreignKey: 'spotId'})
   };
   return Spot;
 };
