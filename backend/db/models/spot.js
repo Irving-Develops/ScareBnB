@@ -2,42 +2,41 @@
 module.exports = (sequelize, DataTypes) => {
   const Spot = sequelize.define('Spot', {
     userId: {
-      type: DataTypes.INTEGER,
       allowNull: false,
-      references: {model: 'Users'}
+      type: DataTypes.INTEGER,
+      references: {model: "Users"}
     },
     address: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING(100)
     },
     city: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING(50)
     },
     state: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING(50)
     },
     country: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING(50)
     },
     name: {
-      type: DataTypes.STRING,
       allowNull: false,
+      type: DataTypes.STRING(100)
     },
     price: {
-      type: DataTypes.INTEGER,
       allowNull: false,
+      type: DataTypes.DECIMAL
     },
     history: {
-      type: DataTypes.TEXT,
       allowNull: false,
+      type: DataTypes.TEXT
     }
   }, {});
   Spot.associate = function(models) {
-    // associations can be defined here
-    Spot.belongsTo(models.User, {foreignKey: 'userId'})
+    Spot.belongsTo(models.User, { foreignKey: 'userId'})
   };
   return Spot;
 };
