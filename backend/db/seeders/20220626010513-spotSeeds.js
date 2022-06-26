@@ -37,7 +37,7 @@ module.exports = {
        createdAt: new Date(),
        updatedAt: new Date(),
      }, {
-       userId: 1,
+       userId: 4,
        address: "Burggasse 7, 93195 Wolfsegg, Germany",
        city: "Wolfsegg",
        state: "Bavaria",
@@ -48,7 +48,7 @@ module.exports = {
        createdAt: new Date(),
        updatedAt: new Date()
      }, {
-       userId: 2,
+       userId: 5,
        address: "230 2nd St, Fall River, MA 02721",
        city: "Fall River",
        state: "Massachusetts",
@@ -59,7 +59,7 @@ module.exports = {
        createdAt: new Date(),
        updatedAt: new Date()
      }, {
-       userId: 3,
+       userId: 6,
        address: "1138 Royal St, New Orleans, LA 70116",
        city: "New Orleans",
        state: "Louisiana",
@@ -70,7 +70,7 @@ module.exports = {
        createdAt: new Date(),
        updatedAt: new Date()
      }, {
-       userId: 1,
+       userId: 7,
        address: "1 RUE JEANNE SAY, 49320 Brissac-Loire-Aubance, France",
        city: "Brissac-Loire-Aubance",
        state: "Pays de la Loire",
@@ -81,7 +81,7 @@ module.exports = {
        createdAt: new Date(),
        updatedAt: new Date()
      }, {
-       userId: 2,
+       userId: 8,
        address: "1 Homestead Ln, Junee NSW 2663, Australia",
        city: "Junee",
        state: "New South Wales",
@@ -92,7 +92,7 @@ module.exports = {
        createdAt: new Date(),
        updatedAt: new Date()
      }, {
-       userId: 3,
+       userId: 9,
        address: "7747 US-61, St Francisville, LA 70775",
        city: "St. Francisville",
        state: "Louisiana",
