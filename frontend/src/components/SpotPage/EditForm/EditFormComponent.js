@@ -24,10 +24,10 @@ export default function EditFormComponent({spot}) {
         //     price,
         //     history)
 
-        const onSubmit = (e) => {
+        async function onSubmit(e){
             e.preventDefault();
 
-            const editData = {
+            const payload = {
                 address,
                 city,
                 state,
@@ -36,10 +36,9 @@ export default function EditFormComponent({spot}) {
                 price,
                 history
             }
-            console.log("data", editData);
+            console.log("data", payload);
 
-            dispatch(thunkUpdateSpot(editData));
-            console.log("sent dispatch")
+              dispatch(thunkUpdateSpot(payload));
 
         }
 
