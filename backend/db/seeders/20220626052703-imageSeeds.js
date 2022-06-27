@@ -162,7 +162,7 @@ module.exports = {
      },
      {
       spotId: 6,
-      url: "https://bloximages.newyork1.vip.townnews.com/nola.com/content/tncms/assets/v3/editorial/d/46d46fa12e-745e-5538-8fb9-184411c3fcfe/5d13ddd3aeec8.hires.jpg",
+      url: "https://bloximages.newyork1.vip.townnews.com/nola.com/content/tncms/assets/v3/editorial/d/46/d46fa12e-745e-5538-8fb9-184411c3fcfe/5d13ddd3aeec8.hires.jpg",
       createdAt: new Date(),
       updatedAt: new Date(),
      },
@@ -180,7 +180,7 @@ module.exports = {
      },
      {
       spotId: 6,
-      url: "https://bloximages.newyork1.vip.townnews.com/nola.com/content/tncms/assets/v3/editorial/0/7f/07f11cc0-a182-5e99-9876-de3a5bc5083e/5d13ddd2affac.hires.jpg",
+      url: "https://bloximages.newyork1.vip.townnews.com/nola.com/content/tncms/assets/v3/editorial/9/c5/9c53e909-aa34-5a3e-b6e6-7fe581a2c813/5d13ddd31c3f7.image.jpg?resize=1024%2C691",
       createdAt: new Date(),
       updatedAt: new Date(),
      },
