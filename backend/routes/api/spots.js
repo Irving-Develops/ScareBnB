@@ -1,19 +1,33 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {Spot, Image} = require('../../db/models/');
+const {Spot, Image, User} = require('../../db/models/');
 
 const router = express.Router();
 
 router.get('/', asyncHandler(async(req,res) => {
-    const spots = await Spot.findAll({include: [Image]})
-    // const images = await Image.findAll()
-    // console.log(res.json(images))
-    // let data = res.json(spots);
-    //  data += await res.json(images);
-    console.log("WORKING =====================>", spots)
-    // data.map(spot=> console.log('=========>', spot[id]))
-    // console.log(res.json(spots).map(spot => {spot.id}))
+    const spots = await Spot.findAll({include: [Image, User]})
     return res.json(spots)
+}))
+
+router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
+    const spots = await Spot.findAll({include: [Image, User]})
+    return res.json(spots)
+}))
+
+router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
+    const spot = await Spot.findByPk(req.params.id)
+
+    spot.address = req.body.address
+    spot.city = req.body.city
+    spot.state = req.body.state
+    spot.country = req.body.country
+    spot.name = req.body.name
+    spot.price = req.body.price
+    spot.history = req.body.history
+
+    await spot.save()
+    res.json({message: 'Success!', post})
+
 }))
 
 module.exports = router;
