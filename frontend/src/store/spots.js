@@ -37,10 +37,10 @@ const actionGetAllSpots = (spots) => {
 //     }
 // }
 
-const actionUpdateSpot = (spotId) => {
+const actionUpdateSpot = (data) => {
     return {
         type: UPDATE_SPOT,
-        spotId
+        data
     }
 }
 const actionDeleteSpot = (spotId) => {
@@ -58,6 +58,24 @@ export const thunkGetAllSpots = () => async (dispatch) => {
       const data = await response.json();
     //   console.log("data ===> ", data)
     dispatch(actionGetAllSpots(data));
+    return response
+  }
+  return await response.json();
+};
+
+
+export const thunkUpdateSpot = (data) => async (dispatch) => {
+    console.log("response inside thunk", data)
+  const response = await csrfFetch('/api/spots', {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+  })
+  console.log("response => ", response)
+  if(response.ok) {
+    const data = await response.json();
+      console.log("data ===> ", data)
+    dispatch(actionUpdateSpot(data));
     return response
   }
   return await response.json();
@@ -95,10 +113,11 @@ const spotReducer = (state = {}, action) => {
             // newState = {...state, ...action.spot}
             // console.log("inside reducer", newState)
             // return  newState;
-        // case UPDATE_SPOT:
-        //     newState = Object.assign({}, state);
-        //     newState.user = action.payload;
-        //     return newState;
+        case UPDATE_SPOT:
+            console.log(action.data)
+            // newState = Object.assign({}, state);
+            // newState.user = action.payload;
+            return newState;
         // case DELETE_SPOT:
         //     newState = Object.assign({}, state);
         //     newState.user = null;
