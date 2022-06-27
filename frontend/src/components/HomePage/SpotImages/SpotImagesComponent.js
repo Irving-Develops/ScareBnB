@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import './SpotImages.css'
 
 export default function SpotImagesComponent({images}) {
-    console.log('images prop ====> ', images.length)
+    // console.log('images prop ====> ', images.length)
     const [currentIndex, setCurrentIndex] = useState(0)
     const [length, setLength] = useState(images.length)
 
@@ -36,8 +36,8 @@ export default function SpotImagesComponent({images}) {
                         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                         >
                             {images && images.map(image => (
-                                <NavLink to={`/api/spots/${image.spotId}`}>
-                                    <img className="card-img" key={image.id} src={image.url} alt={image.id}></img>
+                                <NavLink key={image.id} to={`/api/spots/${image.spotId}`}>
+                                    <img className="card-img" src={image.url} alt={image.id}></img>
                                 </NavLink>
                             ))}
                         </div>

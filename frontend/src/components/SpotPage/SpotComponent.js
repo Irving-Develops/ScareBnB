@@ -11,17 +11,16 @@ export default function SpotComponent(){
     const dispatch = useDispatch();
     const selectorSpot = useSelector(state => state.spotReducer[spotId]);
     const [spot, setSpot] = useState([])
-    console.log("selector ==> ", selectorSpot)
-
+    // const [user, setUser] = useState([]);
+    console.log("selector ==> ", spot.User)
 
     useEffect(() => {
         dispatch(thunkGetAllSpots())
-        // console.log("sent dispatch")
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     useEffect(() => {
-        // console.log('spots ====>', spot)
     }, [spot])
+
 
     useEffect(() => {
         if (selectorSpot) {
@@ -29,8 +28,20 @@ export default function SpotComponent(){
         }
     }, [selectorSpot])
 
-
     return (
-        <h1>Hello</h1>
+        <>
+            {spot.Images && spot.Images.map(image => (
+                <img key={image.id} src={image.url} alt=""></img>
+            ))}
+            <ul>
+                <li>{spot.name}</li>
+                <li>{spot.address}</li>
+                <li>{spot.price}</li>
+                <li>{spot.history}</li>
+            </ul>
+            {spot && spot.User && <h1>{spot.User.username}</h1>}
+
+            <form></form>
+        </>
     )
 }

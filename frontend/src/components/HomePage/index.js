@@ -10,6 +10,7 @@ export default function HomePageSpots() {
     const dispatch = useDispatch();
     const selectorSpots = useSelector(state => state.spotReducer);
     const [spots, setSpots] = useState([])
+    console.log("selector in home page", selectorSpots)
 
     useEffect(() => {
         dispatch(thunkGetAllSpots())
