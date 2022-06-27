@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
 import EditFormComponent from './EditForm/EditFormComponent';
 import DeleteComponent from './DeletePage/DeleteComponent';
-
+import './SpotPage.css';
 
 
 
@@ -13,6 +13,7 @@ export default function SpotComponent(){
     const dispatch = useDispatch();
     const selectorSpot = useSelector(state => state.spotReducer[spotId]);
     const [spot, setSpot] = useState([])
+    console.log(spot.Images)
 
     useEffect(() => {
         dispatch(thunkGetAllSpots())
@@ -30,16 +31,20 @@ export default function SpotComponent(){
 
     return (
         <>
-            {spot.Images && spot.Images.map(image => (
-                <img key={image.id} src={image.url} alt=""></img>
-            ))}
+            <h2 id='spot-name'>{spot.name}</h2>
+            <p>{spot.address}</p>
+            <div className="img-container">
+                {spot.Images && spot.Images.map((image, index) => (
+                    <div key={image.id} id={`img-${index}`}> 
+                        <img src={image.url} alt="" ></img>
+                    </div>
+                ))}
+            </div>
+            {spot && spot.User && <h3>Hosted by {spot.User.username}</h3>}
             <ul>
-                <li>{spot.name}</li>
-                <li>{spot.address}</li>
                 <li>{spot.price}</li>
                 <li>{spot.history}</li>
             </ul>
-            {spot && spot.User && <h1>{spot.User.username}</h1>}
             <EditFormComponent spot={spot.id}/>
             <DeleteComponent spot={spot.id} />
         </>
