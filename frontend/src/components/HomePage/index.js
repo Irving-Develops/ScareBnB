@@ -9,7 +9,6 @@ import './homePage.css';
 export default function HomePageSpots() {
     const dispatch = useDispatch();
     const selectorSpots = useSelector(state => state.spotReducer);
-    console.log("selector spots====>", selectorSpots)
     const [spots, setSpots] = useState([])
 
     useEffect(() => {
@@ -17,7 +16,6 @@ export default function HomePageSpots() {
     }, [dispatch])
 
     useEffect(() => {
-        console.log('spots ====>', spots)
     }, [spots])
 
     useEffect(() => {

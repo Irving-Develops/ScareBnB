@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import './SpotImages.css'
 
 export default function SpotImagesComponent({images}) {
@@ -23,6 +23,8 @@ export default function SpotImagesComponent({images}) {
     useEffect(() => {
         setLength(images.length)
     }, [images])
+
+
     return (
             <div className = "carousel-container" >
                 <div className = "carousel-wrapper">
@@ -34,9 +36,9 @@ export default function SpotImagesComponent({images}) {
                         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                         >
                             {images && images.map(image => (
-                                <a href={`/api/spots/${image.spotId}`} target="_blank" rel="noreferrer">
+                                <NavLink to={`/api/spots/${image.spotId}`}>
                                     <img className="card-img" key={image.id} src={image.url} alt={image.id}></img>
-                                </a>
+                                </NavLink>
                             ))}
                         </div>
                     </div>

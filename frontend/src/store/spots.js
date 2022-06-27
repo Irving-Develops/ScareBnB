@@ -6,7 +6,9 @@ import {csrfFetch} from './csrf'
 const CREATE_SPOT = 'spots/createSpot'
 
 //READ
-const GET_SPOT = 'spots/getSpot'
+const GET_SPOTS = 'spots/getSpot'
+
+const GET_SPOT = 'spot/getSpot'
 
 //UPDATED
 const UPDATE_SPOT = 'spots/updateSpot'
@@ -21,14 +23,22 @@ const actionCreateSpot = (spot) => {
         spot
     }
 }
-const actionGetSpot = (spots) => {
+const actionGetAllSpots = (spots) => {
     
     console.log("inside action ==>", spots)
     return {
-        type: GET_SPOT,
+        type: GET_SPOTS,
         spots
     }
 }
+
+const actionGetSpot = (spot) => {
+    return {
+        type: GET_SPOT,
+        spot
+    }
+}
+
 const actionUpdateSpot = (spotId) => {
     return {
         type: UPDATE_SPOT,
@@ -49,7 +59,7 @@ export const thunkGetAllSpots = () => async (dispatch) => {
   if(response.ok) {
       const data = await response.json();
     //   console.log("data ===> ", data)
-    dispatch(actionGetSpot(data));
+    dispatch(actionGetAllSpots(data));
     return response
   }
   return await response.json();
@@ -65,12 +75,19 @@ const spotReducer = (state = {}, action) => {
         //     newState = Object.assign({}, state);
         //     newState.user = action.payload;
         //     return newState;
-        case GET_SPOT:
+        case GET_SPOTS:
             console.log("inside reducer", state)
             newState = {...state}
             action.spots.forEach(spot => {
                 newState[spot.id] = spot
             })
+            return newState;
+        case GET_SPOT:
+            console.log("inside reducer", state)
+            newState = {...state}
+            // action.spots.forEach(spot => {
+            //     newState[spot.id] = spot
+            // })
             return newState;
         // case UPDATE_SPOT:
         //     newState = Object.assign({}, state);
