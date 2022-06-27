@@ -10,7 +10,7 @@ router.get('/', asyncHandler(async(req,res) => {
     // console.log(res.json(images))
     // let data = res.json(spots);
     //  data += await res.json(images);
-    console.log("WORKING =====================>", spots)
+    // console.log("WORKING =====================>", spots)
     // data.map(spot=> console.log('=========>', spot[id]))
     // console.log(res.json(spots).map(spot => {spot.id}))
     return res.json(spots)

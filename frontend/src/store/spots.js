@@ -22,7 +22,8 @@ const actionCreateSpot = (spot) => {
     }
 }
 const actionGetSpot = (spots) => {
-    console.log("spots ==>", spots)
+    
+    console.log("inside action ==>", spots)
     return {
         type: GET_SPOT,
         spots
@@ -45,9 +46,9 @@ const actionDeleteSpot = (spotId) => {
 
 export const thunkGetAllSpots = () => async (dispatch) => {
   const response = await csrfFetch('/api/spots')
-
   if(response.ok) {
-    const data = await response.json();
+      const data = await response.json();
+    //   console.log("data ===> ", data)
     dispatch(actionGetSpot(data));
     return response
   }
@@ -65,12 +66,11 @@ const spotReducer = (state = {}, action) => {
         //     newState.user = action.payload;
         //     return newState;
         case GET_SPOT:
+            console.log("inside reducer", state)
             newState = {...state}
-            console.log("----", newState)
             action.spots.forEach(spot => {
                 newState[spot.id] = spot
             })
-            console.log("newState =====>", newState)
             return newState;
         // case UPDATE_SPOT:
         //     newState = Object.assign({}, state);
