@@ -40,13 +40,22 @@ export default function SpotComponent(){
                     </div>
                 ))}
             </div>
-            {spot && spot.User && <h3>Hosted by {spot.User.username}</h3>}
-            <ul>
-                <li>{spot.price}</li>
-                <li>{spot.history}</li>
-            </ul>
-            <EditFormComponent spot={spot.id}/>
-            <DeleteComponent spot={spot.id} />
+            <div className="details-container">
+                <div className="details">
+                    {spot && spot.User && <h3>Hosted by {spot.User.username}</h3>}
+                    {/* <hr /> */}
+                    <p>{spot.history}</p>
+                    {/* <hr /> */}
+                </div>
+                <div className="booking-container">
+                    Booking placeholder
+                </div>
+            </div>
+                {/* <li>{spot.price}</li> */}
+
+
+            {/* <EditFormComponent spot={spot.id}/>
+            <DeleteComponent spot={spot.id} /> */}
         </>
     )
 }
