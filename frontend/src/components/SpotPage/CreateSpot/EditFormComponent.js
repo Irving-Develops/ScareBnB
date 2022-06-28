@@ -1,36 +1,26 @@
-import {useHistory} from 'react-router-dom';
+// import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {thunkCreateSpot} from '../../../store/spots';
 
 export default function EditFormComponent({spot}) {
-        const history = useHistory();
-
-
+        const user = useSelector(state => state.session.user);
+        
         const [address, setAddress] = useState('');
         const [city, setCity] = useState('');
         const [state, setState] = useState('');
         const [country, setCountry] = useState('');
         const [name, setName] = useState('');
         const [price, setPrice] = useState(0);
-        const [spotHistory, setSpotHistory] = useState('');
+        const [history, setHistory] = useState('');
         const [images, setImages] = useState([]);
         const dispatch = useDispatch();
-
-        // console.log("spot inside edit form", spot)
-
-        // console.log(address,
-        //     city,
-        //     state,
-        //     country,
-        //     name,
-        //     price,
-        //     history)
 
         async function onSubmit(e){
             e.preventDefault();
 
             const payload = {
+                userId: user.id,
                 address,
                 city,
                 state,
@@ -39,15 +29,16 @@ export default function EditFormComponent({spot}) {
                 price,
                 history
             }
+
             console.log("data", payload);
 
-            let createdSpot = dispatch(thunkCreateSpot(payload));
+            let createdSpot = await dispatch(thunkCreateSpot(payload));
             
             if(createdSpot) {
-                history.push(`/pokemon/${createdSpot.id}`)
+                history.push(`/api/spots/${createdSpot.id}`)
             }
         }
-
+        if(!user) return null;
     return (
             <form onSubmit={onSubmit}>
                 <div>
@@ -81,9 +72,9 @@ export default function EditFormComponent({spot}) {
                     onChange={(e) => setPrice(e.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor = "spotHistory" > history </label>
-                    <input type="text" id="spotHistory" value={spotHistory}
-                    onChange={(e) => setSpotHistory(e.target.value)}/>
+                    <label htmlFor = "history" > history </label>
+                    <input type="text" id="history" value={history}
+                    onChange={(e) => setHistory(e.target.value)}/>
                 </div>
                 <div>
                     <label  htmlFor="images">images</label>
