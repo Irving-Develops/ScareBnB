@@ -2,7 +2,8 @@ import {useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
-import EditFormComponent from './EditForm/EditFormComponent';
+import {useHistory} from 'react-router-dom';
+// import EditFormComponent from './CreateSpot/EditFormComponent';
 import DeleteComponent from './DeletePage/DeleteComponent';
 import './SpotPage.css';
 

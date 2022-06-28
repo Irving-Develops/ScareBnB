@@ -16,6 +16,7 @@ const DELETE_SPOT = 'spots/deleteSpot'
 
 //todo action creators
 const actionCreateSpot = (spot) => {
+    console.log('in action', spot)
     return {
         type: CREATE_SPOT,
         spot
@@ -30,12 +31,6 @@ const actionGetAllSpots = (spots) => {
     }
 }
 
-// const actionGetSpot = (spot) => {
-//     return {
-//         type: GET_SPOT,
-//         spot
-//     }
-// }
 
 const actionUpdateSpot = (spot) => {
     return {
@@ -43,7 +38,10 @@ const actionUpdateSpot = (spot) => {
         spot
     }
 }
+
+
 const actionDeleteSpot = (spotId) => {
+    console.log("inside action", spotId)
     return {
         type: DELETE_SPOT,
         spotId
@@ -51,6 +49,25 @@ const actionDeleteSpot = (spotId) => {
 }
 
 //todo thunks
+
+//POST thunk
+export const thunkCreateSpot = (spot) => async (dispatch) => {
+    console.log("in create thunk", spot)
+  const response = await csrfFetch(`/api/spots/`, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(spot)
+  })
+  console.log("response => ", response)
+  if(response.ok) {
+    const createdSpot = await response.json();
+    //   console.log("data ===> ", spot)
+    dispatch(actionCreateSpot(createdSpot));
+    return createdSpot;
+  }
+  return await response.json();
+};
+
 
 //GET thunk
 
@@ -70,13 +87,13 @@ export const thunkGetAllSpots = () => async (dispatch) => {
 
 
 export const thunkUpdateSpot = (spot) => async (dispatch) => {
-    console.log("updateThunk", spot)
+    // console.log("updateThunk", spot)
   const response = await csrfFetch(`/api/spots/${spot.id}`, {
       method: "PUT",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(spot)
   })
-  console.log("response => ", response)
+//   console.log("response => ", response)
   if(response.ok) {
     const updatedSpot = await response.json();
     //   console.log("data ===> ", spot)
@@ -89,12 +106,19 @@ export const thunkUpdateSpot = (spot) => async (dispatch) => {
 
 //DELETE thunk
 
-export const thunkDeleteSpot = () => async (dispatch) => {
-    const response = await csrfFetch('/api/spot/', {
+export const thunkDeleteSpot = (spotId, history) => async (dispatch) => {
+    // console.log("inside Thunk", spotId)
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE',
     });
-    dispatch(actionDeleteSpot());
-    return response;
+
+    if (response.ok) {
+        const deletedSpot = response.json()
+        dispatch(actionDeleteSpot(spotId));
+        history.push('/')
+        return deletedSpot;
+    }
+    return await response.json();
 };
 
 
@@ -103,30 +127,22 @@ export const thunkDeleteSpot = () => async (dispatch) => {
 const spotReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
-        // case CREATE_SPOT:
-        //     newState = Object.assign({}, state);
-        //     newState.user = action.payload;
-        //     return newState;
+        case CREATE_SPOT:
+            return {
+                ...state,
+                [action.spot.id]: action.spot
+            };
         case GET_SPOTS:
             newState = {...state}
             action.spots.forEach(spot => {
                 newState[spot.id] = spot
             })
-            // console.log("inside reducer", newState)
             return newState;
-        // case GET_SPOT:
-            // newState = {...state, ...action.spot}
-            // console.log("inside reducer", newState)
-            // return  newState;
         case UPDATE_SPOT:
             return {
             ...state,
             [action.spot.id]: action.spot
             };
-        // case DELETE_SPOT:
-        //     newState = Object.assign({}, state);
-        //     newState.user = null;
-        //     return newState;
         case DELETE_SPOT:
             newState = { ...state };
             delete newState[action.spotId];

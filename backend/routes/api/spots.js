@@ -33,8 +33,29 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 
 }))
 
+router.post('/', asyncHandler(async(req,res) => {
+        const newSpot = await Spot.create(req.body);
+        console.log(req.baseUrl)
+        return res.redirect(`${req.baseUrl}/${id}`);
+}))
+
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
-    const id = await Spot.deleteItem(req.params.id)
+    // console.log(req.params.id)
+    const id = req.params.id
+    const spot = await Spot.findByPk(id)
+    // const images = await Image.findAll({where: {spotId: id}})
+    // console.log(spot)
+    // console.log(spot, images)
+    // await images.destroy()
+    await spot.destroy()
+    // await images.destroy()
+
+    // return res.json(spot)
+
+    // // res.json({spot})
+      res.json({message: 'Success!'})
+      return res.redirect(`/`)
+
 }))
 
 module.exports = router;
