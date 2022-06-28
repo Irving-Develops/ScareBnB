@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
 import './SpotImages.css'
 
-export default function SpotImagesComponent({images}) {
+export default function SpotImagesComponent({images, spot}) {
     // console.log('images prop ====> ', images.length)
     const [currentIndex, setCurrentIndex] = useState(0)
     const [length, setLength] = useState(images.length)
@@ -25,7 +25,6 @@ export default function SpotImagesComponent({images}) {
         setLength(images.length)
     }, [images])
 
-
     return (
             <div className = "carousel-container" >
                 <div className = "carousel-wrapper">
@@ -40,7 +39,7 @@ export default function SpotImagesComponent({images}) {
                                 <NavLink key={image.id} to={`/api/spots/${image.spotId}`}>
                                     <img className="card-img" src={image.url} alt={image.id}></img>
                                 </NavLink>
-                            ))}
+                            ))} <NavLink to={`/api/spots/${spot.id}`}><img className="card-img" src='https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt=''></img></NavLink>)
                         </div>
                     </div>
                     <button onClick={next} className="right-arrow">
