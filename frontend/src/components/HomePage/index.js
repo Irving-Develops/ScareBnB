@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
 import SpotImagesComponent from './SpotImages/SpotImagesComponent'
 import DetailsComponent from './SpotDetails/DetailsComponent';
-import EditFormComponent from '../SpotPage/CreateSpot/EditFormComponent'
+import EditFormComponent from '../SpotPage/CreateSpot/CreateFormComponent'
 import './homePage.css';
 
 export default function HomePageSpots() {
@@ -27,7 +27,6 @@ export default function HomePageSpots() {
     }, [selectorSpots])
 
 
-    
 
     return (
         <>
@@ -35,7 +34,7 @@ export default function HomePageSpots() {
                 {spots && spots.map(spot =>(
                     <div key={spot.id} className="card">
                         <div className="img-carousel">
-                            <SpotImagesComponent images={spot.Images} /> 
+                            <SpotImagesComponent images={spot.Images} spot={spot}/> 
                         </div>
                         <div className = 'card-details' >
                             <DetailsComponent details={spot} />

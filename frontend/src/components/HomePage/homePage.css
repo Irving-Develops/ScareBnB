@@ -1,9 +1,9 @@
 .card-wrapper {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     width: 80%;
     margin: 0px auto;
 }

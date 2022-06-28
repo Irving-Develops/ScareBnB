@@ -1,11 +1,16 @@
-// import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkCreateSpot} from '../../../store/spots';
 
-export default function EditFormComponent({spot}) {
+export default function CreateFormComponent() {
         const user = useSelector(state => state.session.user);
-        
+        // const spot = useSelector(state => state.spotReducer);
+        // let x = Object.values(spot);
+        // console.log('spot' , x)
+        // let spotId = Object.values(spot).length - 1
+        // console.log(x[spotId].id)
+        const hist = useHistory();
         const [address, setAddress] = useState('');
         const [city, setCity] = useState('');
         const [state, setState] = useState('');
@@ -13,8 +18,10 @@ export default function EditFormComponent({spot}) {
         const [name, setName] = useState('');
         const [price, setPrice] = useState(0);
         const [history, setHistory] = useState('');
-        const [images, setImages] = useState([]);
+        const [url, setUrl] = useState([]);
         const dispatch = useDispatch();
+        // hist.push(`/api/spots/66`)
+        //     console.log("history", hist )
 
         async function onSubmit(e){
             e.preventDefault();
@@ -30,13 +37,17 @@ export default function EditFormComponent({spot}) {
                 history
             }
 
-            console.log("data", payload);
-
-            let createdSpot = await dispatch(thunkCreateSpot(payload));
-            
-            if(createdSpot) {
-                history.push(`/api/spots/${createdSpot.id}`)
+            const imagePayload = { 
+                url
             }
+
+            console.log("data", payload, imagePayload);
+
+            let createdSpot = await dispatch(thunkCreateSpot(payload, imagePayload));
+            console.log(createdSpot)
+            // if(createdSpot) {
+            //     hist.push(`/api/spots/66`)
+            // }
         }
         if(!user) return null;
     return (
@@ -77,9 +88,9 @@ export default function EditFormComponent({spot}) {
                     onChange={(e) => setHistory(e.target.value)}/>
                 </div>
                 <div>
-                    <label  htmlFor="images">images</label>
-                    <input type="text" id="images" value={images}
-                    onChange={(e) => setImages(e.target.value)}/>
+                    <label  htmlFor="url">images</label>
+                    <input type="text" id="url" value={url}
+                    onChange={(e) => setUrl(e.target.value)}/>
                 </div>
                 <button>Submit</button>
             </form>

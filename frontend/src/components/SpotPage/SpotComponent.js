@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
 import {useHistory} from 'react-router-dom';
-// import EditFormComponent from './CreateSpot/EditFormComponent';
+import EditFormComponent from './EditSpot/EditFormComponent';
 import DeleteComponent from './DeletePage/DeleteComponent';
 import './SpotPage.css';
 
@@ -29,17 +29,33 @@ export default function SpotComponent(){
             setSpot(selectorSpot);
         }
     }, [selectorSpot])
+    
 
     return (
         <>
             <h2 id='spot-name'>{spot.name}</h2>
             <p>{spot.address}</p>
             <div className="img-container">
+                    <div id={`img-${0}`}> 
+                        <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                    </div>
+                    <div id={`img-${1}`}> 
+                        <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                    </div>
+                    <div id={`img-${2}`}> 
+                        <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                    </div>
+                    <div id={`img-${3}`}> 
+                        <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                    </div>
+                    <div id={`img-${4}`}> 
+                        <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                    </div>
                 {spot.Images && spot.Images.map((image, index) => (
                     <div key={image.id} id={`img-${index}`}> 
                         <img src={image.url} alt="" ></img>
                     </div>
-                ))}
+                ))} 
             </div>
             <div className="details-container">
                 <div className="details">
@@ -54,8 +70,8 @@ export default function SpotComponent(){
             </div>
                 {/* <li>{spot.price}</li> */}
 
-
-            {/* <EditFormComponent spot={spot.id}/> */}
+            <h3>Edit Spot</h3>
+            <EditFormComponent spot={spot.id}/>
             <DeleteComponent spot={spot.id} />
         </>
     )
