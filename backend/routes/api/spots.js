@@ -15,28 +15,21 @@ router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
 }))
 
 router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
-    res.send("working")
+    // res.send(req.body)
     // console.log(req.params.id)
-    const spot = await Spot.updateItem(req.body)
-    return res.json(spot)
-    // // console.log("inside route")
-    // spot.address = req.body.address
-    // spot.city = req.body.city
-    // spot.state = req.body.state
-    // spot.country = req.body.country
-    // spot.name = req.body.name
-    // spot.price = req.body.price
-    // spot.history = req.body.history
+    const spot = await Spot.findByPk(req.params.id)
 
-    // await spot.save()
-    // res.json({message: 'Success!', post})
+    const updatedSpot = await spot.update(req.body)
+    // res.redirect('/')
+    return res.json(updatedSpot)
 
 }))
 
 router.post('/', asyncHandler(async(req,res) => {
     const newSpot = await Spot.create(req.body);
-    console.log(newSpot, req.body)  
-        return res.redirect(`/`);
+    console.log(req.body)  
+     return res.redirect(`${req.baseUrl}/${newSpot}`);
+        // return res.redirect(`/`);
 }))
 
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
