@@ -1,8 +1,11 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const {Spot, Image, User} = require('../../db/models/');
+const bookingRouter = require('./bookings')
 
 const router = express.Router();
+
+router.use('/:id(\\d+)/bookings', bookingRouter)
 
 router.get('/', asyncHandler(async(req,res) => {
     const spots = await Spot.findAll({include: [Image, User]})
