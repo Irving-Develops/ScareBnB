@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Booking.associate = function(models) {
     // associations can be defined here
-    Booking.belongsToMany(models.Spot, {foreignKey: 'spotId'});
-    Booking.belongsToMany(models.User, {foreignKey: 'userId'});
+    // Booking.belongsToMany(models.Spot, {foreignKey: 'spotId'});
+    // Booking.belongsToMany(models.User, {foreignKey: 'userId'});
   };
   return Booking;
 };
