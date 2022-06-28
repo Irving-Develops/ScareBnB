@@ -1,16 +1,19 @@
-import {useParams} from 'react-router-dom';
-import {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {thunkUpdateSpot} from '../../../store/spots';
+import {useHistory} from 'react-router-dom';
+import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {thunkCreateSpot} from '../../../store/spots';
 
 export default function EditFormComponent({spot}) {
+        const history = useHistory();
+
+
         const [address, setAddress] = useState('');
         const [city, setCity] = useState('');
         const [state, setState] = useState('');
         const [country, setCountry] = useState('');
         const [name, setName] = useState('');
         const [price, setPrice] = useState(0);
-        const [history, setHistory] = useState('');
+        const [spotHistory, setSpotHistory] = useState('');
         const [images, setImages] = useState([]);
         const dispatch = useDispatch();
 
@@ -38,8 +41,11 @@ export default function EditFormComponent({spot}) {
             }
             console.log("data", payload);
 
-              dispatch(thunkUpdateSpot(payload));
-
+            let createdSpot = dispatch(thunkCreateSpot(payload));
+            
+            if(createdSpot) {
+                history.push(`/pokemon/${createdSpot.id}`)
+            }
         }
 
     return (
@@ -75,9 +81,9 @@ export default function EditFormComponent({spot}) {
                     onChange={(e) => setPrice(e.target.value)}/>
                 </div>
                 <div>
-                    <label  htmlFor="history">history</label>
-                    <input type="text" id="history" value={history}
-                    onChange={(e) => setHistory(e.target.value)}/>
+                    <label htmlFor = "spotHistory" > history </label>
+                    <input type="text" id="spotHistory" value={spotHistory}
+                    onChange={(e) => setSpotHistory(e.target.value)}/>
                 </div>
                 <div>
                     <label  htmlFor="images">images</label>

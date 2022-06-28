@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
 import SpotImagesComponent from './SpotImages/SpotImagesComponent'
 import DetailsComponent from './SpotDetails/DetailsComponent';
+import EditFormComponent from '../SpotPage/CreateSpot/EditFormComponent'
 import './homePage.css';
 
 export default function HomePageSpots() {
@@ -29,6 +30,7 @@ export default function HomePageSpots() {
     
 
     return (
+        <>
             <div className="card-wrapper"> 
                 {spots && spots.map(spot =>(
                     <div key={spot.id} className="card">
@@ -41,5 +43,8 @@ export default function HomePageSpots() {
                     </div>
                 ))}
             </div>
+            <EditFormComponent />
+
+        </>
     )
 }
