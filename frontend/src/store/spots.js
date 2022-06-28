@@ -37,10 +37,10 @@ const actionGetAllSpots = (spots) => {
 //     }
 // }
 
-const actionUpdateSpot = (spotId) => {
+const actionUpdateSpot = (spot) => {
     return {
         type: UPDATE_SPOT,
-        spotId
+        spot
     }
 }
 const actionDeleteSpot = (spotId) => {
@@ -52,6 +52,8 @@ const actionDeleteSpot = (spotId) => {
 
 //todo thunks
 
+//GET thunk
+
 export const thunkGetAllSpots = () => async (dispatch) => {
   const response = await csrfFetch('/api/spots')
   if(response.ok) {
@@ -62,17 +64,38 @@ export const thunkGetAllSpots = () => async (dispatch) => {
   }
   return await response.json();
 };
-// export const thunkGetSpot = (spotId) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/spots/${spotId}`)
-//   console.log("inside Thunk", response)
-//   if(response.ok) {
-//       const data = await response.json();
-//     //   console.log("data ===> ", data)
-//     dispatch(actionGetSpot(data));
-//     return response
-//   }
-//   return await response.json();
-// };
+
+
+//UPDATE thunk
+
+
+export const thunkUpdateSpot = (spot) => async (dispatch) => {
+    console.log("updateThunk", spot)
+  const response = await csrfFetch(`/api/spots/${spot.id}`, {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(spot)
+  })
+  console.log("response => ", response)
+  if(response.ok) {
+    const updatedSpot = await response.json();
+    //   console.log("data ===> ", spot)
+    dispatch(actionUpdateSpot(updatedSpot));
+    return updatedSpot
+  }
+  return await response.json();
+};
+
+
+//DELETE thunk
+
+export const thunkDeleteSpot = () => async (dispatch) => {
+    const response = await csrfFetch('/api/spot/', {
+        method: 'DELETE',
+    });
+    dispatch(actionDeleteSpot());
+    return response;
+};
 
 
 //todo reducer
@@ -95,14 +118,19 @@ const spotReducer = (state = {}, action) => {
             // newState = {...state, ...action.spot}
             // console.log("inside reducer", newState)
             // return  newState;
-        // case UPDATE_SPOT:
-        //     newState = Object.assign({}, state);
-        //     newState.user = action.payload;
-        //     return newState;
+        case UPDATE_SPOT:
+            return {
+            ...state,
+            [action.spot.id]: action.spot
+            };
         // case DELETE_SPOT:
         //     newState = Object.assign({}, state);
         //     newState.user = null;
         //     return newState;
+        case DELETE_SPOT:
+            newState = { ...state };
+            delete newState[action.spotId];
+            return newState;
         default:
             return state;
     }
