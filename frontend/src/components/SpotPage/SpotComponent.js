@@ -54,8 +54,8 @@ export default function SpotComponent(){
                 {/* <li>{spot.price}</li> */}
 
 
-            {/* <EditFormComponent spot={spot.id}/>
-            <DeleteComponent spot={spot.id} /> */}
+            {/* <EditFormComponent spot={spot.id}/> */}
+            <DeleteComponent spot={spot.id} />
         </>
     )
 }
