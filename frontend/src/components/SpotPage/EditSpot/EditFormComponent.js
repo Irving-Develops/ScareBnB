@@ -5,9 +5,9 @@ import {thunkUpdateSpot} from '../../../store/spots';
 
 export default function EditFormComponent({spot}) {
         const user = useSelector(state => state.session.user);
-        const spotState = useSelector(state => state.spotReducer);
-        let currentSpot = spotState[spot]
-        console.log("current spot " , currentSpot.address)
+        // const spotState = useSelector(state => state.spotReducer);
+        // let currentSpot = spotState[spot]
+        // console.log("current spot " , currentSpot.address)
         // let x = Object.values(spot);
         // console.log('spot' , x)
         // let spotId = Object.values(spot).length - 1
