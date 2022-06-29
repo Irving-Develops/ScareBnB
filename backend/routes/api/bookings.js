@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-
+const {Booking} = require('../../db/models')
 const router = express.Router();
 
 
@@ -12,7 +12,9 @@ router.post('/', asyncHandler(async (req, res) => {
 
 //READ
 router.get('/', asyncHandler(async (req, res) => {
-    res.send("working")
+    const bookings = await Booking.findAll()
+    res.send(bookings)
+    return res.json(bookings)
 
 }))
 router.get(`/:id(\\d+)`, asyncHandler(async (req, res) => {
