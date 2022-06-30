@@ -1,17 +1,10 @@
 import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {thunkUpdateSpot} from '../../../store/spots';
+import {thunkUpdateSpot, thunkGetAllSpots} from '../../../store/spots';
 
 export default function EditFormComponent({spot}) {
         const user = useSelector(state => state.session.user);
-        // const spotState = useSelector(state => state.spotReducer);
-        // let currentSpot = spotState[spot]
-        // console.log("current spot " , currentSpot.address)
-        // let x = Object.values(spot);
-        // console.log('spot' , x)
-        // let spotId = Object.values(spot).length - 1
-        // console.log(x[spotId].id)
         const hist = useHistory();
         const [address, setAddress] = useState('');
         const [city, setCity] = useState('');
@@ -22,14 +15,34 @@ export default function EditFormComponent({spot}) {
         const [history, setHistory] = useState('');
         const [url, setUrl] = useState([]);
         const dispatch = useDispatch();
-        
-        useEffect(() => {
+        const [errors, setErrors] = useState([])
+        const [hasSubmitted, setHasSubmitted] = useState(false);
 
-        })
+        useEffect(() => {
+            const err = [];
+
+            if(!address.length) err.push("Please provide an address");
+            if(!city.length) err.push("Please provide a city");
+            if(!state.length) err.push("Please provide a state")
+            if(!country.length) err.push("Please provide a country")
+            if(!name.length) err.push("Please provide a name");
+            if(price <= 0) err.push("Please set a valid price");
+            if(!history.length) err.push("Please provide a history");
+
+            return setErrors(err);
+
+        }, [address,city,state,country,name,price,history])
+
+        // useEffect(() => {
+        //     dispatch(thunkGetAllSpots())
+        // }, [hist,dispatch])
 
 
         async function onSubmit(e){
             e.preventDefault();
+
+            setHasSubmitted(true);
+            if(errors.length) return alert('cannot submit')
 
             const payload = {
                 address,
@@ -42,14 +55,25 @@ export default function EditFormComponent({spot}) {
             }
 
 
-            let updatedSpot = await dispatch(thunkUpdateSpot(payload, spot));
-            if(updatedSpot) {
-                hist.push(`/api/spots/${spot}`)
-            }
+              await dispatch(thunkUpdateSpot(payload,spot));
+            // if(updatedSpot) {
+            //     hist.push(`/api/spots/${spot}`)
+            // }
         }
-        if(!user) return null;
+
+    if(!user) return null;
     return (
             <form onSubmit={onSubmit}>
+                {hasSubmitted && errors.length > 0 && (
+                    <div>
+                    The following errors were found:
+                    <ul>
+                        {errors.map(error => (
+                        <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                    </div>
+                )}
                 <div>
                     <label  htmlFor="address">Address</label>
                     <input type="text" id="address" value={address}

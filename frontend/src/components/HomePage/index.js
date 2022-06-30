@@ -6,35 +6,29 @@ import SpotImagesComponent from './SpotImages/SpotImagesComponent'
 import DetailsComponent from './SpotDetails/DetailsComponent';
 import EditFormComponent from '../SpotPage/CreateSpot/CreateFormComponent'
 import './homePage.css';
+import {useHistory} from 'react-router-dom';
 
 export default function HomePageSpots() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const selectorSpots = useSelector(state => state.spotReducer);
+    const spotArr = Object.values(selectorSpots)
     const [spots, setSpots] = useState([])
-    console.log("selector in home page", selectorSpots)
+
 
     useEffect(() => {
         dispatch(thunkGetAllSpots())
-    }, [dispatch])
+    }, [history, dispatch])
 
-    useEffect(() => {
-    }, [spots])
-
-    useEffect(() => {
-        if (selectorSpots) {
-            setSpots(Object.values(selectorSpots));
-        }
-    }, [selectorSpots])
-
-
+    console.log("spot arra" , spotArr)
 
     return (
         <>
             <div className="card-wrapper"> 
-                {spots && spots.map(spot =>(
+                {spotArr && spotArr.map(spot =>(
                     <div key={spot.id} className="card">
                         <div className="img-carousel">
-                            <SpotImagesComponent images={spot.Images} spot={spot}/> 
+                            <SpotImagesComponent images={spot?.Images} spot={spot}/> 
                         </div>
                         <div className = 'card-details' >
                             <DetailsComponent details={spot} />
