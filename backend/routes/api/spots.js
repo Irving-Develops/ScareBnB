@@ -30,10 +30,12 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 }))
 
 router.post('/', asyncHandler(async(req,res) => {
+    console.log("req body", req.body)
     const newSpot = await Spot.create(req.body);
-    console.log(req.body)  
-     return res.redirect(`${req.baseUrl}/${newSpot}`);
-        // return  res.redirect(`/`);
+    console.log("new spot", newSpot) 
+    console.log('req.baseUrl', req.baseUrl)
+    //  return res.redirect(`/spots/${newSpot}`);
+        return  res.redirect(`/`);
         // return res.json()
 }))
 

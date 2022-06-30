@@ -60,7 +60,7 @@ export const thunkCreateSpot = (spot) => async (dispatch) => {
   })
   if(response.ok) {
     const createdSpot = await response.json();
-     dispatch(actionCreateSpot(createdSpot));
+     await dispatch(actionCreateSpot(createdSpot));
     return createdSpot;
   }
 };
