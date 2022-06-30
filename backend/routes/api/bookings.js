@@ -17,9 +17,9 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(bookings)
 
 }))
-router.get(`/:id(\\d+)`, asyncHandler(async (req, res) => {
-    res.send("working")
-}))
+// router.get(`/:id(\\d+)`, asyncHandler(async (req, res) => {
+//     res.send("working")
+// }))
 
 //UPDATE
 router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
@@ -27,8 +27,16 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 }))
 
 //DELETE
-router.delete(`/:id(\\d+)`, asyncHandler(async (req, res) => {
-    res.send("working")
+router.delete(`/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
+        let {id} = req.params
+        console.log("id =======> " , id)
+        const booking = await Booking.findByPk(id)
+        console.log(booking)
+        // await booking.destroy()
+        res.json({
+            message: 'Success!'
+        })
+        // return res.redirect(`/`)
 }))
 
 

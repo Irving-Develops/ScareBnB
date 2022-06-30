@@ -5,7 +5,7 @@ const bookingRouter = require('./bookings')
 
 const router = express.Router();
 
-router.use('/:id(\\d+)/bookings', bookingRouter)
+router.use('/:spotId(\\d+)/bookings', bookingRouter)
 
 router.get('/', asyncHandler(async(req,res) => {
     const spots = await Spot.findAll({include: [Image, User]})
@@ -21,8 +21,11 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
     // res.send(req.body)
     // console.log(req.params.id)
     const spot = await Spot.findByPk(req.params.id)
-
+    console.log("1",spot)
     const updatedSpot = await spot.update(req.body)
+    const editedSpot = await Spot.findByPk(req.params.id, {include: [Image, User]})
+    console.log("2", updatedSpot)
+    console.log("3", editedSpot)
     // res.redirect('/')
     return res.json(updatedSpot)
 
@@ -44,5 +47,7 @@ router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     return res.redirect(`/`)
 
 }))
+
+
 
 module.exports = router;
