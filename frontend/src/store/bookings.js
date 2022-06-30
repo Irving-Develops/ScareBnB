@@ -64,7 +64,7 @@ export const actionDeleteBooking = (bookingId) => {
 export const thunkGetBooking = () => async(dispatch) => {
         console.log('in dispatch')
 
-    const response = await csrfFetch('/api/spots/1/bookings')
+    const response = await csrfFetch('/spots/1/bookings')
     if(response.ok) {
         const data = await response.json()
       console.log("data ===> ", data)

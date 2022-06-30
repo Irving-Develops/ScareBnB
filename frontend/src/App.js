@@ -23,10 +23,10 @@ function App() {
           <Route exact path='/'>
             <HomePageSpots />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/spots/:spotId">
+          <Route exact path="/spots/:spotId">
             <SpotComponent />
           </Route>
           {/* <Route path="/test">

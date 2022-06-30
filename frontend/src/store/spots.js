@@ -62,7 +62,7 @@ export const thunkCreateSpot = (spot, image) => async (dispatch) => {
   if(response.ok) {
     const createdSpot = await response.json();
     //   console.log("data ===> ", spot)
-    dispatch(actionCreateSpot(createdSpot));
+    await dispatch(actionCreateSpot(createdSpot));
     return createdSpot;
   }
   return await response.json();

@@ -34,8 +34,9 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async(req,res) => {
     const newSpot = await Spot.create(req.body);
     console.log(req.body)  
-     return res.redirect(`${req.baseUrl}/${newSpot}`);
-        // return res.redirect(`/`);
+    //  return res.redirect(`${req.baseUrl}/${newSpot}`);
+        return  res.redirect(`/`);
+        // return res.json()
 }))
 
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
