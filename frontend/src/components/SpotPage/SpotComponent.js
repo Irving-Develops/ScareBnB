@@ -17,7 +17,6 @@ export default function SpotComponent(){
     let {spotId} = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spotReducer[spotId]);
-
     useEffect(() => {
         dispatch(thunkGetAllSpots())
     }, [dispatch])
@@ -34,9 +33,26 @@ export default function SpotComponent(){
                         <img src={image.url} alt="" ></img>
                     </div>
                 ))} 
-                    <div id={`img-4`}> 
-                        <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
-                    </div>
+                {spot.Images.length < 1 && (
+                    <>
+                        <div id={`img-0`}> 
+                            <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                        </div>
+                        <div id={`img-1`}> 
+                            <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                        </div>
+                        <div id={`img-2`}> 
+                            <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                        </div>
+                        <div id={`img-3`}> 
+                            <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                        </div>
+                        <div id={`img-4`}> 
+                            <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                        </div>
+                    </>
+                    
+                )}
             </div>
             <div className="details-container">
                 <div className="details">

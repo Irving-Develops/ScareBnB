@@ -21,7 +21,7 @@ const DELETE_BOOKING = 'bookings/deleteBooking';
 
 //CREATE
 export const actionCreateBooking = (booking) => {
-    // console.log()
+    console.log("in action", booking)
     return {
         type: CREATE_BOOKING,
         booking
@@ -54,26 +54,30 @@ export const actionDeleteBooking = (bookingId) => {
 //create thunks
 
 //CREATE
-// export const thunkCreateBooking = (bookingId) => async(dispatch) => {
-//   const response = await csrfFetch('/api/spots')
+export const thunkCreateBooking = (payload) => async(dispatch) => {
+    console.log("payload in thunk===> ", payload)
+  const response = await csrfFetch(`/api/spots/${payload.spotId}/bookings`, { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+    })
 
-//     dispatch(actionCreateBooking(bookingId))
-// }
+    if(response.ok){
+        let createBooking = await response.json()
+        dispatch(actionCreateBooking(createBooking))
+        return response;
+    }
+}
 
 //READ
-export const thunkGetBooking = () => async(dispatch) => {
-        console.log('in dispatch')
-
-    const response = await csrfFetch('/spots/1/bookings')
+export const thunkGetBooking = (spotId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
     if(response.ok) {
         const data = await response.json()
-      console.log("data ===> ", data)
-
-        dispatch(actionGetBooking(data))
-        console.log('sent dispatch')
+         dispatch(actionGetBooking(data))
         return response
     }
-    return await response.json();
+    return response.json();
 }
 
 //UPDATE
@@ -101,14 +105,14 @@ export const thunkDeleteBooking = (bookingId, history) => async(dispatch) => {
 
 //create reducer
 
- const bookingReducer = (state = {bookings: {}}, action ) => {
+ const bookingReducer = (state = {}, action ) => {
    let newState;
    switch (action.type) {
-    //    case CREATE_BOOKING:
-    //         newState = {...state}
-    //         return newState;
+       case CREATE_BOOKING:
+            newState = {...state}
+            return newState;
        case GET_BOOKING:
-           console.log("action booking", action.booking)
+        //    console.log("action booking", action.booking)
             newState = {...state, ...action.booking}
         return newState;
     //    case UPDATE_BOOKING:
