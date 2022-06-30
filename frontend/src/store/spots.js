@@ -52,21 +52,17 @@ const actionDeleteSpot = (spotId) => {
 //todo thunks
 
 //POST thunk
-export const thunkCreateSpot = (spot, image) => async (dispatch) => {
-    console.log("in create thunk", spot, image)
+export const thunkCreateSpot = (spot) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(spot)
   })
-  console.log("response => ", response)
   if(response.ok) {
     const createdSpot = await response.json();
-    //   console.log("data ===> ", spot)
     dispatch(actionCreateSpot(createdSpot));
-    return createdSpot;
+    return response;
   }
-  return await response.json();
 };
 
 
@@ -76,8 +72,8 @@ export const thunkGetAllSpots = () => async (dispatch) => {
   const response = await csrfFetch('/api/spots')
   if(response.ok) {
       const data = await response.json();
-    //   console.log("data ===> ", data)
     dispatch(actionGetAllSpots(data));
+
     return response
   }
   return await response.json();
@@ -119,7 +115,7 @@ export const thunkDeleteSpot = (spotId, history) => async (dispatch) => {
         history.push('/')
         return deletedSpot;
     }
-    return await response.json();
+    return response.json();
 };
 
 
