@@ -48,9 +48,9 @@ export default function SpotComponent(){
                 </div>
             </div>
                 <>
-                    <h3>Edit Spot</h3>
-                    <EditFormComponent spot={spot?.id}/>
-                    <DeleteComponent spot={spot?.id} />
+                    {/* <h3>Edit Spot</h3> */}
+                    <EditFormComponent spot={spot}/>
+                    <DeleteComponent spot={spot} />
                 </>
         </>
     )
