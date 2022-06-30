@@ -33,9 +33,7 @@ export default function EditFormComponent({spot}) {
 
         }, [address,city,state,country,name,price,history])
 
-        // useEffect(() => {
-        //     dispatch(thunkGetAllSpots())
-        // }, [hist,dispatch])
+
 
 
         async function onSubmit(e){

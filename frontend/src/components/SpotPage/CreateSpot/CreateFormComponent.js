@@ -52,15 +52,8 @@ export default function CreateFormComponent() {
                 history
             }
 
-            // const imagePayload = { 
-            //     url
-            // }
+             let createdSpot = await dispatch(thunkCreateSpot(payload));
 
-
-             await dispatch(thunkCreateSpot(payload));
-
-            // history.push(createdSpot);
-                
         }
 
 

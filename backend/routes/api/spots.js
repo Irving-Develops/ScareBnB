@@ -24,8 +24,6 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
     console.log("1",spot)
     const updatedSpot = await spot.update(req.body)
     const editedSpot = await Spot.findByPk(req.params.id, {include: [Image, User]})
-    console.log("2", updatedSpot)
-    console.log("3", editedSpot)
     // res.redirect('/')
     return res.json(updatedSpot)
 
@@ -34,8 +32,8 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async(req,res) => {
     const newSpot = await Spot.create(req.body);
     console.log(req.body)  
-    //  return res.redirect(`${req.baseUrl}/${newSpot}`);
-        return  res.redirect(`/`);
+     return res.redirect(`${req.baseUrl}/${newSpot}`);
+        // return  res.redirect(`/`);
         // return res.json()
 }))
 
