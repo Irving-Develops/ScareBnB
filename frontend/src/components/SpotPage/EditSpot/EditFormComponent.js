@@ -53,9 +53,7 @@ export default function EditFormComponent({spot}) {
 
 
               await dispatch(thunkUpdateSpot(payload,spot.id));
-            // if(updatedSpot) {
-            //     hist.push(`/api/spots/${spot}`)
-            // }
+
         }
 
     // if(!user) return null;

@@ -88,19 +88,20 @@ export const thunkUpdateBooking = (bookingId) => async(dispatch) => {
 }
 
 //DELETE
-export const thunkDeleteBooking = (bookingId, history) => async(dispatch) => {
-    console.log(bookingId, history)
-    const response = await csrfFetch(`/api/spots/1/bookings/${bookingId}`, {
+export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
+    // console.log("booking Id",spotId, userId)
+    const response = await csrfFetch(`/api/spots/${booking.spotId}/bookings/${booking.userId}`, {
         method: 'DELETE',
+        body: JSON.stringify(booking)
     });
 
     if (response.ok) {
         const deletedBooking = response.json()
-        dispatch(actionDeleteBooking(bookingId));
-        history.push('/test')
+        dispatch(actionDeleteBooking());
+        history.push(`/spots/${booking.spotId}`)
         return deletedBooking;
     }
-    return await response.json();
+    return response.json();
 }
 
 //create reducer

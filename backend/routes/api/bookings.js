@@ -31,15 +31,16 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 
 //DELETE
 router.delete(`/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
-        let {id} = req.params
-        console.log("id =======> " , id)
-        const booking = await Booking.findByPk(id)
-        console.log(booking)
-        // await booking.destroy()
+        let {spotId, userId} = req.body;
+        console.log(req.body)
+        const booking = await Booking.findOne({where: {userId, spotId}})
+        console.log("booking =========> ",booking)
+        await booking.destroy()
+
         res.json({
             message: 'Success!'
         })
-        // return res.redirect(`/`)
+        return res.redirect(`/`)
 }))
 
 

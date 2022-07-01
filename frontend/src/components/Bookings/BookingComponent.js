@@ -4,20 +4,19 @@ import {useHistory} from 'react-router-dom'
 import {thunkGetBooking, thunkDeleteBooking, thunkCreateBooking} from '../../store/bookings';
 
 export default function BookingComponent({spotId}) {
-    // let id = spotId;
     const selectorBookings = useSelector(state => state?.bookingReducer);
     const userId = useSelector(state => state.session.user.id);
-    // console.log(userId)
+    const user = useSelector(state => state.session.user);
+
     const bookingsArr = Object.values(selectorBookings)
     const history = useHistory();
     const dispatch = useDispatch();
-    
-    //create a booking variables
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("")
     const [upToDate, setUpToDate] = useState(true)
-    
 
+    
+    
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
     
     const  onSubmit = async(e) =>{
@@ -29,27 +28,23 @@ export default function BookingComponent({spotId}) {
             startDate,
             endDate,
         }
-        console.log("payload", payload)
 
         await dispatch(thunkCreateBooking(payload))
-        setUpToDate(false)
+        await dispatch(thunkGetBooking(spotId))
+        await setUpToDate(true)
     }
+
+    console.log("test", bookingsForSpot)
 
     useEffect(() => {
-    dispatch(thunkGetBooking(spotId))
-    setUpToDate(true)
-    }, [dispatch, spotId, upToDate])
+        dispatch(thunkGetBooking(spotId))
+    }, [dispatch, spotId])
 
-    // useEffect(() => {
-    //     setUpToDate(true)
-    // },[bookingsForSpot])
 
-    async function onDelete(bookingId) {
-
-        dispatch(thunkDeleteBooking(bookingId, history))
-        
+    async function onDelete(booking) {
+        await dispatch(thunkDeleteBooking(booking, history))
+        await setUpToDate(false)
     }
-
 
     // if(upToDate === false) return null;
     return (
@@ -57,15 +52,14 @@ export default function BookingComponent({spotId}) {
 
                 {bookingsForSpot && upToDate && bookingsForSpot.map(booking => (
                     <div key={booking.id}>
-                        <p >Booking for user {booking.userId} at spot {booking.spotId} from {booking.startDate} to {booking.endDate}</p>
-                        <button type="button" onClick={() => onDelete(booking.id)}> Delete Booking</button>
-                        <button>edit</button>
+                        <p >Booking for user {booking?.userId} at spot {booking?.spotId} from {booking?.startDate} to {booking?.endDate}</p>
+                        <button type="button" onClick={() => onDelete(booking)}> Delete Booking</button>
                     </div>
 
                 ))}
 
             <div>
-                {/* <button>create booking</button> */}
+                <h2>create booking</h2>
                 <form onSubmit={onSubmit}>
                     <label>Start</label>
                     <input type="date" value={startDate}

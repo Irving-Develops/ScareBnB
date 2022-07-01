@@ -40,7 +40,7 @@ router.post('/', asyncHandler(async(req,res) => {
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     const id = req.params.id
     const spot = await Spot.findByPk(id)
-
+    
     await spot.destroy()
     res.json({message: 'Success!'})
     return res.redirect(`/`)
