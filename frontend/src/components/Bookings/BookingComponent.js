@@ -81,14 +81,14 @@ export default function BookingComponent({spotId}) {
         }
 
         await dispatch(thunkCreateBooking(payload))
-        await  dispatch(thunkGetBooking(spotId))
+        await  dispatch(thunkGetBooking())
          setUpToDate(true)
          setHasSubmitted(false)
          setBookingExist(true)
     }
 
     useEffect(() => {
-        if(!upToDate){
+        if(upToDate === false){
             dispatch(thunkGetBooking(spotId))
             setUpToDate(true)
         }
@@ -97,7 +97,7 @@ export default function BookingComponent({spotId}) {
 
 
     useEffect(() => {
-        dispatch(thunkGetBooking(spotId))
+        dispatch(thunkGetBooking())
         setUpToDate(true)
     }, [dispatch, spotId])
 

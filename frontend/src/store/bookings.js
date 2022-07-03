@@ -56,7 +56,7 @@ export const actionDeleteBooking = (booking) => {
 //CREATE
 export const thunkCreateBooking = (payload) => async(dispatch) => {
     console.log("payload in thunk===> ", payload)
-  const response = await csrfFetch(`/api/spots/${payload.spotId}/bookings`, { 
+  const response = await csrfFetch(`/api/bookings`, { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -70,8 +70,8 @@ export const thunkCreateBooking = (payload) => async(dispatch) => {
 }
 
 //READ
-export const thunkGetBooking = (spotId) => async(dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
+export const thunkGetBooking = () => async(dispatch) => {
+    const response = await csrfFetch(`/api/bookings`)
     if(response.ok) {
         const data = await response.json()
          dispatch(actionGetBooking(data))
@@ -90,14 +90,13 @@ export const thunkUpdateBooking = (bookingId) => async(dispatch) => {
 //DELETE
 export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
     console.log("booking Id", booking)
-    const response = await csrfFetch(`/api/spots/${booking.spotId}/bookings/${booking.id}`, {
+    const response = await csrfFetch(`/api/bookings/${booking.id}`, {
         method: 'DELETE',
     });
     // console.log("response", response)
     if (response.ok) {
         const deletedBooking = response.json()
-        // console.log("in thunk", booking)
-        dispatch(actionDeleteBooking(booking));
+        dispatch(actionDeleteBooking(booking.id));
         history.push(`/spots/${booking.spotId}`)
         return deletedBooking;
     }
@@ -121,7 +120,7 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
         return newState;
        case DELETE_BOOKING:
             newState = { ...state };
-            delete newState[action.booking.id];
+            delete newState[action.booking];
             return newState;
        default:
            return state;

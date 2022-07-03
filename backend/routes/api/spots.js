@@ -6,16 +6,16 @@ const bookingRouter = require('./bookings')
 const router = express.Router();
 
 
-router.use('/:spotId(\\d+)/bookings', bookingRouter)
+// router.use('/:spotId(\\d+)/bookings', bookingRouter)
 
 
 //DELETE for booking, I don't have access to booking id so I need spot and user id to delete specific booking
-router.delete(`/:spotId(\\d+)/bookings/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
-        const {bookingId} = req.params;
-        const booking = await Booking.findOne({where: {id: bookingId}})
-        await booking.destroy()
-        return res.json({message: 'Success!'})
-}))
+// router.delete(`/:spotId(\\d+)/bookings/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
+//         const {bookingId} = req.params;
+//         const booking = await Booking.findOne({where: {id: bookingId}})
+//         await booking.destroy()
+//         return res.json({message: 'Success!'})
+// }))
 
 
 //READ for all and specific spot
