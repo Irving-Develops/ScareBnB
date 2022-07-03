@@ -1,12 +1,24 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {Spot, Image, User} = require('../../db/models/');
+const {Spot, Image, User, Booking} = require('../../db/models/');
 const bookingRouter = require('./bookings')
 
 const router = express.Router();
 
+
 router.use('/:spotId(\\d+)/bookings', bookingRouter)
 
+
+//DELETE for booking, I don't have access to booking id so I need spot and user id to delete specific booking
+router.delete(`/:spotId(\\d+)/bookings/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
+        let {spotId, bookingId: userId} = req.params;
+        const booking = await Booking.findOne({where: {userId, spotId}})
+        await booking.destroy()
+        return res.json({message: 'Success!'})
+}))
+
+
+//READ for all and specific spot
 router.get('/', asyncHandler(async(req,res) => {
     const spots = await Spot.findAll({include: [Image, User]})
     return res.json(spots)
@@ -17,26 +29,25 @@ router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     return res.json(spots)
 }))
 
+
+//UPDATE
 router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
-    // res.send(req.body)
-    // console.log(req.params.id)
     const spot = await Spot.findByPk(req.params.id)
     console.log("1",spot)
     const updatedSpot = await spot.update(req.body)
     const editedSpot = await Spot.findByPk(req.params.id, {include: [Image, User]})
-    // res.redirect('/')
     return res.json(updatedSpot)
 
 }))
 
+//CREATE
 router.post('/', asyncHandler(async(req,res) => {
     const newSpot = await Spot.create(req.body);
-
-    //  return res.redirect(`/spots/${newSpot}`);
-        // return  res.redirect(`/`);
         return res.json(newSpot)
 }))
 
+
+//DELETE
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     const id = req.params.id
     const spot = await Spot.findByPk(id)

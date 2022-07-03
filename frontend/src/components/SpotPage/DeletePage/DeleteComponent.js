@@ -9,11 +9,11 @@ export default function DeleteComponent({spot}) {
     const user = useSelector(state => state.session.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    console.log("user", user, spot)
+    // console.log("user", user, spot)
 
-    console.log("spot in delete component", spot)
+    // console.log("spot in delete component", spot)
         async function onDelete(spot) {
-        dispatch(thunkDeleteSpot(spot,history))
+         dispatch(thunkDeleteSpot(spot,history))
         
     }
 

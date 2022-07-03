@@ -21,7 +21,7 @@ export default function BookingComponent({spotId}) {
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
 
-    console.log('=========>' , bookingsForSpot.userId === userId)
+    console.log('=========>' , upToDate)
     
     useEffect(() => {
         setDay1(new Date(endDate));
@@ -81,10 +81,10 @@ export default function BookingComponent({spotId}) {
         }
 
         await dispatch(thunkCreateBooking(payload))
-        await dispatch(thunkGetBooking(spotId))
-        await setUpToDate(true)
-        await setHasSubmitted(false)
-        await setBookingExist(true)
+        await  dispatch(thunkGetBooking(spotId))
+         setUpToDate(true)
+         setHasSubmitted(false)
+         setBookingExist(true)
     }
 
     useEffect(() => {
@@ -102,12 +102,12 @@ export default function BookingComponent({spotId}) {
     }, [dispatch, spotId])
 
 
-    async function onDelete(booking) {
-        await dispatch(thunkDeleteBooking(booking, history))
-        // await dispatch(thunkGetBooking(spotId))
-        await setUpToDate(false)
-        await setHasSubmitted(false)
-        await setBookingExist(false)
+     function onDelete(booking) {
+        dispatch(thunkDeleteBooking(booking, history))
+        dispatch(thunkGetBooking(spotId))
+        setUpToDate(false)
+        setHasSubmitted(false)
+        setBookingExist(false)
     }
 
     if(upToDate === false) return null;
@@ -117,10 +117,11 @@ export default function BookingComponent({spotId}) {
     
                     {bookingsForSpot && upToDate && bookingsForSpot.map(booking => (
                         <div key={booking.id}>
-                            <p >Booking for user {booking?.userId} at spot {booking?.spotId} from {booking?.startDate} to {booking?.endDate}</p>
-                            {booking.userId === userId && (
-                                <button type="button" onClick={() => onDelete(booking)}> Delete Booking</button>
-                            )}
+
+                                    <p >Booking for user {booking.userId} at spot {booking.spotId} from {booking.startDate} to {booking.endDate}</p>
+                                    {booking.userId === userId && (
+                                        <button type="button" onClick={() => onDelete(booking)}> Delete Booking</button>
+                                        )}
                         </div>
     
                     ))}
@@ -129,14 +130,14 @@ export default function BookingComponent({spotId}) {
                     <h2>create booking</h2>
                     <form onSubmit={onSubmit}>
                     {hasSubmitted && errors.length > 0 && (
-                                            <div>
+                    <div>
                         The following errors were found:
                         <ul>
                             {errors.map(error => (
-                            <li key={error}>{error}</li>
+                            <li key={error.id}>{error}</li>
                             ))}
                         </ul>
-                        </div>
+                     </div>
                     )}
                     {!bookingExist && (
                         <>
