@@ -14,9 +14,7 @@ router.post('/', asyncHandler(async (req, res) => {
 
 //READ
 router.get('/', asyncHandler(async (req, res) => {
-    // console.log(req.params.id)
     const bookings = await Booking.findAll()
-
     return res.json(bookings)
 
 }))

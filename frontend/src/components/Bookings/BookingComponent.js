@@ -16,12 +16,12 @@ export default function BookingComponent({spotId}) {
     const [day1, setDay1] = useState(new Date(endDate))
     const [day2, setDay2] = useState(new Date(startDate))
     const [bookingExist, setBookingExist] = useState(false)
-    
-    
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
 
-    console.log('=========>' , upToDate)
+
+    // const bookingKeys = Object.keys(selectorBookings)
+    console.log('bookings =========>' , bookingsForSpot)
     
     useEffect(() => {
         setDay1(new Date(endDate));
@@ -103,6 +103,7 @@ export default function BookingComponent({spotId}) {
 
 
      function onDelete(booking) {
+         console.log("booking in delete ===> ", booking.id)
         dispatch(thunkDeleteBooking(booking, history))
         dispatch(thunkGetBooking(spotId))
         setUpToDate(false)
@@ -121,7 +122,7 @@ export default function BookingComponent({spotId}) {
                                     <p >Booking for user {booking.userId} at spot {booking.spotId} from {booking.startDate} to {booking.endDate}</p>
                                     {booking.userId === userId && (
                                         <button type="button" onClick={() => onDelete(booking)}> Delete Booking</button>
-                                        )}
+                                       )}
                         </div>
     
                     ))}
