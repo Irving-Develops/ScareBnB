@@ -45,10 +45,10 @@ export const actionUpdateBooking = (bookingId) => {
 }
 
 //DELETE
-export const actionDeleteBooking = (bookingId) => {
+export const actionDeleteBooking = (booking) => {
     return {
         type: DELETE_BOOKING,
-        bookingId
+        booking
     }
 }
 //create thunks
@@ -92,12 +92,14 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
     // console.log("booking Id",spotId, userId)
     const response = await csrfFetch(`/api/spots/${booking.spotId}/bookings/${booking.userId}`, {
         method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(booking)
     });
-
+    // console.log("response", response)
     if (response.ok) {
         const deletedBooking = response.json()
-        dispatch(actionDeleteBooking());
+        // console.log("in thunk", booking)
+        dispatch(actionDeleteBooking(booking));
         history.push(`/spots/${booking.spotId}`)
         return deletedBooking;
     }
@@ -116,12 +118,11 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
         //    console.log("action booking", action.booking)
             newState = {...state, ...action.booking}
         return newState;
-    //    case UPDATE_BOOKING:
-    //         newState = {...state}
-    //         return newState;
        case DELETE_BOOKING:
+           console.log("in reducer", action)
+           console.log(newState)
             newState = { ...state };
-            delete newState[action.spotId];
+            delete newState[action.booking];
             return newState;
        default:
            return state;
