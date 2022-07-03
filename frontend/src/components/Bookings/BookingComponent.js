@@ -10,7 +10,6 @@ export default function BookingComponent({spotId}) {
     const dispatch = useDispatch();
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("")
-    const [upToDate, setUpToDate] = useState(true)
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [day1, setDay1] = useState(new Date(endDate))
@@ -19,9 +18,6 @@ export default function BookingComponent({spotId}) {
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
 
-
-    // const bookingKeys = Object.keys(selectorBookings)
-    console.log('bookings =========>' , bookingsForSpot)
     
     useEffect(() => {
         setDay1(new Date(endDate));
@@ -82,23 +78,13 @@ export default function BookingComponent({spotId}) {
 
         await dispatch(thunkCreateBooking(payload))
         await  dispatch(thunkGetBooking())
-         setUpToDate(true)
          setHasSubmitted(false)
          setBookingExist(true)
     }
 
-    useEffect(() => {
-        if(upToDate === false){
-            dispatch(thunkGetBooking(spotId))
-            setUpToDate(true)
-        }
-
-    }, [dispatch, upToDate, spotId])
-
 
     useEffect(() => {
         dispatch(thunkGetBooking())
-        setUpToDate(true)
     }, [dispatch, spotId])
 
 
@@ -106,17 +92,14 @@ export default function BookingComponent({spotId}) {
          console.log("booking in delete ===> ", booking.id)
         dispatch(thunkDeleteBooking(booking, history))
         dispatch(thunkGetBooking(spotId))
-        setUpToDate(false)
         setHasSubmitted(false)
         setBookingExist(false)
     }
 
-    if(upToDate === false) return null;
-    // if(upToDate === true){
         return (
             <>
     
-                    {bookingsForSpot && upToDate && bookingsForSpot.map(booking => (
+                    {bookingsForSpot && bookingsForSpot.map(booking => (
                         <div key={booking.id}>
 
                                     <p >Booking for user {booking.userId} at spot {booking.spotId} from {booking.startDate} to {booking.endDate}</p>

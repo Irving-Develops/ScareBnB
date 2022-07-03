@@ -21,7 +21,6 @@ const DELETE_BOOKING = 'bookings/deleteBooking';
 
 //CREATE
 export const actionCreateBooking = (booking) => {
-    console.log("in action", booking)
     return {
         type: CREATE_BOOKING,
         booking
@@ -55,7 +54,6 @@ export const actionDeleteBooking = (booking) => {
 
 //CREATE
 export const thunkCreateBooking = (payload) => async(dispatch) => {
-    console.log("payload in thunk===> ", payload)
   const response = await csrfFetch(`/api/bookings`, { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -80,20 +78,12 @@ export const thunkGetBooking = () => async(dispatch) => {
     return response.json();
 }
 
-//UPDATE
-export const thunkUpdateBooking = (bookingId) => async(dispatch) => {
-  const response = await csrfFetch('/api/spots')
-
-    dispatch(actionUpdateBooking(bookingId))
-}
-
 //DELETE
 export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
     console.log("booking Id", booking)
     const response = await csrfFetch(`/api/bookings/${booking.id}`, {
         method: 'DELETE',
     });
-    // console.log("response", response)
     if (response.ok) {
         const deletedBooking = response.json()
         dispatch(actionDeleteBooking(booking.id));
@@ -112,7 +102,6 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
             newState = {...state}
             return newState;
        case GET_BOOKING:
-        //    console.log("action booking", action.booking)
             newState = {...state}
             action.booking.forEach(booking => {
                 newState[booking.id] = booking

@@ -25,7 +25,6 @@ const actionCreateSpot = (spot, image) => {
 }
 const actionGetAllSpots = (spots) => {
     
-    // console.log("inside action ==>", spots)
     return {
         type: GET_SPOTS,
         spots
