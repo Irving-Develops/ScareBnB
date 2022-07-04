@@ -20,7 +20,6 @@ function Navigation({ isLoaded }){
       <>
         <LoginFormModal />
         <SignupFormModal / >
-        {/* <BecomeHostModal /> */}
       </>
     );
   }
@@ -29,7 +28,6 @@ function Navigation({ isLoaded }){
     <div className="nav-container">
       <div className="nav-title">
         <NavLink exact to="/" id="logo">scarebnb</NavLink>
-        {/* <h1>scareBnB</h1> */}
       </div>
       <div className="nav-links">
         <div id="become-a-host">

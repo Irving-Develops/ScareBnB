@@ -7,20 +7,19 @@ export default function SpotImagesComponent({images, spot}) {
     const [length, setLength] = useState(0)
 
     const next = () => {
-        if (currentIndex < (length - 1)) {
-            setCurrentIndex(prevState => prevState + 1)
-        }
+        if (currentIndex < (length - 1)) setCurrentIndex(prevState => prevState + 1)
     }
 
     const prev = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(prevState => prevState - 1)
-        }
+        if (currentIndex > 0) setCurrentIndex(prevState => prevState - 1);
+
     }
     
     // Set the length to match current children from props
     useEffect(() => {
-        // setLength(images.length)
+        if(images) {
+            setLength(images.length)
+        }
     }, [images])
 
     return (
@@ -38,7 +37,7 @@ export default function SpotImagesComponent({images, spot}) {
                                     <img className="card-img" src={image.url} alt={image.id}></img>
                                 </NavLink>
                             ))} 
-                            <NavLink to={`/spots/${spot.id}`}><img className="card-img" src='https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt=''></img></NavLink>)
+                            <NavLink to={`/spots/${spot.id}`}><img className="card-img" src='https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt='spooky house'></img></NavLink>)
                         </div>
                     </div>
                     <button onClick={next} className="right-arrow">
@@ -47,4 +46,4 @@ export default function SpotImagesComponent({images, spot}) {
                 </div>
             </div>
     )
-}
+                            }

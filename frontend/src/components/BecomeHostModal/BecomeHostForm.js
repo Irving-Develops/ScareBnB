@@ -2,8 +2,10 @@ import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkCreateSpot} from '../../store/spots';
 import {useHistory} from 'react-router-dom';
+import './BecomeHost.css';
 
-export default function BecomeHostForm() {
+
+export default function BecomeHostForm(props) {
         const hist = useHistory();
         const user = useSelector(state => state.session.user);
         const [address, setAddress] = useState('');
@@ -16,20 +18,20 @@ export default function BecomeHostForm() {
         const [errors, setErrors] = useState([])
         const dispatch = useDispatch();
         const [hasSubmitted, setHasSubmitted] = useState(false);
-        const [showModal, setModal] = useState(false);
 
 
         useEffect(() => {
             const err = [];
 
-            console.log("DATATYPE+++++++++++", typeof(price))
+            console.log("DATATYPE+++++++++++", parseInt(price, 10))
+            
             if(!address.length) err.push("Please provide an address");
             if(!city.length) err.push("Please provide a city");
             if(!state.length) err.push("Please provide a state")
             if(!country.length) err.push("Please provide a country")
             if(!name.length) err.push("Please provide a name");
             if(price <= 0) err.push("Price must be more than $0.00");
-            if(typeof(+price) !== 'number') err.push('Please enter a valid price')
+            if (typeof (parseInt(price, 10)) !== 'number') err.push('Please enter a valid price')
             if(!history.length) err.push("Please provide a history");
 
             return setErrors(err);
@@ -37,13 +39,13 @@ export default function BecomeHostForm() {
         }, [address,city,state,country,name,price,history])
 
 
-
-        async function onSubmit(e){
+        const onSubmit = async(e) => {
             e.preventDefault();
 
             setHasSubmitted(true);
-            if(errors.length) return alert('cannot submit')
-
+            if(errors.length > 0){
+               return alert("cannot submit")
+            }
             const payload = {
                 userId: user.id,
                 address,
@@ -55,21 +57,21 @@ export default function BecomeHostForm() {
                 history
             }
 
-              await dispatch(thunkCreateSpot(payload));
-              setHasSubmitted(false)
-              alert("Spot created")
-              setAddress("")
-              setCity("")
-              setState("")
-              setCountry("")
-              setName("")
-              setPrice(0)
-              setHistory("")
-              setErrors([]);
-                //  hist.push('/spots/1');
+            await dispatch(thunkCreateSpot(payload, hist));
+            setHasSubmitted(false)
+            setAddress("")
+            setCity("")
+            setState("")
+            setCountry("")
+            setName("")
+            setPrice(0)
+            setHistory("")
+            setErrors([]);
+            props.setShowModal(false)
+
         }
 
-
+        // console.log(errors)
         if(!user ) return null;
 
 
@@ -82,8 +84,8 @@ export default function BecomeHostForm() {
             <form onSubmit={onSubmit} id='form-content'>
                 {hasSubmitted && errors.length > 0 && (
                     <div id='errors'>
-                    The following errors were found:
                     <ul>
+                        The following errors were found:
                         {errors.map(error => (
                         <li key={error}>{error}</li>
                         ))}

@@ -65,6 +65,16 @@ hr {
     color: white;
 }
 
-/* .hidden > hr{
-display: none;
-} */
+ li, ul{
+    color: red;
+    list-style: none;
+}
+
+.booking-container {
+    width: 330px;
+    height: 500px;
+}
+
+.details {
+    flex-shrink: 1;
+}
