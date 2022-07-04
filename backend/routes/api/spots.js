@@ -43,6 +43,7 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 //CREATE
 router.post('/', asyncHandler(async(req,res) => {
     const newSpot = await Spot.create(req.body);
+    console.log(newSpot)
         return res.json(newSpot)
 }))
 

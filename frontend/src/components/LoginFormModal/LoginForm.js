@@ -9,13 +9,7 @@ function LoginForm() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isActive, setIsActive] = useState(false)
-
-
-  // const handleClick = e => {
-  //   setIsActive(current => !current);
-  //   className={isActive ? 'hidden' : ''} onClick={handleClick}
-  // }
+  const [isActive, setIsActive] = useState(false);
 
 
   const handleSubmit = (e) => {

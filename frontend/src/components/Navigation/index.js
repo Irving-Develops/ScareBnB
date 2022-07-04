@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal'; 
 import SignupFormModal from '../SignupFormModal';
-
+import BecomeHostModal from '../BecomeHostModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -19,20 +19,25 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <LoginFormModal />
-        < SignupFormModal / >
-
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
+        <SignupFormModal / >
+        {/* <BecomeHostModal /> */}
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <div className="nav-container">
+      <div className="nav-title">
+        <NavLink exact to="/" id="logo">scarebnb</NavLink>
+        {/* <h1>scareBnB</h1> */}
+      </div>
+      <div className="nav-links">
+        <div id="become-a-host">
+          <BecomeHostModal />
+        </div>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

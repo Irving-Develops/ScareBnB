@@ -1,0 +1,17 @@
+#logo {
+    font-size: 20px;
+    text-decoration: none;
+    color: #ff385c
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
