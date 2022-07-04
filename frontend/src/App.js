@@ -28,9 +28,6 @@ function App() {
           <Route exact path="/spots/:spotId">
             <SpotComponent />
           </Route>
-          {/* <Route path="/test">
-            <BookingComponent />
-          </Route> */}
         </Switch>
       )}
     </>

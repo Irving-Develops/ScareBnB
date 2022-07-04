@@ -22,6 +22,7 @@ export default function SpotComponent(){
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
+    // console.log("checkoing" , spot.Images, spot.Images.length)
 
     if(!spot) return null;
 
@@ -33,13 +34,13 @@ export default function SpotComponent(){
                 <h2 id='spot-name'>{spot?.name}</h2>
                 <p>{spot?.address}</p>
                 <div className="img-container">
-                    {spot.Images !== undefined && spot?.Images && spot?.Images?.map((image, index) => (
+                    {spot.Images && spot.Images.map((image, index) => (
                         <div key={image?.id} id={`img-${index}`}> 
                             <img src={image?.url} alt="" ></img>
                         </div>
                         
                     ))} 
-                    {(spot?.Images.length === 0 || spot.Images === undefined) && (
+                    {(spot.Images === undefined || spot.Images.length === 0) && (
                         <>
                             <div id={`img-0`}> 
                                 <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>

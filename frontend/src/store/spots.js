@@ -60,7 +60,7 @@ export const thunkCreateSpot = (spot, hist) => async (dispatch) => {
   if(response.ok) {
     const createdSpot = await response.json();
     // console.log(createdSpot)
-    dispatch(actionCreateSpot(createdSpot));
+     dispatch(actionCreateSpot(createdSpot));
     hist.push(`/spots/${createdSpot.id}`)
     return response;
   }
