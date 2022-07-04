@@ -2,8 +2,9 @@ import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 import {thunkGetBooking, thunkDeleteBooking, thunkCreateBooking} from '../../store/bookings';
+import './Booking.css'
 
-export default function BookingComponent({spotId}) {
+export default function BookingComponent({spotId, price}) {
     const selectorBookings = useSelector(state => state?.bookingReducer);
     const userId = useSelector(state => state.session.user.id);
     const history = useHistory();
@@ -15,18 +16,23 @@ export default function BookingComponent({spotId}) {
     const [day1, setDay1] = useState(new Date(endDate))
     const [day2, setDay2] = useState(new Date(startDate))
     const [bookingExist, setBookingExist] = useState(false)
+    const [totalDays, setTotalDays] = useState(null)
+    const [display, setDisplay] = useState(false)
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
+    console.log(bookingsForSpot)
+    console.log(spotId, userId)
+    let yourBooking;
+    bookingsForSpot.forEach(booking => {
+        console.log("inside your booking", booking)
+        if(booking.userId === userId && booking.spotId === spotId){
+            yourBooking= booking;
+            return;
+        };
+    })
 
-    
-    useEffect(() => {
-        setDay1(new Date(endDate));
-        setDay2(new Date(startDate))
+    console.log("your booking" , yourBooking)
 
-    }, [endDate, startDate])
-
-    
-    
     useEffect(() => {
         const err = [];
         
@@ -36,8 +42,9 @@ export default function BookingComponent({spotId}) {
             let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
             return TotalDays;
         }
-        
+
         let amountOfDays = days(day1, day2);
+        setTotalDays(amountOfDays);
         
         if(amountOfDays > 28) err.push("Your booking cannot be longer thank 28 days")
         
@@ -98,20 +105,8 @@ export default function BookingComponent({spotId}) {
 
         return (
             <>
-    
-                    {bookingsForSpot && bookingsForSpot.map(booking => (
-                        <div key={booking.id}>
-
-                                    <p >Booking for user {booking.userId} at spot {booking.spotId} from {booking.startDate} to {booking.endDate}</p>
-                                    {booking.userId === userId && (
-                                        <button type="button" onClick={() => onDelete(booking)}> Delete Booking</button>
-                                       )}
-                        </div>
-    
-                    ))}
-    
-                <div>
-                    <h2>create booking</h2>
+                <div className="booking-container">
+                    <p id="price"><span>${price}</span> /night</p>
                     <form onSubmit={onSubmit}>
                     {hasSubmitted && errors.length > 0 && (
                     <div>
@@ -123,21 +118,55 @@ export default function BookingComponent({spotId}) {
                         </ul>
                      </div>
                     )}
-                    {!bookingExist && (
+                    {yourBooking && (
                         <>
-                            <label>Start</label>
-                            <input type="date" value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                            />
-                            <input type="date"  value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)} 
-                            />
-                             <button>Submit</button>
+                            <p>You have a booking from {yourBooking.startDate} to {yourBooking.endDate}</p>
+                            <button id="delete-btn" type="button" onClick={() => onDelete(yourBooking)}> Delete Booking</button>
                         </>
+
+                    )}
+                    {!bookingExist && !yourBooking &&(
+                        <div className="calendar-container">
+                            <div className="dates">
+                                <div className="start-date">
+                                    <label>Check-in</label>
+                                    <input type="date" value={startDate}
+                                    onChange={(e) => {
+                                        setStartDate(e.target.value)
+                                        setDay2(new Date(e.target.value))
+                                    }}
+                                    />  
+                                </div>
+                                <div className="end-date">
+                                    <label>Check-out</label>
+                                    <input type="date"  value={endDate}
+                                    onChange={(e) => {
+                                        setEndDate(e.target.value)
+                                        setDay1(new Date(e.target.value))
+                                    }} 
+                                    />
+                                </div>
+                            </div>
+                             <button id="reserve-btn">Reserve</button>
+                        </div>
                         
                         )}
                     </form>
+                    {totalDays > 0 && (
+                        <div className="pricing-container">
+                            <p>${price} x {totalDays} nights</p>
+                            <p>Total: ${price * totalDays}</p>
+                        </div>
+                    )}
                 </div>
+                    <h2>Current Bookings</h2>
+                    {bookingsForSpot && bookingsForSpot.map(booking => (
+                    <div key={booking.id}>
+                        <p >Booking from {booking.startDate} to {booking.endDate}</p>
+                    </div>
+    
+                ))}
+    
             </>
         )
 

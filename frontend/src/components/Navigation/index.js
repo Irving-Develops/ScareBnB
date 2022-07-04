@@ -13,7 +13,12 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <>
+        <div id="become-a-host">
+            <BecomeHostModal />
+        </div>
+        <ProfileButton user={sessionUser} />
+      </>
     );
   } else {
     sessionLinks = (
@@ -30,9 +35,6 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/" id="logo">scarebnb</NavLink>
       </div>
       <div className="nav-links">
-        <div id="become-a-host">
-          <BecomeHostModal />
-        </div>
         {isLoaded && sessionLinks}
       </div>
     </div>

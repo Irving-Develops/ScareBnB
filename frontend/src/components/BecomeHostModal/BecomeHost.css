@@ -65,14 +65,14 @@ hr {
     color: white;
 }
 
- li, ul{
+ /* li, ul{
     color: red;
     list-style: none;
-}
+} */
 
 .booking-container {
     width: 330px;
-    height: 500px;
+    height: 330px;
 }
 
 .details {

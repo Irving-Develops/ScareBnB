@@ -23,7 +23,7 @@ export default function HomePageSpots() {
                 {spotArr && spotArr.map(spot =>(
                     <div key={spot?.id} className="card">
                         <div className="img-carousel">
-                            <SpotImagesComponent images={spot?.Images} spot={spot}/> 
+                            <SpotImagesComponent images={spot?.Images} spot={spot} /> 
                         </div>
                         <div className = 'card-details' >
                             <DetailsComponent details={spot} />

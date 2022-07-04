@@ -85,7 +85,7 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
         method: 'DELETE',
     });
     if (response.ok) {
-        const deletedBooking = response.json()
+        const deletedBooking = await response.json()
         dispatch(actionDeleteBooking(booking.id));
         history.push(`/spots/${booking.spotId}`)
         return deletedBooking;

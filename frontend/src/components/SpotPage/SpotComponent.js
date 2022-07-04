@@ -33,10 +33,11 @@ export default function SpotComponent(){
                 <h2 id='spot-name'>{spot?.name}</h2>
                 <p>{spot?.address}</p>
                 <div className="img-container">
-                    {spot.Images && spot.Images.map((image, index) => (
-                        <div key={image.id} id={`img-${index}`}> 
-                            <img src={image.url} alt="" ></img>
+                    {spot.Images !== undefined && spot?.Images && spot?.Images?.map((image, index) => (
+                        <div key={image?.id} id={`img-${index}`}> 
+                            <img src={image?.url} alt="" ></img>
                         </div>
+                        
                     ))} 
                     {(spot?.Images.length === 0 || spot.Images === undefined) && (
                         <>
@@ -64,8 +65,8 @@ export default function SpotComponent(){
                         <h3>Hosted by {spot?.User?.username}</h3>
                         <p>{spot?.history}</p>
                     </div>
-                    <div className="booking-container">
-                        <BookingComponent spotId={spot?.id}/>
+                    <div className="booking">
+                        <BookingComponent spotId={spot?.id} price={spot?.price} />
                     </div>
                 </div>
                     <>

@@ -50,7 +50,7 @@ img {
     justify-content: space-between;
     gap: 30px;
     /* margin: 0 auto; */
-    width: 1120px;
+    width: 1220px;
 }
 
 h3 {
@@ -67,9 +67,10 @@ h3 {
     height: 300px;
 }
 
-.booking-container {
+/* .booking-container {
+    box-sizing: border-box;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-}
+} */

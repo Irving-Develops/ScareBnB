@@ -14,6 +14,7 @@ export default function SpotImagesComponent({images, spot}) {
         if (currentIndex > 0) setCurrentIndex(prevState => prevState - 1);
 
     }
+    console.log("images", images)
     
     // Set the length to match current children from props
     useEffect(() => {

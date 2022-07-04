@@ -65,6 +65,10 @@ hr {
     color: white;
 }
 
-/* .hidden > hr{
-display: none;
-} */
+#sign-up {
+    background-color: white;
+    border: 1px solid rgb(211, 211, 211);
+    width: 75px;
+    height: 40px;
+    border-radius: 20px;
+}
