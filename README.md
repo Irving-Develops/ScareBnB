@@ -14,7 +14,7 @@ Spot Creation Modal
 
 Spot Page
 
-<img width="1440" alt="Screen Shot 2022-07-05 at 7 06 38 AM" src="https://user-images.githubusercontent.com/96028000/177373148-71afb5ac-d4c5-4a87-bd74-6ff001762717.png">
+<img width="1440" alt="Screen Shot 2022-07-05 at 7 06 46 AM" src="https://user-images.githubusercontent.com/96028000/177375130-6127beb8-b749-498b-a599-7d1f8a2a1edd.png">
 
 Booking Feature
 
