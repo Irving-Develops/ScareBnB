@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
@@ -13,6 +13,9 @@ import './SpotPage.css';
 
 
 export default function SpotComponent(){
+    const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user);
+    if(!sessionUser) history.push('/');
     let {spotId} = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spotReducer[spotId]);
@@ -23,7 +26,7 @@ export default function SpotComponent(){
     }, [dispatch])
 
     // console.log("checkoing" , spot.Images, spot.Images.length)
-
+    if(sessionUser === undefined) history.push('/');
     if(!spot) return null;
 
     return (
@@ -66,6 +69,7 @@ export default function SpotComponent(){
                         <h3>Hosted by {spot?.User?.username}</h3>
                         <p>{spot?.history}</p>
                     </div>
+                    
                     <div className="booking">
                         <BookingComponent spotId={spot?.id} price={spot?.price} />
                     </div>

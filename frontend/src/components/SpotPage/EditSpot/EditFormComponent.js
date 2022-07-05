@@ -2,6 +2,8 @@ import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkUpdateSpot, thunkGetAllSpots} from '../../../store/spots';
+import './EditSpot.css'
+
 
 export default function EditFormComponent({spot}) {
         const user = useSelector(state => state.session.user);
@@ -53,14 +55,16 @@ export default function EditFormComponent({spot}) {
 
 
               await dispatch(thunkUpdateSpot(payload,spot.id));
-
+            // if(updatedSpot) {
+            //     hist.push(`/api/spots/${spot}`)
+            // }
         }
 
     // if(!user) return null;
     if(user.id === spot.userId) {
         return (
                 <>
-                    <h2>Edit Form</h2>
+                    <h2>Edit Your Spot</h2>
                     <form onSubmit={onSubmit}>
                         {hasSubmitted && errors.length > 0 && (
                             <div>

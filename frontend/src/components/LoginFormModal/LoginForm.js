@@ -11,6 +11,10 @@ function LoginForm() {
   const [errors, setErrors] = useState([]);
   const [isActive, setIsActive] = useState(false);
 
+  const demo = () => {
+    setCredential("Demo-lition")
+    setPassword("password")
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,7 +68,7 @@ function LoginForm() {
         </div>
 
         <button type="submit">Log In</button>
-        <button type="submit" >Demo</button>
+        <button type="submit" onClick={demo}>Demo</button>
       </form>
     </div>
   );

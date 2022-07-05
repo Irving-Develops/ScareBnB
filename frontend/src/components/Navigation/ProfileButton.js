@@ -29,7 +29,7 @@ function ProfileButton({ user }) {
   const logout = async(e) => {
     e.preventDefault();
     await dispatch(sessionActions.logout(history));
-    history.push('/')
+    return history.push('/')
   };
 
   return (

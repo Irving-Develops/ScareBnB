@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import {useSelector} from 'react-redux';
 import './SpotImages.css'
 
 export default function SpotImagesComponent({images, spot}) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [length, setLength] = useState(0)
+    // const sessionUser
 
     const next = () => {
         if (currentIndex < (length - 1)) setCurrentIndex(prevState => prevState + 1)

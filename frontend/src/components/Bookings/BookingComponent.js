@@ -20,8 +20,8 @@ export default function BookingComponent({spotId, price}) {
     const [display, setDisplay] = useState(false)
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
-    console.log(bookingsForSpot)
-    console.log(spotId, userId)
+    // console.log(bookingsForSpot)
+    // console.log(spotId, userId)
     let yourBooking;
     bookingsForSpot.forEach(booking => {
         console.log("inside your booking", booking)
