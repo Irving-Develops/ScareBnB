@@ -114,7 +114,7 @@ export default function BecomeHostForm(props) {
                     <hr />
 
                     <input className="form-input" type="text" id="name" value={name}
-                    placeholder="Your Haunted Spot's Name"
+                    placeholder="Your haunted spot's name"
                     onChange={(e) => setName(e.target.value)}/>
                     <hr />
 

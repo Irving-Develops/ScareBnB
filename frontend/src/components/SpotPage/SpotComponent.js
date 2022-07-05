@@ -34,8 +34,13 @@ export default function SpotComponent(){
         <>
         {spot && (
             <>
-                <h2 id='spot-name'>{spot?.name}</h2>
-                <p>{spot?.address}</p>
+                <div id="header">
+                    <div id="spot-name">
+                        <h2 id='spot-name'>{spot?.name}</h2>
+                        <p>{spot?.address}</p> 
+                    </div>
+                    <DeleteComponent spot={spot} />
+                </div>
                 <div className="img-container">
                     {spot.Images && spot.Images.map((image, index) => (
                         <div key={image?.id} id={`img-${index}`}> 
@@ -76,7 +81,6 @@ export default function SpotComponent(){
                 </div>
                     <>
                         <EditFormComponent spot={spot}/>
-                        <DeleteComponent spot={spot} />
                     </>
             </>
         )}
