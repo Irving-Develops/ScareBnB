@@ -27,3 +27,26 @@ Features include:
 * GET / POST / DELETE A booking
 
 For more information click the [link](https://github.com/Irving-Develops/ScareBnB/wiki/MVP-Feature-List)
+
+## Technologies Used
+
+Backend:
+* Express
+* Sequelize
+
+Frontend:
+* React
+* Redux
+
+## Code Snippets
+
+Readable and organized backend routes
+
+<img width="524" alt="Screen Shot 2022-07-05 at 7 42 37 AM" src="https://user-images.githubusercontent.com/96028000/177330325-9ba734e4-5480-487e-bd58-9d97e2f31218.png">
+
+Normalized data in my booking reducer
+
+<img width="480" alt="Screen Shot 2022-07-05 at 7 40 20 AM" src="https://user-images.githubusercontent.com/96028000/177330396-6c3a7008-8c64-4465-8f26-a6f59dba444e.png">
+
+
+
