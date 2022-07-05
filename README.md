@@ -33,6 +33,7 @@ Backend:
 ## Code Snippets
 
 Organized router page
+
 <img width="524" alt="Screen Shot 2022-07-05 at 7 42 37 AM" src="https://user-images.githubusercontent.com/96028000/177373520-2d40ec41-375a-4188-8842-d264ef339bcc.png">
 
 Normalized data in booking reducer
