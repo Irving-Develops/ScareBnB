@@ -108,11 +108,6 @@ export default function CreateFormComponent() {
                     <input type="text" id="history" value={history}
                     onChange={(e) => setHistory(e.target.value)}/>
                 </div>
-                {/* <div>
-                    <label  htmlFor="url">images</label>
-                    <input type="text" id="url" value={url}
-                    onChange={(e) => setUrl(e.target.value)}/>
-                </div> */}
                 <button>Submit</button>
             </form>
 

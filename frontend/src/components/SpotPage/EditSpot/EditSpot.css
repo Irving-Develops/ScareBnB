@@ -1,6 +1,10 @@
-#form-wrapper {
-    width: 562px;
-    height: 56px;
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1220px;
+    height: 700px;
 }
 
 #form-header {
@@ -9,13 +13,14 @@
     font-size: 16px;
 }
 
-#form-content {
+#form-container {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    width: 600px;
     padding: 32px;
+    margin: 0 auto;
 }
 
 #form-title {
@@ -55,7 +60,7 @@ hr {
     padding: 0;
 }
 
-#form-content>button {
+#form-container>button {
     width: 502px;
     height: 48px;
     background: #e41c64;
@@ -65,10 +70,16 @@ hr {
     color: white;
 }
 
-#sign-up {
-    background-color: white;
-    border: 1px solid rgb(211, 211, 211);
-    width: 75px;
-    height: 40px;
-    border-radius: 20px;
+/* li, ul{
+    color: red;
+    list-style: none;
+} */
+
+.booking-container {
+    width: 330px;
+    height: 330px;
+}
+
+.details {
+    flex-shrink: 1;
 }

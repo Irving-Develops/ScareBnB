@@ -1,5 +1,6 @@
 #modal {
   position: fixed;
+  z-index: 1000;
   top: 0;
   right: 0;
   left: 0;
@@ -25,6 +26,6 @@
   position: absolute;
   background-color:white;
   width: 568px;
-  height: 682px;
+  height: 725px;
   border-radius: 12px;
 }

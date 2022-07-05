@@ -14,14 +14,20 @@ router.post('/', asyncHandler(async (req, res) => {
 
 //READ
 router.get('/', asyncHandler(async (req, res) => {
-    // console.log(req.params.id)
     const bookings = await Booking.findAll()
-
+    // console.log("xxxxxxxxxxxxxxxxxxxxxxx", bookings)
     return res.json(bookings)
-
 }))
 
 //DELETE in spots route
+router.delete(`/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
+        const {bookingId} = req.params;
+        const booking = await Booking.findByPk(bookingId)
+        // console.log("=====================", booking)
+        await booking.destroy()
+        return res.json({message: 'Success!'})
+}))
+
 
 
 

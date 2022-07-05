@@ -21,6 +21,7 @@
     font-size: 22px;
     margin: 0 0 8px;
     padding: 0;
+    border: none;
 }
 #input-container {
     border-radius: 8px;
@@ -60,6 +61,11 @@ hr {
     margin-bottom: 16px;
     color: white;
 }
-/* .hidden > hr{
-display: none;
-} */
+
+#log-in {
+    background-color: white;
+    border: 1px solid rgb(211, 211, 211);
+    width: 75px;
+    height: 40px;
+    border-radius: 20px;
+}

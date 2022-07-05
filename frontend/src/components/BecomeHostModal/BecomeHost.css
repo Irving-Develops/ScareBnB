@@ -65,10 +65,16 @@ hr {
     color: white;
 }
 
-#sign-up {
-    background-color: white;
-    border: 1px solid rgb(211, 211, 211);
-    width: 75px;
-    height: 40px;
-    border-radius: 20px;
+ /* li, ul{
+    color: red;
+    list-style: none;
+} */
+
+.booking-container {
+    width: 330px;
+    height: 360px;
+}
+
+.details {
+    flex-shrink: 1;
 }

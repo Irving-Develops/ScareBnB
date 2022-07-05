@@ -48,8 +48,9 @@ img {
     display: grid;  
     grid-template-columns: 2fr 1fr;
     justify-content: space-between;
-    /* margin: 0 auto; */
-    width: 1120px;
+    gap: 30px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    width: 1220px;
 }
 
 h3 {
@@ -57,13 +58,25 @@ h3 {
     border-bottom: 1px solid rgb(221, 221, 221);
 }
 
-.details > p {
-    padding: 20px 0;
-    border-bottom: 1px solid rgb(221, 221, 221);
+
+.details{
+    height: 300px;
 }
 
-.booking-container {
-    /* background-color: red; */
-    /* color: white; */
-    /* font-size: 48px; */
+#header {
+    display: flex;
+    justify-content: space-between;
 }
+
+#header > button {
+        width: 100px;
+        height: 36px;
+        background: #e41c64;
+        border: none;
+        border-radius: 8px;
+        margin-top: 45px;
+        color: white;
+}
+
+
+

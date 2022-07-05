@@ -1,8 +1,7 @@
-import {useParams} from 'react-router-dom';
-import {useState, useEffect} from 'react';
+import {useParams, useHistory} from 'react-router-dom';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
-import {useHistory} from 'react-router-dom';
 
 //components
 import EditFormComponent from './EditSpot/EditFormComponent';
@@ -14,22 +13,20 @@ import './SpotPage.css';
 
 
 export default function SpotComponent(){
+    const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user);
+    if(!sessionUser) history.push('/');
     let {spotId} = useParams();
     const dispatch = useDispatch();
     const spot = useSelector(state => state.spotReducer[spotId]);
-    const [upToDate, setUpToDate] = useState(false)
+
 
     useEffect(() => {
         dispatch(thunkGetAllSpots())
-        setUpToDate(true)
     }, [dispatch])
 
-
-    async function onSubmit(e) {
-        e.preventDefault()
-        setUpToDate(false)
-    }
-
+    // console.log("checkoing" , spot.Images, spot.Images.length)
+    if(sessionUser === undefined) history.push('/');
     if(!spot) return null;
 
     return (
@@ -37,30 +34,36 @@ export default function SpotComponent(){
         <>
         {spot && (
             <>
-                <h2 id='spot-name'>{spot?.name}</h2>
-                <p>{spot?.address}</p>
+                <div id="header">
+                    <div id="spot-name">
+                        <h2 id='spot-name'>{spot?.name}</h2>
+                        <p>{spot?.address}</p> 
+                    </div>
+                    <DeleteComponent spot={spot} />
+                </div>
                 <div className="img-container">
                     {spot.Images && spot.Images.map((image, index) => (
-                        <div key={image.id} id={`img-${index}`}> 
-                            <img src={image.url} alt="" ></img>
+                        <div key={image?.id} id={`img-${index}`}> 
+                            <img src={image?.url} alt="" ></img>
                         </div>
+                        
                     ))} 
-                    {spot?.Images?.length < 1 && (
+                    {(spot.Images === undefined || spot.Images.length === 0) && (
                         <>
                             <div id={`img-0`}> 
-                                <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                                <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
                             <div id={`img-1`}> 
-                                <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                                <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
                             <div id={`img-2`}> 
-                                <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                                <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
                             <div id={`img-3`}> 
-                                <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                                <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
                             <div id={`img-4`}> 
-                                <img src='	https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607' alt="" ></img>
+                                <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
                         </>
                         
@@ -71,13 +74,13 @@ export default function SpotComponent(){
                         <h3>Hosted by {spot?.User?.username}</h3>
                         <p>{spot?.history}</p>
                     </div>
-                    <div className="booking-container">
-                        <BookingComponent spotId={spot?.id}/>
+                    
+                    <div className="booking">
+                        <BookingComponent spotId={spot?.id} price={spot?.price} />
                     </div>
                 </div>
                     <>
-                        <EditFormComponent spot={spot} onSubmit={onSubmit}/>
-                        <DeleteComponent spot={spot} />
+                        <EditFormComponent spot={spot}/>
                     </>
             </>
         )}

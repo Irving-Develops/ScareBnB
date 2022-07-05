@@ -2,6 +2,8 @@ import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkUpdateSpot, thunkGetAllSpots} from '../../../store/spots';
+import './EditSpot.css'
+
 
 export default function EditFormComponent({spot}) {
         const user = useSelector(state => state.session.user);
@@ -10,7 +12,7 @@ export default function EditFormComponent({spot}) {
         const [state, setState] = useState('');
         const [country, setCountry] = useState('');
         const [name, setName] = useState('');
-        const [price, setPrice] = useState(0);
+        const [price, setPrice] = useState(null);
         const [history, setHistory] = useState('');
         const [url, setUrl] = useState([]);
         const dispatch = useDispatch();
@@ -53,15 +55,20 @@ export default function EditFormComponent({spot}) {
 
 
               await dispatch(thunkUpdateSpot(payload,spot.id));
-
+              alert("Thanks for submitting")
+            // if(updatedSpot) {
+            //     hist.push(`/api/spots/${spot}`)
+            // }
         }
 
     // if(!user) return null;
     if(user.id === spot.userId) {
         return (
-                <>
-                    <h2>Edit Form</h2>
-                    <form onSubmit={onSubmit}>
+                <div id="container">
+                    <div className="form-header">
+                        <h2>Edit Your Spot</h2>
+                    </div>
+                    <form onSubmit={onSubmit} id="form-container">
                         {hasSubmitted && errors.length > 0 && (
                             <div>
                             The following errors were found:
@@ -72,49 +79,44 @@ export default function EditFormComponent({spot}) {
                             </ul>
                             </div>
                         )}
-                        <div>
-                            <label  htmlFor="address">Address</label>
-                            <input type="text" id="address" value={address}
+                        <div id="input-container">
+
+                            <input className="form-input" type="text" id="address" value={address}
+                            placeholder="Address"
                             onChange={(e) => setAddress(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label  htmlFor="city">city</label>
-                            <input type="text" id="city" value={city}
+                            <hr />
+
+                            <input className="form-input" type="text" id="city" value={city}
+                            placeholder="City"
                             onChange={(e) => setCity(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label  htmlFor="state">state</label>
-                            <input type="text" id="state" value={state}
+                            <hr />
+
+                            <input className="form-input" type="text" id="state" value={state}
+                            placeholder="State"
                             onChange={(e) => setState(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label  htmlFor="country">country</label>
-                            <input type="text" id="country" value={country}
+                            <hr />
+
+                            <input className="form-input" type="text" id="country" value={country}
+                            placeholder="Country"
                             onChange={(e) => setCountry(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label  htmlFor="name">name</label>
-                            <input type="text" id="name" value={name}
+                            <hr />
+
+                            <input className="form-input" type="text" id="name" value={name}
+                            placeholder="Your haunted spot's name"
                             onChange={(e) => setName(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label  htmlFor="price">price</label>
-                            <input type="text" id="price" value={price}
+                            <hr />
+
+                            <input className="form-input" type="text" id="price" value={price}
+                            placeholder="Price per night"
                             onChange={(e) => setPrice(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label htmlFor = "history" > history </label>
-                            <textarea type="text" id="history" value={history}
+                            <hr />
+                            <textarea className="form-input" type="text" id="history" value={history}
+                            placeholder="Tell us about your haunted spot..."
                             onChange={(e) => setHistory(e.target.value)}/>
-                        </div>
-                        <div>
-                            <label  htmlFor="url">images</label>
-                            <input type="text" id="url" value={url}
-                            onChange={(e) => setUrl(e.target.value)}/>
                         </div>
                         <button>Submit</button>
                     </form>
-                </>
+                </div>
         )
     }
 }

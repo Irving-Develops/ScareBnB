@@ -9,14 +9,12 @@ function LoginForm() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false);
 
-
-  // const handleClick = e => {
-  //   setIsActive(current => !current);
-  //   className={isActive ? 'hidden' : ''} onClick={handleClick}
-  // }
-
+  const demo = () => {
+    setCredential("Demo-lition")
+    setPassword("password")
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +68,7 @@ function LoginForm() {
         </div>
 
         <button type="submit">Log In</button>
-        <button type="submit" >Demo</button>
+        <button type="submit" onClick={demo}>Demo</button>
       </form>
     </div>
   );

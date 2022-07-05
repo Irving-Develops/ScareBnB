@@ -21,7 +21,6 @@ const DELETE_BOOKING = 'bookings/deleteBooking';
 
 //CREATE
 export const actionCreateBooking = (booking) => {
-    console.log("in action", booking)
     return {
         type: CREATE_BOOKING,
         booking
@@ -55,8 +54,7 @@ export const actionDeleteBooking = (booking) => {
 
 //CREATE
 export const thunkCreateBooking = (payload) => async(dispatch) => {
-    console.log("payload in thunk===> ", payload)
-  const response = await csrfFetch(`/api/spots/${payload.spotId}/bookings`, { 
+  const response = await csrfFetch(`/api/bookings`, { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
@@ -70,8 +68,8 @@ export const thunkCreateBooking = (payload) => async(dispatch) => {
 }
 
 //READ
-export const thunkGetBooking = (spotId) => async(dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/bookings`)
+export const thunkGetBooking = () => async(dispatch) => {
+    const response = await csrfFetch(`/api/bookings`)
     if(response.ok) {
         const data = await response.json()
          dispatch(actionGetBooking(data))
@@ -80,26 +78,15 @@ export const thunkGetBooking = (spotId) => async(dispatch) => {
     return response.json();
 }
 
-//UPDATE
-export const thunkUpdateBooking = (bookingId) => async(dispatch) => {
-  const response = await csrfFetch('/api/spots')
-
-    dispatch(actionUpdateBooking(bookingId))
-}
-
 //DELETE
 export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
-    // console.log("booking Id",spotId, userId)
-    const response = await csrfFetch(`/api/spots/${booking.spotId}/bookings/${booking.userId}`, {
+    console.log("booking Id", booking)
+    const response = await csrfFetch(`/api/bookings/${booking.id}`, {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(booking)
     });
-    // console.log("response", response)
     if (response.ok) {
-        const deletedBooking = response.json()
-        // console.log("in thunk", booking)
-        dispatch(actionDeleteBooking(booking));
+        const deletedBooking = await response.json()
+        dispatch(actionDeleteBooking(booking.id));
         history.push(`/spots/${booking.spotId}`)
         return deletedBooking;
     }
@@ -115,12 +102,12 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
             newState = {...state}
             return newState;
        case GET_BOOKING:
-        //    console.log("action booking", action.booking)
-            newState = {...state, ...action.booking}
+            newState = {...state}
+            action.booking.forEach(booking => {
+                newState[booking.id] = booking
+            })
         return newState;
        case DELETE_BOOKING:
-           console.log("in reducer", action)
-           console.log(newState)
             newState = { ...state };
             delete newState[action.booking];
             return newState;

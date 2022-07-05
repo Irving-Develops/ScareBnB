@@ -10,6 +10,8 @@ router.use('/users', usersRouter);
 
 router.use('/spots', spotsRouter);
 
+router.use('/bookings', bookingsRouter);
+
 // router.use('/bookings', bookingsRouter);
 
 // router.use('/bookings', bookingsRouter);
