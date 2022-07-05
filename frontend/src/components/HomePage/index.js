@@ -1,10 +1,9 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {thunkGetAllSpots} from '../../store/spots';
 import SpotImagesComponent from './SpotImages/SpotImagesComponent'
 import DetailsComponent from './SpotDetails/DetailsComponent';
 import './homePage.css';
-import {useHistory} from 'react-router-dom';
 
 export default function HomePageSpots() {
     const dispatch = useDispatch();

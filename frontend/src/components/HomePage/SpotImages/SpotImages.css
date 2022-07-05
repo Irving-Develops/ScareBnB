@@ -32,10 +32,6 @@
     /* hide scrollbar in Firefox */
 }
 
-/* .carousel-content > img {
-    width: 300px;
-    height: 280px;
-} */
 
 /* hide scrollbar in webkit browser */
 .carousel-content::-webkit-scrollbar,

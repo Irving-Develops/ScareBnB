@@ -9,7 +9,6 @@ function LoginForm() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isActive, setIsActive] = useState(false);
 
   const demo = () => {
     setCredential("Demo-lition")
@@ -64,7 +63,6 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {/* </label> */}
         </div>
 
         <button type="submit">Log In</button>
