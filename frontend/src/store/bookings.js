@@ -80,7 +80,6 @@ export const thunkGetBooking = () => async(dispatch) => {
 
 //DELETE
 export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
-    console.log("booking Id", booking)
     const response = await csrfFetch(`/api/bookings/${booking.id}`, {
         method: 'DELETE',
     });

@@ -52,7 +52,6 @@ export default function CreateFormComponent() {
                 history
             }
 
-            console.log(payload);
               await dispatch(thunkCreateSpot(payload));
             //  return history.push('/');
         }
