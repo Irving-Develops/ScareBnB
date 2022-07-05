@@ -23,8 +23,6 @@ export default function BecomeHostForm(props) {
         useEffect(() => {
             const err = [];
 
-            console.log("DATATYPE+++++++++++", parseInt(price, 10))
-            
             if(!address.length) err.push("Please provide an address");
             if(!city.length) err.push("Please provide a city");
             if(!state.length) err.push("Please provide a state")
@@ -71,7 +69,6 @@ export default function BecomeHostForm(props) {
 
         }
 
-        // console.log(errors)
         if(!user ) return null;
 
 

@@ -33,7 +33,6 @@ router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
 //UPDATE
 router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.id)
-    console.log("1",spot)
     const updatedSpot = await spot.update(req.body)
     const editedSpot = await Spot.findByPk(req.params.id, {include: [Image, User]})
     return res.json(updatedSpot)
@@ -43,7 +42,6 @@ router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
 //CREATE
 router.post('/', asyncHandler(async(req,res) => {
     const newSpot = await Spot.create(req.body);
-    console.log(newSpot)
         return res.json(newSpot)
 }))
 

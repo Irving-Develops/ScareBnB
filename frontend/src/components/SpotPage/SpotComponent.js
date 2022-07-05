@@ -25,7 +25,6 @@ export default function SpotComponent(){
         dispatch(thunkGetAllSpots())
     }, [dispatch])
 
-    // console.log("checkoing" , spot.Images, spot.Images.length)
     if(sessionUser === undefined) history.push('/');
     if(!spot) return null;
 

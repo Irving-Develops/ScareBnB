@@ -20,18 +20,14 @@ export default function BookingComponent({spotId, price}) {
     const [display, setDisplay] = useState(false)
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
-    // console.log(bookingsForSpot)
-    // console.log(spotId, userId)
     let yourBooking;
     bookingsForSpot.forEach(booking => {
-        console.log("inside your booking", booking)
         if(booking.userId === userId && booking.spotId === spotId){
             yourBooking= booking;
             return;
         };
     })
 
-    console.log("your booking" , yourBooking)
 
     useEffect(() => {
         const err = [];
@@ -96,7 +92,6 @@ export default function BookingComponent({spotId, price}) {
 
 
      function onDelete(booking) {
-         console.log("booking in delete ===> ", booking.id)
         dispatch(thunkDeleteBooking(booking, history))
         dispatch(thunkGetBooking(spotId))
         setHasSubmitted(false)
