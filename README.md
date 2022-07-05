@@ -28,7 +28,7 @@ Frontend:
 
 Backend: 
 * Express 
-*Sequelize
+* Sequelize
 
 ## Code Snippets
 
