@@ -15,6 +15,10 @@ export default function SpotImagesComponent({images, spot}) {
         if (currentIndex > 0) setCurrentIndex(prevState => prevState - 1);
 
     }
+
+    const isShown = (e) => {
+
+    }
     
     // Set the length to match current children from props
     useEffect(() => {
@@ -26,7 +30,7 @@ export default function SpotImagesComponent({images, spot}) {
     return (
             <div className = "carousel-container" >
                 <div className = "carousel-wrapper">
-                    <button onClick={prev} className="left-arrow">
+                    <button onClick={prev} className="left-arrow hidden">
                         &lt;
                     </button>
                     <div className = "carousel-content-wrapper">
@@ -41,7 +45,7 @@ export default function SpotImagesComponent({images, spot}) {
                             <NavLink to={`/spots/${spot.id}`}><img className="card-img" src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt='spooky house'></img></NavLink>)
                         </div>
                     </div>
-                    <button onClick={next} className="right-arrow">
+                    <button onClick={next} className="right-arrow hidden">
                         &gt;
                     </button>
                 </div>
