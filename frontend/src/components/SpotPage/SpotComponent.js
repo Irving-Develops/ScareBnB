@@ -28,6 +28,8 @@ export default function SpotComponent(){
     if(sessionUser === undefined) history.push('/');
     if(!spot) return null;
 
+    console.log(spot, "spot")
+
     return (
 
         <>
@@ -41,12 +43,24 @@ export default function SpotComponent(){
                     <DeleteComponent spot={spot} />
                 </div>
                 <div className="img-container">
-                    {spot.Images && spot.Images.map((image, index) => (
+                    <div className="main-img">
+                        <img src={spot?.Images[0].url} alt="" ></img>
+                    </div>
+                    <div className="middle-imgs">
+                        <img src={spot?.Images[1].url} alt="" ></img>
+                        <img src={spot?.Images[2].url} alt="" ></img>
+                    </div>
+                    <div className="end-imgs">
+                        <img src={spot?.Images[3].url} alt="" ></img>
+                        <img src={spot?.Images[4].url} alt="" ></img>
+                    </div>
+
+                    {/* {spot.Images && spot.Images.map((image, index) => (
                         <div key={image?.id} id={`img-${index}`}> 
                             <img src={image?.url} alt="" ></img>
                         </div>
                         
-                    ))} 
+                    ))}  */}
                     {(spot.Images === undefined || spot.Images.length === 0) && (
                         <>
                             <div id={`img-0`}> 

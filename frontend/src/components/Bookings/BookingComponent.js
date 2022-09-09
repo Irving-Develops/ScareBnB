@@ -18,6 +18,8 @@ export default function BookingComponent({spotId, price}) {
     const [bookingExist, setBookingExist] = useState(false)
     const [totalDays, setTotalDays] = useState(null)
     const [display, setDisplay] = useState(false)
+    let today = new Date()
+    today = today.toISOString().split('T')[0]
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
     let yourBooking;
@@ -46,7 +48,6 @@ export default function BookingComponent({spotId, price}) {
         
         
         const startDateArr = startDate.split('-')
-
         let today = new Date()
         let year = today.getFullYear();
         let month = today.getMonth()
@@ -56,7 +57,7 @@ export default function BookingComponent({spotId, price}) {
         if(startDateArr[0] < year) err.push("Please enter a valid year")
         if(startDateArr[0] <= year && startDateArr[1] < month + 1 ) err.push("Please enter a valid month")
         if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] < day) err.push("Please enter a valid day")
-        if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] <= day) err.push("Cannot make a booking on the same day")
+        // if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] <= day) err.push("Cannot make a booking on the same day")
         
         if(startDate > endDate) err.push("Please enter a valid end date");
         if(startDate < today) err.push("Please enter a valid start date");
@@ -125,7 +126,7 @@ export default function BookingComponent({spotId, price}) {
                             <div className="dates">
                                 <div className="start-date">
                                     <label>Check-in</label>
-                                    <input type="date" value={startDate}
+                                    <input type="date" value={startDate} min={today}
                                     onChange={(e) => {
                                         setStartDate(e.target.value)
                                         setDay2(new Date(e.target.value))
@@ -134,7 +135,7 @@ export default function BookingComponent({spotId, price}) {
                                 </div>
                                 <div className="end-date">
                                     <label>Check-out</label>
-                                    <input type="date"  value={endDate}
+                                    <input type="date"  value={endDate} min={today}
                                     onChange={(e) => {
                                         setEndDate(e.target.value)
                                         setDay1(new Date(e.target.value))
