@@ -18,6 +18,15 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(bookings)
 }))
 
+router.get('/mybookings/:userId(\\d+)', asyncHandler(async (req, res) => {
+    const {userId} = req.params
+    const myBookings = await Booking.findAll({where: { userId: userId }})
+    console.log(myBookings, "my bookings")
+    // console.log(req.params, "req params")
+    return res.json(myBookings)
+
+}))
+
 //DELETE in spots route
 router.delete(`/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
         const {bookingId} = req.params;

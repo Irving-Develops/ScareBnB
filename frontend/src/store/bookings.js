@@ -10,6 +10,7 @@ const CREATE_BOOKING = 'bookings/createBooking'
 
 //READ
 const GET_BOOKING = 'bookings/getBooking';
+const MY_BOOKINGS = 'bookings/myBookings'
 
 //UPDATE
 const UPDATE_BOOKING = 'bookings/updateBook';
@@ -31,6 +32,13 @@ export const actionCreateBooking = (booking) => {
 export const actionGetBooking = (booking) => {
     return {
         type: GET_BOOKING,
+        booking
+    }
+}
+
+export const getMyBookings = (booking) => {
+    return {
+        type: MY_BOOKINGS,
         booking
     }
 }
@@ -78,6 +86,19 @@ export const thunkGetBooking = () => async(dispatch) => {
     return response.json();
 }
 
+export const getMyBookingsThunk = (id) => async(dispatch) => {
+    console.log("testing")
+    const response = await csrfFetch(`/api/bookings/mybookings/${id}`)
+    console.log(response, "response in thunk")
+        if (response.ok) {
+            const data = await response.json()
+            console.log(data, "data in my bookings")
+            dispatch(getMyBookings(data))
+            return response
+        }
+        return response.json();
+}
+
 //DELETE
 export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
     const response = await csrfFetch(`/api/bookings/${booking.id}`, {
@@ -106,12 +127,18 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
                 newState[booking.id] = booking
             })
         return newState;
-       case DELETE_BOOKING:
-            newState = { ...state };
-            delete newState[action.booking];
+        case MY_BOOKINGS:
+            newState = {...state}
+            action.booking.forEach(booking => {
+                newState[booking.id] = booking
+            })
             return newState;
-       default:
-           return state;
+        case DELETE_BOOKING:
+                newState = { ...state };
+                delete newState[action.booking];
+                return newState;
+        default:
+            return state;
    }
 }
 
