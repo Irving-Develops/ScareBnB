@@ -1,4 +1,17 @@
 /* TODO Add site wide styles */
+:root {
+    --button-background: #A83D2E;
+    --border: 3px solid #70140D;
+}
+
 * {
     box-sizing: border-box;
 }
+body {
+    background-color: #1F0000;
+    color: #B1A9A8;
+}
+
+/* button {
+    background-color: #A83D2E;
+} */

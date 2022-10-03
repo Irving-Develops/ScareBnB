@@ -27,7 +27,7 @@ export default function SpotComponent(){
 
     if(sessionUser === undefined) history.push('/');
     if(!spot) return null;
-
+    console.log("in spot component")
     console.log(spot, "spot")
 
     return (
@@ -43,17 +43,17 @@ export default function SpotComponent(){
                     <DeleteComponent spot={spot} />
                 </div>
                 <div className="img-container">
-                    <div className="main-img">
-                        <img src={spot?.Images[0].url} alt="" ></img>
+                    {/* <div className="main-img">
+                        <img src={spot?.Images[0]?.url} alt="" ></img>
                     </div>
                     <div className="middle-imgs">
-                        <img src={spot?.Images[1].url} alt="" ></img>
-                        <img src={spot?.Images[2].url} alt="" ></img>
+                        <img src={spot?.Images[1]?.url} alt="" ></img>
+                        <img src={spot?.Images[2]?.url} alt="" ></img>
                     </div>
                     <div className="end-imgs">
-                        <img src={spot?.Images[3].url} alt="" ></img>
-                        <img src={spot?.Images[4].url} alt="" ></img>
-                    </div>
+                        <img src={spot?.Images[3]?.url} alt="" ></img>
+                        <img src={spot?.Images[4]?.url} alt="" ></img>
+                    </div> */}
 
                     {/* {spot.Images && spot.Images.map((image, index) => (
                         <div key={image?.id} id={`img-${index}`}> 
@@ -61,9 +61,9 @@ export default function SpotComponent(){
                         </div>
                         
                     ))}  */}
-                    {(spot.Images === undefined || spot.Images.length === 0) && (
-                        <>
-                            <div id={`img-0`}> 
+                    {(spot.Images === undefined || spot.Images.length === 0) ? (
+                        <div className="img-container">
+                            <div className="main" id={`img-0`}> 
                                 <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
                             <div id={`img-1`}> 
@@ -78,9 +78,24 @@ export default function SpotComponent(){
                             <div id={`img-4`}> 
                                 <img src='https://static.wikia.nocookie.net/d9b266f4-c611-4760-a880-e4a7f9fe0883/scale-to-width/755' alt="Creel House" ></img>
                             </div>
-                        </>
+                        </div>
                         
-                    )}
+                    )
+                        :
+                    <>
+                        <div className="main-img">
+                            <img src={spot?.Images[0]?.url} alt="" ></img>
+                        </div>
+                        <div className="middle-imgs">
+                            <img src={spot?.Images[1]?.url} alt="" ></img>
+                            <img src={spot?.Images[2]?.url} alt="" ></img>
+                        </div>
+                        <div className="end-imgs">
+                            <img src={spot?.Images[3]?.url} alt="" ></img>
+                            <img src={spot?.Images[4]?.url} alt="" ></img>
+                        </div>
+                    </>
+                }
                 </div>
                 <div className="details-container">
                     <div className="details">

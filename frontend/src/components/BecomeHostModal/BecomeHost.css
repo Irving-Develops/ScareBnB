@@ -26,7 +26,7 @@
 
 #input-container {
     border-radius: 8px;
-    border: 1px solid grey;
+    border: var(--border);
     width: 502px;
     background-color: white;
     margin-bottom: 32px;
@@ -58,7 +58,7 @@ hr {
 #form-content>button {
     width: 502px;
     height: 48px;
-    background: #e41c64;
+    background: var(button-background);
     border: none;
     border-radius: 8px;
     margin-bottom: 16px;

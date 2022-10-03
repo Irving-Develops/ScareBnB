@@ -1,6 +1,6 @@
 #log-ing-btn > button {
         background-color: white;
-        border: 1px solid rgb(211, 211, 211);
+        border: var(--border);
         width: 75px;
         height: 40px;
         border-radius: 20px;
