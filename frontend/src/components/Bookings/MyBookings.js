@@ -2,6 +2,7 @@ import {useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import  {thunkGetBooking, getMyBookingsThunk} from '../../store/bookings'
 import { getMySpotsThunk } from "../../store/spots";
+import classes from './MyBookings.module.css'
 
 export default function MyBookings() {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export default function MyBookings() {
     // const bookedSpots = Object.values(spots).filter(spot => bookingsId.includes(spot.id))
 
     console.log(spots, "spots")
+    console.log(bookings, "bookings")
 
 
     useEffect(() => {
@@ -28,9 +30,15 @@ export default function MyBookings() {
     if(!bookings || bookedSpotsIds.length === 0) return null
     return (
         <div>
+            <h1>Your Bookings</h1>
             {spots && Object.values(spots)?.map(spot => (
-                <div key={spot.id}>
-                    <img src={`${spot.Images[0].url}`} alt=""/>
+                <div key={spot.id} className={classes.bookingCardContainer} >
+                    <div className={classes.imgWrapper} >
+                        <img src={`${spot.Images[0].url}`} alt=""/>
+                    </div>
+                    <div className={classes.bookingInfo}>
+                        <p></p>
+                    </div>
                 </div>
             ))}
 
