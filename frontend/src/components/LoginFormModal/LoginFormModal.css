@@ -27,14 +27,14 @@
     border-radius: 8px;
     border: var(--border);
     width: 502px;
-    background-color: white;
+    background-color: var(modal-background);
     margin-bottom: 32px;
 }
 
 .form-input {
     box-sizing: border-box;
     padding: 26px 36px 10px 12px;
-    background-color: white;
+    background-color: var(modal-background);
     width: 100%;
     margin: 0;
     border: none;

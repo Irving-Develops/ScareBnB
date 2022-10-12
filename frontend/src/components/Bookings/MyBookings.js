@@ -1,21 +1,39 @@
 import {useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import  {thunkGetBooking, getMyBookingsThunk} from '../../store/bookings'
+import { getMySpotsThunk } from "../../store/spots";
 
 export default function MyBookings() {
     const dispatch = useDispatch();
     const bookings = useSelector(state => state.bookingReducer)
     const sessionUser = useSelector(state => state.session.user)
+    const spots = useSelector(state => state.spotReducer)
+    const bookedSpotsIds = []
+    Object.values(bookings).forEach(booking => bookedSpotsIds.push(booking?.spotId))
+    // const bookedSpots = Object.values(spots).filter(spot => bookingsId.includes(spot.id))
 
-    // let mybookings =  bookings?.filter()
-    console.log(sessionUser.id, "sessionUser")
+    console.log(spots, "spots")
+
 
     useEffect(() => {
         dispatch(getMyBookingsThunk(sessionUser?.id))
-    }, [dispatch])
+        if(bookedSpotsIds.length !== 0) {
+            console.log(bookedSpotsIds, " <++++=====")
+            dispatch(getMySpotsThunk(bookedSpotsIds?.join("/")))
+        }
+    }, [dispatch, bookedSpotsIds.length])
 
-    if(!bookings) return null
+
+
+    if(!bookings || bookedSpotsIds.length === 0) return null
     return (
-        "testing"
+        <div>
+            {spots && Object.values(spots)?.map(spot => (
+                <div key={spot.id}>
+                    <img src={`${spot.Images[0].url}`} alt=""/>
+                </div>
+            ))}
+
+        </div>
     )
 }

@@ -8,6 +8,8 @@ const CREATE_SPOT = 'spots/createSpot'
 //READ
 const GET_SPOTS = 'spots/getSpot'
 
+const GET_MY_SPOTS = 'spots/getMySpots'
+
 //UPDATED
 const UPDATE_SPOT = 'spots/updateSpot'
 
@@ -26,6 +28,14 @@ const actionGetAllSpots = (spots) => {
     
     return {
         type: GET_SPOTS,
+        spots
+    }
+}
+
+const getMySpots = (spots) => {
+
+    return {
+        type: GET_MY_SPOTS,
         spots
     }
 }
@@ -78,6 +88,17 @@ export const thunkGetAllSpots = () => async (dispatch) => {
 };
 
 
+export const getMySpotsThunk = (spots) => async(dispatch) => {
+    console.log(spots,"spots in thunk")
+    const response = await csrfFetch(`/api/spots/myspots/${spots}`)
+
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(getMySpots(data))
+        return response
+    }
+}
+ 
 //UPDATE thunk
 
 
@@ -125,6 +146,12 @@ const spotReducer = (state = {}, action) => {
                 // images: {...action.image}
             };
         case GET_SPOTS:
+            newState = {...state}
+            action.spots.forEach(spot => {
+                newState[spot.id] = spot
+            })
+            return newState;
+        case GET_MY_SPOTS:
             newState = {...state}
             action.spots.forEach(spot => {
                 newState[spot.id] = spot

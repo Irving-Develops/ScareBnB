@@ -21,10 +21,12 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/mybookings/:userId(\\d+)', asyncHandler(async (req, res) => {
     const {userId} = req.params
     const myBookings = await Booking.findAll({where: { userId: userId }})
+    // const spot = await Spot.findAll({where: {id: myBookings.spotId}})
+    // console.log(spot, "spot")
     //I want to include the spot its related to, need to find out how to include it in the bookings query
     // const spot = await Spot.findAll({where: {spotId: myBookings.spotId}})
-    console.log(myBookings, "my bookings")
-    // console.log(req.params, "req params")
+    // console.log(myBookings, "my bookings")
+    console.log(req.url, "=============>")
     return res.json(myBookings)
 
 }))
