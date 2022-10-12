@@ -17,16 +17,6 @@ const router = express.Router();
 //         return res.json({message: 'Success!'})
 // }))
 
-router.get(/\/myspots\/(\d\/)+\d/g, asyncHandler(async (req, res) => {
-    console.log(req.url.split('/').splice(2), "==========>")
-    const spots = await Spot.findAll({
-        where: {
-            id: req.url.split('/').splice(2)
-        },
-        include: [Image]
-    })
-    return res.json(spots)
-}))
 
 //READ for all and specific spot
 router.get('/', asyncHandler(async(req,res) => {
