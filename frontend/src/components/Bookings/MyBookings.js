@@ -18,7 +18,7 @@ export default function MyBookings() {
 
     useEffect(() => {
         dispatch(getMyBookingsThunk(sessionUser?.id))
-        spotId
+        
     }, [dispatch])
 
 
