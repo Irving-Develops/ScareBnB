@@ -13,7 +13,7 @@ router.use('/spots', spotsRouter);
 
 router.use('/bookings', bookingsRouter);
 
-router.use('/images', imagesRouter);
+// router.use('/images', imagesRouter);
 
 // router.use('/bookings', bookingsRouter);
 

@@ -20,8 +20,9 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.get('/mybookings/:userId(\\d+)', asyncHandler(async (req, res) => {
     const {userId} = req.params
-    const myBookings = await Booking.findAll({where: { userId: userId }, include: [Spot]} )
+    const myBookings = await Booking.findAll({where: { userId: userId }, include: [{model: Spot, include: [{model: Image}]}]} )
     return res.json(myBookings)
+    return res.send('working')
 
 }))
 
