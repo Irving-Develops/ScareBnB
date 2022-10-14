@@ -33,7 +33,7 @@ function App() {
             <SpotComponent />
           </Route>
           )}
-          <Route exact path="/mybookings">
+          <Route exact path="/my-trips">
             <MyBookings />
           </Route>
           <Route exact path="/spots/:spotId">
