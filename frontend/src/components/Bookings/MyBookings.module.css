@@ -1,4 +1,10 @@
+.bookingContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .bookingCardContainer {
+    display: flex;
     width: 500px;
     height: 200px;
     background-color: white;
