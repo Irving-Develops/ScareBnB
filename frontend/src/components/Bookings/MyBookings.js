@@ -9,11 +9,13 @@ export default function MyBookings() {
     const bookings = useSelector(state => state.bookingReducer)
     const sessionUser = useSelector(state => state.session.user)
     const spots = useSelector(state => state.spotReducer)
+
+
     let upcomingTrips = Object.values(bookings).filter(booking => {
-        return new Date(booking.endDate) < new Date()
+        return new Date(booking.endDate) > new Date() && booking.userId === sessionUser.id
     })
     let previousTrips = Object.values(bookings).filter(booking => {
-        return new Date(booking.endDate) > new Date()
+        return new Date(booking.endDate) < new Date() && booking.userId === sessionUser.id
     })
 
     console.log(previousTrips, "previous trips")
@@ -50,20 +52,21 @@ export default function MyBookings() {
                         <div key={booking.id} className={classes.bookingCardContainer} >
                                 <div className={classes.bookingInfo}>
                                     <div className={classes.bookingHeader}>
-                                        <h2>{booking.Spot.name}</h2>
-                                        <p>Hosted by {booking.Spot.User.username}</p>
+                                        <h2 style={{"color": "#1F0000"}}>{booking.Spot?.name}</h2>
+                                        <p>Hosted by {booking.Spot?.User?.username}</p>
                                     </div>
                                     <div className={classes.bookingBody}>
                                         <div className={classes.bookingDate}>
-                                            <p>{formatDate(booking.startDate)} - {formatDate(booking.endDate)}</p>
+                                            <span style={{"fontSize": "14px"}}>{formatDate(booking.startDate)}</span >
+                                            <span style={{"fontSize": "14px"}}>{formatDate(booking.endDate)}</span >
                                         </div>
                                         <div className={classes.bookingLocation}>
-                                            <p>{booking.Spot.address}</p>
+                                            <p>{booking.Spot?.address}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className={classes.imgWrapper} >
-                                    <img src={`${booking.Spot?.Images[4].url}`} alt=""/>
+                                    <img src={`${booking.Spot?.Images[4]?.url}`} alt=""/>
                                 </div>
                             </div>
                 ))}
@@ -76,20 +79,21 @@ export default function MyBookings() {
                         <div key={booking.id} className={classes.bookingCardContainer} >
                                 <div className={classes.bookingInfo}>
                                     <div className={classes.bookingHeader}>
-                                        <h2>{booking.Spot.name}</h2>
-                                        <p>Hosted by {booking.Spot.User.username}</p>
+                                        <h2 style={{"color": "#1F0000"}}>{booking.Spot?.name}</h2>
+                                        <p>Hosted by {booking.Spot?.User?.username}</p>
                                     </div>
                                     <div className={classes.bookingBody}>
                                         <div className={classes.bookingDate}>
-                                            <p>{formatDate(booking.startDate)} - {formatDate(booking.endDate)}</p>
+                                            <span style={{"fontSize": "14px"}}>{formatDate(booking.startDate)}</span >
+                                            <span style={{"fontSize": "14px"}}>{formatDate(booking.endDate)}</span >
                                         </div>
                                         <div className={classes.bookingLocation}>
-                                            <p>{booking.Spot.address}</p>
+                                            <p>{booking.Spot?.address}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className={classes.imgWrapper} >
-                                    <img src={`${booking.Spot?.Images[4].url}`} alt=""/>
+                                    <img src={`${booking.Spot?.Images[4]?.url}`} alt=""/>
                                 </div>
                             </div>
                 ))}

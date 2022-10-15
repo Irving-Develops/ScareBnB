@@ -1,8 +1,9 @@
 /* TODO Add site wide styles */
 :root {
-    --button-background: #A83D2E;
-    --border: 2px solid #A83D2E;
-    --modal-background: #F8F8F7;
+    --main: #A83D2E;
+    --main-border: 2px solid rgb(168, 61, 46);
+    --grey-border: 2px solid #dad4d3;
+    --background: #F8F8F7;
     --grey: #B1A9A8;
 }
 

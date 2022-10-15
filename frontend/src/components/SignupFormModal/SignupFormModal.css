@@ -26,7 +26,7 @@
 
 #input-container {
     border-radius: 8px;
-    border: var(--border);
+    border: var(--main-border);
     width: 502px;
     background-color: white;
     margin-bottom: 32px;
@@ -58,7 +58,7 @@ hr {
 #form-content>button {
     width: 502px;
     height: 48px;
-    background: var(--button-background);
+    background: var(--main);
     border: none;
     border-radius: 8px;
     margin-bottom: 16px;
@@ -67,7 +67,7 @@ hr {
 
 #sign-up {
     background-color: white;
-    border: var(--border);
+    border: var(--main-border);
     width: 75px;
     height: 40px;
     border-radius: 20px;

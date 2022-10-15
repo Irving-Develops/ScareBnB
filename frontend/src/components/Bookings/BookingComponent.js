@@ -30,6 +30,11 @@ export default function BookingComponent({spotId, price}) {
         };
     })
 
+    function formatDate(string){
+    let options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(string).toLocaleDateString([],options);
+    }
+
 
     useEffect(() => {
         const err = [];
@@ -116,7 +121,7 @@ export default function BookingComponent({spotId, price}) {
                     )}
                     {yourBooking && (
                         <>
-                            <p>You have a booking from {yourBooking.startDate} to {yourBooking.endDate}</p>
+                            <p>You have a booking from {formatDate(yourBooking.startDate)} to {formatDate(yourBooking.endDate)}</p>
                             <button id="delete-btn" type="button" onClick={() => onDelete(yourBooking)}> Delete Booking</button>
                         </>
 
@@ -155,14 +160,6 @@ export default function BookingComponent({spotId, price}) {
                         </div>
                     )}
                 </div>
-                    <h2>Current Bookings</h2>
-                    {bookingsForSpot && bookingsForSpot.map(booking => (
-                    <div key={booking.id}>
-                        <p >Booking from {booking.startDate} to {booking.endDate}</p>
-                    </div>
-    
-                ))}
-    
             </>
         )
 

@@ -26,7 +26,7 @@
 
 #input-container {
     border-radius: 8px;
-    border: var(--border);
+    border: var(--main-border);
     width: 502px;
     background-color: white;
     margin-bottom: 32px;
@@ -35,7 +35,7 @@
 .form-input {
     box-sizing: border-box;
     padding: 26px 36px 10px 12px;
-    background-color: var(--modal-background);
+    background-color: var(--background);
     width: 100%;
     margin: 0;
     border: none;
@@ -47,7 +47,7 @@
 }
 
 .form-input:focus {
-    outline: var(--border);
+    outline: var(--main-border);
 }
 
 hr {
