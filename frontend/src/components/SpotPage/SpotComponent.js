@@ -1,7 +1,7 @@
 import {useParams, useHistory} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {thunkGetAllSpots} from '../../store/spots';
+import {getSpotThunk} from '../../store/spots';
 
 //components
 import EditFormComponent from './EditSpot/EditFormComponent';
@@ -22,7 +22,7 @@ export default function SpotComponent(){
 
 
     useEffect(() => {
-        dispatch(thunkGetAllSpots())
+        dispatch(getSpotThunk(spotId))
     }, [dispatch])
 
     if(sessionUser === undefined) history.push('/');

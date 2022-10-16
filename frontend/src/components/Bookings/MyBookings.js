@@ -41,10 +41,10 @@ export default function MyBookings() {
     if(!bookings) return null
     return (
         <div>
-            <h1>Your Trips</h1>
+            <h2>Your Trips</h2>
             <div className={classes.bookingContainer}>
                 {upcomingTrips ? 
-                <h2>Upcoming Reservations</h2>
+                <h3>Upcoming Reservations</h3>
                 :
                 null    
             }
@@ -71,7 +71,7 @@ export default function MyBookings() {
                             </div>
                 ))}
                     {previousTrips ? 
-                    <h2>Previous Reservations</h2>
+                    <h3>Previous Reservations</h3>
                     :
                     null
                 }

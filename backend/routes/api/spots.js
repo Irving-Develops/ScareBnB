@@ -25,8 +25,8 @@ router.get('/', asyncHandler(async(req,res) => {
 }))
 
 router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
-    const spots = await Spot.findAll({include: [Image, User]})
-    return res.json(spots)
+    const spot = await Spot.findByPk(req.params.id, {include: [Image, User]})
+    return res.json(spot)
 }))
 
 

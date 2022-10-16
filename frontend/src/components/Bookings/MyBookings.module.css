@@ -27,7 +27,7 @@
     border-radius: 20px;
     background-color: var(--background);
     margin: 30px;
-    box-shadow: rgba(155, 155, 155, 0.1) 0px 8px 24px, rgba(155, 155, 155, 0.1) 0px 16px 56px, rgba(155, 155, 155, 0.1) 0px 24px 80px;
+    box-shadow: rgba(155, 155, 155, 0.1) 0px 8px 24px, rgba(155, 155, 155, 0.1) 0px 16px 56px, rgba(155, 155, 155, 0.1) 0px 24px 80px, rgba(31, 0, 0, 0.442) 0px 3px 8px; ;
 }
 .bookingBody {
     display: flex;

@@ -8,7 +8,7 @@ const CREATE_SPOT = 'spots/createSpot'
 //READ
 const GET_SPOTS = 'spots/getSpot'
 
-const GET_MY_SPOTS = 'spots/getMySpots'
+const GET_SPOT = 'spots/getSpot'
 
 //UPDATED
 const UPDATE_SPOT = 'spots/updateSpot'
@@ -32,11 +32,11 @@ const actionGetAllSpots = (spots) => {
     }
 }
 
-const getMySpots = (spots) => {
+const getSpot = (spot) => {
 
     return {
-        type: GET_MY_SPOTS,
-        spots
+        type: GET_SPOT,
+        spot
     }
 }
 
@@ -88,13 +88,13 @@ export const thunkGetAllSpots = () => async (dispatch) => {
 };
 
 
-export const getMySpotsThunk = (spots) => async(dispatch) => {
-    console.log(spots,"spots in thunk")
-    const response = await csrfFetch(`/api/spots/myspots/${spots}`)
+export const getSpotThunk = (spotId) => async(dispatch) => {
+    console.log(typeof spotId,"spots in thunk")
+    const response = await csrfFetch(`/api/spots/${spotId}`)
 
     if(response.ok) {
         const data = await response.json()
-        dispatch(getMySpots(data))
+        dispatch(getSpot(data))
         return response
     }
 }
@@ -147,15 +147,16 @@ const spotReducer = (state = {}, action) => {
             };
         case GET_SPOTS:
             newState = {...state}
+            console.log(action.spot, "in reducer")
             action.spots.forEach(spot => {
                 newState[spot.id] = spot
             })
             return newState;
-        case GET_MY_SPOTS:
-            newState = {...state}
-            action.spots.forEach(spot => {
-                newState[spot.id] = spot
-            })
+        case GET_SPOT:
+            // console.log(action.spot.id, "in reducer")
+                newState = {...state}
+                newState[action.spot.id] = action.spot
+                // console.log(newState, "state")
             return newState;
         case UPDATE_SPOT:
             return {
