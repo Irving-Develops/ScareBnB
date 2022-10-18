@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {Spot, Image, User, Booking} = require('../../db/models/');
+const {Spot, Image, User, Booking, Review} = require('../../db/models/');
 const bookingRouter = require('./bookings')
 
 const router = express.Router();
@@ -20,7 +20,7 @@ const router = express.Router();
 
 //READ for all and specific spot
 router.get('/', asyncHandler(async(req,res) => {
-    const spots = await Spot.findAll({include: [Image, User]})
+    const spots = await Spot.findAll({include: [Image, User, Review]})
     return res.json(spots)
 }))
 
