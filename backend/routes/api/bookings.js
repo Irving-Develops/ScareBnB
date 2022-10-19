@@ -30,6 +30,7 @@ router.get('/mybookings/:userId(\\d+)', asyncHandler(async (req, res) => {
 router.delete(`/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
         const {bookingId} = req.params;
         const booking = await Booking.findByPk(bookingId)
+        console.log(booking, "booking ===================== \n")
         await booking.destroy()
         return res.json({message: 'Success!'})
 }))
