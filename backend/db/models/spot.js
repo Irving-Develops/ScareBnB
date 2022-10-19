@@ -15,10 +15,13 @@ module.exports = (sequelize, DataTypes) => {
     Spot.hasMany(models.Image, {foreignKey: 'spotId',   onDelete: "CASCADE", hooks: true})
     Spot.hasMany(models.Review, {foreignKey: 'spotId'})
     Spot.hasMany(models.Favorite, {foreignKey: 'spotId'})
+    // Spot.hasMany(models.Booking, {foreignKey: 'spotId', })
     Spot.belongsToMany(models.User, {
       through: 'Booking',
       otherKey: 'userId',
       foreignKey: 'spotId',
+      onDelete: "CASCADE", 
+      hooks: true
     })
   };
   return Spot;
