@@ -5,7 +5,7 @@ module.exports = {
 
    return queryInterface.bulkInsert('Favorites', [{
      favorite: true,
-     spotId: 1,
+     spotId: 2,
      userId: 1,
     createdAt: new Date(),
     updatedAt: new Date()
