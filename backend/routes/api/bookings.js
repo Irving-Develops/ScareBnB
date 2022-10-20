@@ -22,7 +22,6 @@ router.get('/mybookings/:userId(\\d+)', asyncHandler(async (req, res) => {
     const {userId} = req.params
     const myBookings = await Booking.findAll({where: { userId: userId }, include: [{model: Spot, include: [{model: Image},  {model: User}]}]} )
     return res.json(myBookings)
-    return res.send('working')
 
 }))
 
@@ -30,7 +29,6 @@ router.get('/mybookings/:userId(\\d+)', asyncHandler(async (req, res) => {
 router.delete(`/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
         const {bookingId} = req.params;
         const booking = await Booking.findByPk(bookingId)
-        console.log(booking, "booking ===================== \n")
         await booking.destroy()
         return res.json({message: 'Success!'})
 }))

@@ -14,5 +14,13 @@ router.post('/', asyncHandler(async (req, res) => {
     return res.json(review)
 }))
 
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const review = await Review.findByPk(req.params.id)
+    await review.destroy()
+    return res.json({message: "Success!"})
+}))
+
+
+
 
 module.exports = router
