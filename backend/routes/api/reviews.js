@@ -9,5 +9,10 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     return res.json(reviews)
 }))
 
+router.post('/', asyncHandler(async (req, res) => {
+    const review = await Review.create(req.body)
+    return res.json(review)
+}))
+
 
 module.exports = router
