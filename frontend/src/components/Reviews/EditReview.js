@@ -18,7 +18,7 @@ export default function EditReview ({review}) {
             rating: rating
         }
 
-        await dispatch(editReviewThunk(editedReview.rating, review.id))
+        await dispatch(editReviewThunk(editedReview, review.id))
     }
     return (
         <form> 

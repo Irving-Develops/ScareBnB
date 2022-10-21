@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     const reviews = await Review.findAll({where: {spotId: req.params.id}, include: [User]})
-    console.log(reviews, "==============")
     return res.json(reviews)
 }))
 
@@ -16,7 +15,8 @@ router.post('/', asyncHandler(async (req, res) => {
 
 router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
     const review = await Review.findByPk(req.params.id)
-    const updatedReview = await Review.update(req.body)
+    const updatedReview = await review.update(req.body)
+    res.send(updatedReview)
     return updatedReview
 
 }))
