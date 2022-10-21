@@ -11,6 +11,7 @@ export default function DeleteComponent({spot}) {
     const dispatch = useDispatch();
 
         async function onDelete(spot) {
+            console.log("inside delete")
          dispatch(thunkDeleteSpot(spot,history))
         
     }

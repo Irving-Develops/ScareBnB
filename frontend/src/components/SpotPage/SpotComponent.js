@@ -2,6 +2,8 @@ import {useParams, useHistory} from 'react-router-dom';
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSpotThunk} from '../../store/spots';
+import GetReviews from '../Reviews/GetReviews'
+import AddReview from '../Reviews/AddReview'
 
 //components
 import EditFormComponent from './EditSpot/EditFormComponent';
@@ -39,7 +41,9 @@ export default function SpotComponent(){
                     <div id="spot-name">
                         <h2 id='spot-name'>{spot?.name}</h2>
                         <p>{spot?.address}</p> 
+                        <GetReviews spotId={spot?.id} />
                     </div>
+                    <AddReview spotId={spot?.id}/>
                     <DeleteComponent spot={spot} />
                 </div>
                 <div className="img-container">

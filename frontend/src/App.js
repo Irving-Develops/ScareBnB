@@ -7,6 +7,7 @@ import SpotComponent from "./components/SpotPage/SpotComponent";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import MyBookings from "./components/Bookings/MyBookings";
+import GetReviews from "./components/Reviews/GetReviews"
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
               <h2>PLEASE LOGIN</h2>
+          </Route>
+          <Route exact path ='/reviews'>
+            <GetReviews />
           </Route>
         </Switch>
       )}

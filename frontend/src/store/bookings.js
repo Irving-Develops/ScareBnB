@@ -71,7 +71,7 @@ export const thunkCreateBooking = (payload) => async(dispatch) => {
     if(response.ok){
         let createBooking = await response.json()
         dispatch(actionCreateBooking(createBooking))
-        return response;
+        return createBooking;
     }
 }
 

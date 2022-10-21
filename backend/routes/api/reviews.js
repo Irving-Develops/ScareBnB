@@ -14,10 +14,17 @@ router.post('/', asyncHandler(async (req, res) => {
     return res.json(review)
 }))
 
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const review = await Review.findByPk(req.params.id)
+    const updatedReview = await Review.update(req.body)
+    return updatedReview
+
+}))
+
 router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     const review = await Review.findByPk(req.params.id)
     await review.destroy()
-    return res.json({message: "Success!"})
+    return res.json(review)
 }))
 
 

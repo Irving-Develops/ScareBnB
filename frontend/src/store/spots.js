@@ -123,6 +123,8 @@ export const thunkDeleteSpot = (spotId, history) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE',
     });
+    console.log(response, "in delete")
+    console.log(spotId, "in delete")
 
     if (response.ok) {
         const deletedSpot = response.json()
@@ -137,34 +139,28 @@ export const thunkDeleteSpot = (spotId, history) => async (dispatch) => {
 //todo reducer
 
 const spotReducer = (state = {}, action) => {
-    let newState;
+    let newState = {...state};
     switch (action.type) {
         case CREATE_SPOT:
-            return {
-                ...state,
-                [action.spot.id]: action.spot, 
-                // images: {...action.image}
-            };
+                newState[action.spot.id]= action.spot
+            return newState;
         case GET_SPOTS:
-            newState = {...state}
-            console.log(action.spot, "in reducer")
-            action.spots.forEach(spot => {
-                newState[spot.id] = spot
-            })
+            if(action.spots) {
+                action.spots.forEach(spot => {
+                    newState[spot.id] = spot
+                })
+            }else {
+                console.log("in else", action.spot)
+                newState[action.spot.id] = action.spot
+            }
             return newState;
         case GET_SPOT:
-            // console.log(action.spot.id, "in reducer")
-                newState = {...state}
                 newState[action.spot.id] = action.spot
-                // console.log(newState, "state")
             return newState;
         case UPDATE_SPOT:
-            return {
-            ...state,
-            [action.spot.id]: action.spot
-            };
+                newState[action.spot.id] = action.spot
+            return newState;
         case DELETE_SPOT:
-            newState = { ...state };
             delete newState[action.spotId];
             return newState;
         default:
