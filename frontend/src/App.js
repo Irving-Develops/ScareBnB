@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import MyBookings from "./components/Bookings/MyBookings";
 import GetReviews from "./components/Reviews/GetReviews"
+import GetFavorites from "./components/Favorites/GetFavorites"
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path ='/reviews'>
             <GetReviews />
+          </Route>
+          <Route exact path="/test">
+            <GetFavorites />
           </Route>
         </Switch>
       )}

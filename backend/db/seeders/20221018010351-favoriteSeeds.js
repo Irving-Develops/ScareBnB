@@ -4,7 +4,6 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
    return queryInterface.bulkInsert('Favorites', [{
-     favorite: true,
      spotId: 2,
      userId: 1,
     createdAt: new Date(),

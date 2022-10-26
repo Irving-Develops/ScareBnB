@@ -1,0 +1,11 @@
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const {Booking, Spot, Image, User, Favorite} = require('../../db/models')
+const router = express.Router();
+
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const favorites = await Favorite.findAll({where: {userId: req.params.id}})
+    return res.json(favorites)
+}))
+
+module.exports = router
