@@ -1,6 +1,7 @@
 import {csrfFetch} from './csrf';
 
 const GET_FAVORITES = 'favorites/GET_FAVORITES'
+const ADD_FAVORITE = 'favorite/ADD+FAVORITE'
 
 const getFavorites = (favorites) => {
     return {
@@ -8,6 +9,14 @@ const getFavorites = (favorites) => {
         favorites
     }
 }
+
+const addFavorite = (favorite) => {
+    return {
+        type: ADD_FAVORITE,
+        favorite
+    }
+}
+
 
 export const getFavoritesThunk = (userId) => async (dispatch) => {
     const res = await csrfFetch(`/api/favorites/${userId}`)
@@ -19,6 +28,20 @@ export const getFavoritesThunk = (userId) => async (dispatch) => {
     }
 }
 
+export const addFavoriteThunk = (favorite) => async (dispatch) => {
+    const res = await csrfFetch(`/api/favorites/${favorite.spotId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(favorite)
+    })
+
+    if(res.ok) {
+        const favorite = await res.json()
+        dispatch(addFavorite(favorite))
+        return favorite
+    }
+}
+
 export default function favorites(state = {}, action){
     let newState = state
     switch(action.type) {
@@ -26,6 +49,9 @@ export default function favorites(state = {}, action){
             action.favorites.forEach(favorite => {
                 newState[favorite.id] = favorite
             })
+            return newState;
+        case ADD_FAVORITE: 
+            newState[action.favorite.id] = action.favorite
             return newState;
         default:
             return state

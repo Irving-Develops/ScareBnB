@@ -8,4 +8,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
     return res.json(favorites)
 }))
 
+router.post('/:id(\\d+)', asyncHandler(async (req, res) => {
+    res.send("inside add route")
+}))
 module.exports = router
