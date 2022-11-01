@@ -9,6 +9,7 @@ import AddReview from '../Reviews/AddReview'
 import EditFormComponent from './EditSpot/EditFormComponent';
 import DeleteComponent from './DeletePage/DeleteComponent';
 import BookingComponent from '../Bookings/BookingComponent';
+import AddFavorite from '../Favorites/AddFavorite';
 
 import './SpotPage.css';
 
@@ -46,6 +47,7 @@ export default function SpotComponent(){
                     <AddReview spotId={spot?.id}/>
                     <DeleteComponent spot={spot} />
                 </div>
+                <AddFavorite />
                 <div className="img-container">
                     {/* <div className="main-img">
                         <img src={spot?.Images[0]?.url} alt="" ></img>
