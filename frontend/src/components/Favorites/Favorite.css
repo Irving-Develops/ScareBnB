@@ -1,0 +1,16 @@
+#favorite {
+    display: block;
+    height: 16px;
+    width: 16px;
+    overflow: visible;
+    stroke-width: 2;
+    stroke: currentcolor;
+}
+
+.favorited {
+    fill: red;
+    stroke: red;
+    color: red;
+    border-color: red;
+}
+

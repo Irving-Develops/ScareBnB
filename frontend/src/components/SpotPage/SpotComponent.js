@@ -47,7 +47,7 @@ export default function SpotComponent(){
                     <AddReview spotId={spot?.id}/>
                     <DeleteComponent spot={spot} />
                 </div>
-                <AddFavorite />
+                <AddFavorite spotId={spot?.id}/>
                 <div className="img-container">
                     {/* <div className="main-img">
                         <img src={spot?.Images[0]?.url} alt="" ></img>

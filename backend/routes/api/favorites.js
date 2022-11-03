@@ -9,6 +9,12 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
 }))
 
 router.post('/:id(\\d+)', asyncHandler(async (req, res) => {
-    res.send("inside add route")
+    // res.send("inside add route")
+    const favorite = await Favorite.create(req.body)
+    return res.json(favorite)
+}))
+
+router.delete('/:id(\d+)', asyncHandler(async (req, res) => {
+    res.send("hitting delete route")
 }))
 module.exports = router
