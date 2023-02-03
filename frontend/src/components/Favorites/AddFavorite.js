@@ -7,15 +7,21 @@ import './Favorite.css'
 export default function AddFavorite ({spotId}){
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user.id)
-    const favorite = useSelector(state => state.favorites)
-    console.log(favorite, "favorite")
+    const favorite = Object.values(useSelector(state => state.favorites))
+    console.log(favorite)
     const handleFavorite = async(e) => {
         let newFavorite = {
             userId: sessionUser,
             spotId
         }
+        console.log(favorite.length)
+        if(favorite.length) {
+            await dispatch(deleteFavoriteThunk(favorite[1]))
 
-        await dispatch(addFavoriteThunk(newFavorite))
+        }else {
+
+            await dispatch(addFavoriteThunk(newFavorite))
+        }
 
         console.log(e.target, "e")
         e.target.classList.toggle('favorited')
@@ -25,6 +31,7 @@ export default function AddFavorite ({spotId}){
     const handleUnfavorite = async(e) => {
 
         await dispatch(deleteFavoriteThunk(favorite))
+        console.log('firing delete')
         e.target.classList.toggle('favorited')
     }
     return (

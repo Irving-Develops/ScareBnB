@@ -1,6 +1,6 @@
 # ScareBnB
 
-[ScareBnB](https://scairbnb.herokuapp.com/) is an AirBnB clone. It was made using Express and React. ScareBnB allows users to create spots to be booked and also for users to book spots.
+[ScareBnB](https://scarebnb.herokuapp.com/) is an AirBnB clone. It was made using Express and React. ScareBnB allows users to create spots to be booked and also for users to book spots.
 
 ## Screenshots
 

@@ -1,3 +1,9 @@
+#one {
+    background-color: darkgrey;
+}
+
+
+
 .card-wrapper {
     box-sizing: border-box;
     display: grid;
