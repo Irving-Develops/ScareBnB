@@ -1,11 +1,11 @@
 import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {thunkUpdateSpot, thunkGetAllSpots} from '../../../store/spots';
+import {thunkUpdateSpot, thunkGetAllSpots} from '../../store/spots';
 import './EditSpot.css'
 
 
-export default function EditFormComponent({spot}) {
+export default function EditSpot({spot,setShowModal}) {
         const user = useSelector(state => state.session.user);
         const [address, setAddress] = useState('');
         const [city, setCity] = useState('');
@@ -55,7 +55,7 @@ export default function EditFormComponent({spot}) {
 
 
               await dispatch(thunkUpdateSpot(payload,spot.id));
-              alert("Thanks for submitting")
+              setShowModal(false)
             // if(updatedSpot) {
             //     hist.push(`/api/spots/${spot}`)
             // }

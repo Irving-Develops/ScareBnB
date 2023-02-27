@@ -1,9 +1,9 @@
 import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {thunkCreateSpot} from '../../../store/spots';
+import {thunkCreateSpot} from '../../store/spots';
 
-export default function CreateFormComponent() {
+export default function AddSpot() {
         const user = useSelector(state => state.session.user);
         const hist = useHistory();
         const [address, setAddress] = useState('');

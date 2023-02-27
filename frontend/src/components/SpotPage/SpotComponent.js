@@ -6,11 +6,11 @@ import GetReviews from '../Reviews/GetReviews'
 import AddReview from '../Reviews/AddReview'
 
 //components
-import EditFormComponent from './EditSpot/EditFormComponent';
-import DeleteComponent from './DeletePage/DeleteComponent';
+import EditSpot from './EditSpot';
+import DeleteSpot from './DeleteSpot';
 import BookingComponent from '../Bookings/BookingComponent';
 import AddFavorite from '../Favorites/AddFavorite';
-
+import EditSpotModal from '../Modals/EditSpotModal';
 import './SpotPage.css';
 
 
@@ -45,7 +45,10 @@ export default function SpotComponent(){
                         <GetReviews spotId={spot?.id} />
                     </div>
                     <AddReview spotId={spot?.id}/>
-                    <DeleteComponent spot={spot} />
+                    <div>
+                        <EditSpotModal spot={spot}/>
+                        <DeleteSpot spot={spot} />
+                    </div>
                 </div>
                 <AddFavorite spotId={spot?.id}/>
                 <div className="img-container">
@@ -113,9 +116,7 @@ export default function SpotComponent(){
                         <BookingComponent spotId={spot?.id} price={spot?.price} />
                     </div>
                 </div>
-                    <>
-                        <EditFormComponent spot={spot}/>
-                    </>
+                <EditSpotModal spot={spot} />
             </>
         )}
         </>

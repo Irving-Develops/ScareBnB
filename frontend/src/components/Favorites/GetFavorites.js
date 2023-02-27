@@ -10,19 +10,18 @@ export default function GetFavorites (){
     const [isLoaded, setLoaded] = useState(false)
     useEffect(() => {
         dispatch(getFavoritesThunk(user?.id))
-        setLoaded(true)
 
-    }, [dispatch])
+    }, [dispatch, user])
 
     console.log(favorites.length, "favs")
-    if(!isLoaded) return null
-    return (
-        <div>
-            {favorites?.map(fav => (
-                <div>
-                    {fav.Spot?.name}
-                </div>
-                ))}
-        </div>
-    )
+    // if(!isLoaded) return null
+    // return (
+    //     <div>
+    //         {favorites?.map(fav => (
+    //             <div>
+    //                 {fav.Spot?.name}
+    //             </div>
+    //             ))}
+    //     </div>
+    // )
 }

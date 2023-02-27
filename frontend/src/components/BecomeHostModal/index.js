@@ -5,7 +5,7 @@ import BecomeHostForm from './BecomeHostForm';
 
 function BecomeHostModal() {
   const [showModal, setShowModal] = useState(false);
-  function handleChange(newValue) {
+  function handleChange() {
     setShowModal(false)
   }
     return (

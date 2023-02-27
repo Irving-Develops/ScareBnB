@@ -67,7 +67,7 @@ h3 {
     justify-content: space-between;
 }
 
-#header > button {
+/* #header > .buttons {
         width: 100px;
         height: 36px;
         background: var(--main);
@@ -75,7 +75,7 @@ h3 {
         border-radius: 8px;
         margin-top: 45px;
         color: white;
-}
+} */
 
 
 
