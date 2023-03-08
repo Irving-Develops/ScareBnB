@@ -6,14 +6,15 @@ import './EditSpot.css'
 
 
 export default function EditSpot({spot,setShowModal}) {
+        console.log(spot, "------")
         const user = useSelector(state => state.session.user);
-        const [address, setAddress] = useState('');
-        const [city, setCity] = useState('');
-        const [state, setState] = useState('');
-        const [country, setCountry] = useState('');
-        const [name, setName] = useState('');
-        const [price, setPrice] = useState(null);
-        const [history, setHistory] = useState('');
+        const [address, setAddress] = useState(spot.address);
+        const [city, setCity] = useState(spot.city);
+        const [state, setState] = useState(spot.state);
+        const [country, setCountry] = useState(spot.country);
+        const [name, setName] = useState(spot.name);
+        const [price, setPrice] = useState(spot.price);
+        const [history, setHistory] = useState(spot.history);
         const [url, setUrl] = useState([]);
         const dispatch = useDispatch();
         const [errors, setErrors] = useState([])
