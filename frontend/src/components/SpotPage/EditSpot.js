@@ -67,7 +67,7 @@ export default function EditSpot({spot,setShowModal}) {
         return (
                 <div id="container">
                     <div className="form-header">
-                        <h2>Edit Your Spot</h2>
+                        <p>Edit Your Spot</p>
                     </div>
                     <form onSubmit={onSubmit} id="form-container">
                         {hasSubmitted && errors.length > 0 && (
