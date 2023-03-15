@@ -41,6 +41,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
+      amenityId: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        references: {model: 'Amenities'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,9 +1,9 @@
 /* TODO Add site wide styles */
 :root {
-    --main: #A83D2E;
-    --main-border: 2px solid rgb(168, 61, 46);
+    --main: #ff385c;
+    --main-border: 2px solid #ff385c;
     --grey-border: 2px solid #dad4d3;
-    --background: #F8F8F7;
+    --background: white;
     --grey: #B1A9A8;
 }
 
@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 body {
-    background-color: rgb(31, 0, 0);
+    background-color: white;
     color: #B1A9A8;
 }
 
