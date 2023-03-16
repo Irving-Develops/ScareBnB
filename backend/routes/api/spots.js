@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {Spot, Image, User, Booking, Review} = require('../../db/models/');
+const {Spot, Image, User, Amenity, SpotAmenity, Booking, Review} = require('../../db/models/');
 const bookingRouter = require('./bookings')
 
 const router = express.Router();
@@ -20,7 +20,31 @@ const router = express.Router();
 
 //READ for all and specific spot
 router.get('/', asyncHandler(async(req,res) => {
-    const spots = await Spot.findAll({include: [Image, User, Review]})
+    // const spots = await Spot.findAll({include: [Image, User, Review, amenities]})
+    const spots = await Spot.findAll({
+  include: [
+    {
+      model: Image,
+    },
+    {
+      model: User,
+    },
+    {
+      model: Review,
+    },
+    {
+        model: Booking
+    },
+    {
+      model: Amenity,
+      as: amenities,
+      through: {
+        attributes: [] // remove the join table attributes from the result
+      }
+    }
+  ],
+});
+    console.log("---------------", spots)
     return res.json(spots)
 }))
 
