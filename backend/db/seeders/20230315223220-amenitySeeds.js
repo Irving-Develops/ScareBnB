@@ -10,82 +10,134 @@ module.exports = {
       */
    return queryInterface.bulkInsert('Amenities', [
      { 
-      name: "Hair Dryer"
+      name: "Hair Dryer",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Shampoo"
+      name: "Shampoo",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Hot Water"
+      name: "Hot Water",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Free Washer"
+      name: "Free Washer",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Free Dryer"
+      name: "Free Dryer",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Bed Linens"
+      name: "Bed Linens",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Extra Blankets"
+      name: "Extra Blankets",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Iron"
+      name: "Iron",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Fireplace"
+      name: "Fireplace",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Security Cameras"
+      name: "Security Cameras",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "First Aid Kit"
+      name: "First Aid Kit",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Fire Extinguisher"
+      name: "Fire Extinguisher",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Wifi"
+      name: "Wifi",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Refrigerator"
+      name: "Refrigerator",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Cooking Basics"
+      name: "Cooking Basics",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Dishes and Silverware"
+      name: "Dishes and Silverware",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Stove"
+      name: "Stove",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Coffee Maker"
+      name: "Coffee Maker",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Pets Allowed"
+      name: "Pets Allowed",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "TV"
+      name: "TV",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Stove"
+      name: "Stove",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Oven"
+      name: "Oven",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Parking"
+      name: "Parking",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Self Check-In"
+      name: "Self Check-In",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Hangers"
+      name: "Hangers",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
      { 
-      name: "Microwave"
+      name: "Microwave",
+          createdAt: new Date(),
+    updatedAt: new Date()
    },
   ], {});
   },
@@ -96,7 +148,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
 
       Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+      */
+   return queryInterface.bulkDelete('Amenities', null, {});
   }
 };

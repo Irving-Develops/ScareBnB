@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Amenity.associate = function(models) {
     // associations can be defined here
+    Amenity.belongsToMany(models.Spot, {
+      through: 'SpotAmenity', 
+      otherKey: 'amenityId',
+      foreignKey: 'spotId'
+    })
   };
   return Amenity;
 };

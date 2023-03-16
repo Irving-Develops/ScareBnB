@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'spotId',
       foreignKey: 'userId',
     })
-    Spot.belongsToMany(models.SpotAmenity, {
+    Spot.belongsToMany(models.Amenity, {
       through: 'SpotAmenity', 
       otherKey: 'spotId',
       foreignKey: 'amenityId'

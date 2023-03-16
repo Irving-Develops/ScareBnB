@@ -10,11 +10,14 @@ module.exports = {
       },
       spotId: {
         allowNull: false,
+        references: {model: 'Spots'},
         type: Sequelize.INTEGER
       },
       amenityId: {
         allowNull: false,
+        references: {model: 'Amenities'},
         type: Sequelize.INTEGER
+
       },
       createdAt: {
         allowNull: false,
