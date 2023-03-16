@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   SpotAmenity.associate = function(models) {
     // associations can be defined here
-    SpotAmenity.belongsTo(models.Spot, {foreignKey: 'spotId'})
+    // SpotAmenity.belongsTo(models.Spot, {foreignKey: 'spotId'})
   };
   return SpotAmenity;
 };
