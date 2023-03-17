@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/Irving-Develops/ScareBnB/issues"
   },
-  "homepage": "https://github.com/Irving-Develops/ScareBnB#readme"
+  "homepage": "https://github.com/Irving-Develops/ScareBnB#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.21.0",
+    "moment": "^2.29.4",
+    "react": "^16.14.0",
+    "react-dates": "^21.8.0",
+    "react-dom": "^16.14.0",
+    "react-with-direction": "^1.4.0"
+  }
 }

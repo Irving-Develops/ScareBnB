@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import MyBookings from "./components/Bookings/MyBookings";
 import GetReviews from "./components/Reviews/GetReviews"
 import GetFavorites from "./components/Favorites/GetFavorites"
+import ReactDates from "./react-dates"
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <HomePageSpots />
+            <ReactDates />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
