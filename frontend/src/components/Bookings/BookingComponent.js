@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 import {thunkGetBooking, thunkDeleteBooking, thunkCreateBooking} from '../../store/bookings';
+import ReactDates from '../../react-dates'
 import './Booking.css'
 
 export default function BookingComponent({spotId, price}) {
@@ -9,8 +10,8 @@ export default function BookingComponent({spotId, price}) {
     const userId = useSelector(state => state.session.user.id);
     const history = useHistory();
     const dispatch = useDispatch();
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("")
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null)
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [day1, setDay1] = useState(new Date(endDate))
@@ -23,54 +24,54 @@ export default function BookingComponent({spotId, price}) {
     const bookingsArr = Object.values(selectorBookings)
     let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
     let yourBooking;
-    bookingsForSpot.forEach(booking => {
-        if(booking.userId === userId && booking.spotId === spotId){
-            yourBooking= booking;
-            return;
-        };
-    })
-
+    // bookingsForSpot.forEach(booking => {
+    //     if(booking.userId === userId && booking.spotId === spotId){
+    //         yourBooking= booking;
+    //         return;
+    //     };
+    // })
+    console.log("=========", startDate, endDate)
     function formatDate(string){
     let options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(string).toLocaleDateString([],options);
     }
 
 
-    useEffect(() => {
-        const err = [];
+    // useEffect(() => {
+    //     const err = [];
         
-        //checking the number of days between two dates
-        const days = (day1, day2) => {
-            let difference = day1.getTime() - day2.getTime();
-            let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-            return TotalDays;
-        }
+    //     //checking the number of days between two dates
+    //     const days = (day1, day2) => {
+    //         let difference = day1.getTime() - day2.getTime();
+    //         let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    //         return TotalDays;
+    //     }
 
-        let amountOfDays = days(day1, day2);
-        setTotalDays(amountOfDays);
+    //     let amountOfDays = days(day1, day2);
+    //     setTotalDays(amountOfDays);
         
-        if(amountOfDays > 28) err.push("Your booking cannot be longer thank 28 days")
+    //     if(amountOfDays > 28) err.push("Your booking cannot be longer thank 28 days")
         
         
-        const startDateArr = startDate.split('-')
-        let today = new Date()
-        let year = today.getFullYear();
-        let month = today.getMonth()
-        let day = today.getDate();
-
-
-        if(startDateArr[0] < year) err.push("Please enter a valid year")
-        if(startDateArr[0] <= year && startDateArr[1] < month + 1 ) err.push("Please enter a valid month")
-        if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] < day) err.push("Please enter a valid day")
-        // if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] <= day) err.push("Cannot make a booking on the same day")
-        
-        if(startDate > endDate) err.push("Please enter a valid end date");
-        if(startDate < today) err.push("Please enter a valid start date");
-        if(startDate === endDate) err.push("Start date and end date cannot match");
+    //     // const startDateArr = startDate.split('-')
+    //     let today = new Date()
+    //     let year = today.getFullYear();
+    //     let month = today.getMonth()
+    //     let day = today.getDate();
 
 
-        return setErrors(err)
-    }, [startDate, endDate, day1, day2])
+    //     if(startDateArr[0] < year) err.push("Please enter a valid year")
+    //     if(startDateArr[0] <= year && startDateArr[1] < month + 1 ) err.push("Please enter a valid month")
+    //     if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] < day) err.push("Please enter a valid day")
+    //     // if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] <= day) err.push("Cannot make a booking on the same day")
+        
+    //     if(startDate > endDate) err.push("Please enter a valid end date");
+    //     if(startDate < today) err.push("Please enter a valid start date");
+    //     if(startDate === endDate) err.push("Start date and end date cannot match");
+
+
+    //     return setErrors(err)
+    // }, [startDate, endDate, day1, day2])
     
     const  onSubmit = async(e) =>{
         e.preventDefault();
@@ -130,22 +131,7 @@ export default function BookingComponent({spotId, price}) {
                         <div className="calendar-container">
                             <div className="dates">
                                 <div className="start-date">
-                                    <label>Check-in</label>
-                                    <input type="date" value={startDate} min={today}
-                                    onChange={(e) => {
-                                        setStartDate(e.target.value)
-                                        setDay2(new Date(e.target.value))
-                                    }}
-                                    />  
-                                </div>
-                                <div className="end-date">
-                                    <label>Check-out</label>
-                                    <input type="date"  value={endDate} min={today}
-                                    onChange={(e) => {
-                                        setEndDate(e.target.value)
-                                        setDay1(new Date(e.target.value))
-                                    }} 
-                                    />
+                                    <ReactDates startDate={startDate} setStartDate={setStartDate} endDate={endDate} setEndDate={setEndDate}/>
                                 </div>
                             </div>
                              <button id="reserve-btn">Reserve</button>
