@@ -30,6 +30,8 @@ export const actionCreateBooking = (booking) => {
 
 //READ
 export const actionGetBooking = (booking) => {
+    console.log(booking, "action123")
+
     return {
         type: GET_BOOKING,
         booking
@@ -75,11 +77,13 @@ export const thunkCreateBooking = (payload) => async(dispatch) => {
     }
 }
 
-//READ
-export const thunkGetBooking = () => async(dispatch) => {
-    const response = await csrfFetch(`/api/bookings`)
+//GET
+export const thunkGetBooking = (spotId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${spotId}`)
+    console.log("inside get booking", response)
     if(response.ok) {
         const data = await response.json()
+        console.log("in thunk", data)
          dispatch(actionGetBooking(data))
         return response
     }
@@ -123,9 +127,8 @@ export const thunkDeleteBooking = (booking, history) => async(dispatch) => {
             return newState;
        case GET_BOOKING:
             newState = {...state}
-            action.booking.forEach(booking => {
-                newState[booking.id] = booking
-            })
+            console.log(action.booking, "in reducer")
+            newState["booking"] = action.booking
         return newState;
         case MY_BOOKINGS:
             newState = {...state}

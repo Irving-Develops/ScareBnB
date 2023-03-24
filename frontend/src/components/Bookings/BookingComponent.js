@@ -6,7 +6,7 @@ import ReactDates from '../../react-dates'
 import './Booking.css'
 
 export default function BookingComponent({spotId, price}) {
-    const selectorBookings = useSelector(state => state?.bookingReducer);
+    const yourBooking = useSelector(state => state?.bookingReducer.booking);
     const userId = useSelector(state => state.session.user.id);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -14,64 +14,30 @@ export default function BookingComponent({spotId, price}) {
     const [endDate, setEndDate] = useState(null)
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [day1, setDay1] = useState(new Date(endDate))
-    const [day2, setDay2] = useState(new Date(startDate))
+
     const [bookingExist, setBookingExist] = useState(false)
     const [totalDays, setTotalDays] = useState(null)
     const [display, setDisplay] = useState(false)
     let today = new Date()
     today = today.toISOString().split('T')[0]
-    const bookingsArr = Object.values(selectorBookings)
-    let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
-    let yourBooking;
+    // const bookingsArr = Object.values(selectorBookings)
+    // console.log(selectorBookings, " =====sdafas")
+    // let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
+    // let yourBooking;
     // bookingsForSpot.forEach(booking => {
     //     if(booking.userId === userId && booking.spotId === spotId){
     //         yourBooking= booking;
     //         return;
     //     };
     // })
-    console.log("=========", startDate, endDate)
+    console.log("========= startDate", yourBooking.startDate)
     function formatDate(string){
     let options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(string).toLocaleDateString([],options);
     }
 
 
-    // useEffect(() => {
-    //     const err = [];
-        
-    //     //checking the number of days between two dates
-    //     const days = (day1, day2) => {
-    //         let difference = day1.getTime() - day2.getTime();
-    //         let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    //         return TotalDays;
-    //     }
 
-    //     let amountOfDays = days(day1, day2);
-    //     setTotalDays(amountOfDays);
-        
-    //     if(amountOfDays > 28) err.push("Your booking cannot be longer thank 28 days")
-        
-        
-    //     // const startDateArr = startDate.split('-')
-    //     let today = new Date()
-    //     let year = today.getFullYear();
-    //     let month = today.getMonth()
-    //     let day = today.getDate();
-
-
-    //     if(startDateArr[0] < year) err.push("Please enter a valid year")
-    //     if(startDateArr[0] <= year && startDateArr[1] < month + 1 ) err.push("Please enter a valid month")
-    //     if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] < day) err.push("Please enter a valid day")
-    //     // if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] <= day) err.push("Cannot make a booking on the same day")
-        
-    //     if(startDate > endDate) err.push("Please enter a valid end date");
-    //     if(startDate < today) err.push("Please enter a valid start date");
-    //     if(startDate === endDate) err.push("Start date and end date cannot match");
-
-
-    //     return setErrors(err)
-    // }, [startDate, endDate, day1, day2])
     
     const  onSubmit = async(e) =>{
         e.preventDefault();
@@ -87,14 +53,14 @@ export default function BookingComponent({spotId, price}) {
         }
 
         await dispatch(thunkCreateBooking(payload))
-        await  dispatch(thunkGetBooking())
+        await  dispatch(thunkGetBooking(spotId))
          setHasSubmitted(false)
          setBookingExist(true)
     }
 
 
     useEffect(() => {
-        dispatch(thunkGetBooking())
+        dispatch(thunkGetBooking(spotId))
     }, [dispatch, spotId])
 
 
@@ -104,6 +70,8 @@ export default function BookingComponent({spotId, price}) {
         setHasSubmitted(false)
         setBookingExist(false)
     }
+
+
 
         return (
             <>
@@ -139,12 +107,6 @@ export default function BookingComponent({spotId, price}) {
                         
                         )}
                     </form>
-                    {totalDays > 0 && (
-                        <div className="pricing-container">
-                            <p>${price} x {totalDays} nights</p>
-                            <p>Total: ${price * totalDays}</p>
-                        </div>
-                    )}
                 </div>
             </>
         )
