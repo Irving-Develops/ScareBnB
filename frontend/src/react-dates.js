@@ -1,55 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { DateRangePicker } from "react-dates";
 import moment from "moment";
 
 export default function ReactDates({startDate, setStartDate, endDate, setEndDate}) {
-
+//   const [startDate, setStartDate] = useState(null);
+//   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
   const [date, setDate] = useState(null);
   const [focused, setFocused] = useState(null);
-    const [day1, setDay1] = useState(new Date(endDate))
-    const [day2, setDay2] = useState(new Date(startDate))
-    const [totalDays, setTotalDays] = useState(null)
-    const [errors, setErrors] = useState([])
 
-      useEffect(() => {
-        const err = [];
-        
-        //checking the number of days between two dates
-        const days = (day1, day2) => {
-            let difference = day1.getTime() - day2.getTime();
-            let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-            return TotalDays;
-        }
-
-        // let amountOfDays = days(day1, day2);
-        // setTotalDays(amountOfDays);
-        
-        // if(amountOfDays > 28) err.push("Your booking cannot be longer thank 28 days")
-        
-        
-        // const startDateArr = startDate?.split('-')
-        // let today = new Date()
-        // let year = today.getFullYear();
-        // let month = today.getMonth()
-        // let day = today.getDate();
+    const [error, setError] = useState(null);
 
 
-        // if(startDateArr[0] < year) err.push("Please enter a valid year")
-        // if(startDateArr[0] <= year && startDateArr[1] < month + 1 ) err.push("Please enter a valid month")
-        // if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] < day) err.push("Please enter a valid day")
-        // // if(startDateArr[0] <= year && startDateArr[1] <= month + 1 && startDateArr[2] <= day) err.push("Cannot make a booking on the same day")
-        
-        // if(startDate > endDate) err.push("Please enter a valid end date");
-        // if(startDate < today) err.push("Please enter a valid start date");
-        // if(startDate === endDate) err.push("Start date and end date cannot match");
+  const isOutsideRange = (day) => day.isBefore(moment(), 'day');
 
-        // console.log(err , "=======++")
-        return setErrors(err)
-    }, [startDate, endDate, day1, day2])
+  console.log(startDate, "===asdfasdf")
 
+    const handleClose = () => {
+    if (startDate && endDate) {
+      const days = endDate.diff(startDate, 'days');
+      if (days > 30) {
+        setError('Booking duration cannot exceed 30 days.');
+      } else {
+        setError(null);
+      }
+    }
+  };
 
   return (
     <div
@@ -60,6 +38,7 @@ export default function ReactDates({startDate, setStartDate, endDate, setEndDate
         alignItems: "center"
       }}
     >
+         {error && <div className="error">{error}</div>}
       <DateRangePicker
       startDate={startDate}
         startDateId="start_date"
@@ -69,6 +48,8 @@ export default function ReactDates({startDate, setStartDate, endDate, setEndDate
           setStartDate(startDate);
           setEndDate(endDate);
         }}
+        onClose={handleClose}
+        // onDatesChange={handleDatesChange}
         startDatePlaceholderText="Check In"
         endDatePlaceholderText="Check Out"
         focusedInput={focusedInput}
@@ -82,11 +63,13 @@ export default function ReactDates({startDate, setStartDate, endDate, setEndDate
         readOnly={false}
         noBorder={false}
         block={false}
-        minimumNights={0}
-        isOutsideRange={() => false}
+        minimumNights={1}
         anchorDirection="left"
         hideKeyboardShortcutsPanel={true}
         show={true}
+        isOutsideRange={isOutsideRange}
+        error={error}
+
         // appendToBody={true}
         // isRTL={true}
         // withFullScreenPortal={true}

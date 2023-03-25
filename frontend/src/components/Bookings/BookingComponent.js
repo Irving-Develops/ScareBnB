@@ -12,27 +12,14 @@ export default function BookingComponent({spotId, price}) {
     const dispatch = useDispatch();
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null)
-    const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
     const [bookingExist, setBookingExist] = useState(false)
-    const [totalDays, setTotalDays] = useState(null)
-    const [display, setDisplay] = useState(false)
     let today = new Date()
     today = today.toISOString().split('T')[0]
-    // const bookingsArr = Object.values(selectorBookings)
-    // console.log(selectorBookings, " =====sdafas")
-    // let bookingsForSpot = bookingsArr.filter(booking=> booking.spotId === spotId)
-    // let yourBooking;
-    // bookingsForSpot.forEach(booking => {
-    //     if(booking.userId === userId && booking.spotId === spotId){
-    //         yourBooking= booking;
-    //         return;
-    //     };
-    // })
-    console.log("========= startDate", yourBooking.startDate)
+
+    console.log("========= startDate", yourBooking?.startDate)
     function formatDate(string){
-    let options = { year: 'numeric', month: 'short', day: 'numeric' };
+    let options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC'  };
     return new Date(string).toLocaleDateString([],options);
     }
 
@@ -43,7 +30,7 @@ export default function BookingComponent({spotId, price}) {
         e.preventDefault();
 
         setHasSubmitted(true);
-        if (errors.length) return alert('cannot submit')
+        // if (errors.length) return alert('cannot submit')
         
         const payload = {
             spotId,
@@ -78,7 +65,7 @@ export default function BookingComponent({spotId, price}) {
                 <div className="booking-container">
                     <p id="price"><span>${price}</span> /night</p>
                     <form onSubmit={onSubmit}>
-                    {hasSubmitted && errors.length > 0 && (
+                    {/* {hasSubmitted && errors.length > 0 && (
                     <div>
                         The following errors were found:
                         <ul>
@@ -87,7 +74,7 @@ export default function BookingComponent({spotId, price}) {
                             ))}
                         </ul>
                      </div>
-                    )}
+                    )} */}
                     {yourBooking && (
                         <>
                             <p>You have a booking from {formatDate(yourBooking.startDate)} to {formatDate(yourBooking.endDate)}</p>
