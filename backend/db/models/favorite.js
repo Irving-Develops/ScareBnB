@@ -7,13 +7,13 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    spotId: DataTypes.INTEGER,
+    vanId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   }, {});
   Favorite.associate = function(models) {
     // associations can be defined here
     Favorite.belongsTo(models.User, {foreignKey: 'userId'})
-    Favorite.belongsTo(models.Spot, {foreignKey: 'spotId'})
+    Favorite.belongsTo(models.Van, {foreignKey: 'vanId'})
   };
   return Favorite;
 };

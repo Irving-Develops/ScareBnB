@@ -6,7 +6,7 @@ module.exports = {
      review: "So scary, highly recommend!",
      rating: 5,
      userId: 1,
-     spotId: 2,
+     vanId: 2,
     createdAt: new Date(),
     updatedAt: new Date()
    }], {});

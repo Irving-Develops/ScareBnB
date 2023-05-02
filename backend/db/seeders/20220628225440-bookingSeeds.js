@@ -10,7 +10,7 @@ module.exports = {
       */
    return queryInterface.bulkInsert('Bookings', [
 {
-spotId: 1,
+vanId: 1,
 userId:1,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -18,7 +18,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 2,
+vanId: 2,
 userId:2,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -26,7 +26,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 3,
+vanId: 3,
 userId:3,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -34,7 +34,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 4,
+vanId: 4,
 userId:4,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -42,7 +42,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 5,
+vanId: 5,
 userId:5,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -50,7 +50,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 6,
+vanId: 6,
 userId:6,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -58,7 +58,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 7,
+vanId: 7,
 userId:7,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -66,7 +66,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 8,
+vanId: 8,
 userId:8,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
@@ -74,7 +74,7 @@ endDate: '2022-07-06',
        updatedAt: new Date()
 },
 {
-spotId: 9,
+vanId: 9,
 userId:9,
 startDate: '2022-07-01',
 endDate: '2022-07-06',

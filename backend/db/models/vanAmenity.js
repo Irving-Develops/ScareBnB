@@ -1,18 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const SpotAmenity = sequelize.define('SpotAmenity', {
+  const VanAmenity = sequelize.define('VanAmenity', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    spotId: DataTypes.INTEGER,
+    vanId: DataTypes.INTEGER,
     amenityId: DataTypes.INTEGER
   }, {});
-  SpotAmenity.associate = function(models) {
+  VanAmenity.associate = function(models) {
     // associations can be defined here
-    SpotAmenity.belongsTo(models.Spot, {foreignKey: 'spotId'})
+    VanAmenity.belongsTo(models.Van, {
+      foreignKey: "vanId",
+      onDelete: "cascade",
+      hooks: true,
+    });
   };
-  return SpotAmenity;
+  return VanAmenity;
 };

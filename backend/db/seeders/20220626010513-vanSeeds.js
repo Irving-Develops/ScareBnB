@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-   return queryInterface.bulkInsert('Spots', [
+   return queryInterface.bulkInsert('Vans', [
      {
        userId: 1,
        address: "1120 Westchester Pl, Country Club Park, Los Angeles, California ",
@@ -107,6 +107,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-   return queryInterface.bulkDelete('Spots', null, {});
+   return queryInterface.bulkDelete('Vans', null, {});
   }
 };
