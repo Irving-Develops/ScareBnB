@@ -1,14 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Van = sequelize.define('Van', {
-    userId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    country: DataTypes.STRING,
+    // userId: DataTypes.INTEGER,
+    location: DataTypes.STRING,
+    make: DataTypes.STRING,
+    model: DataTypes.STRING,
+    year: DataTypes.INTEGER,
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL(10,2),
-    history: DataTypes.TEXT
+    description: DataTypes.TEXT
   }, {});
   Van.associate = function(models) {
     // Van.belongsTo(models.User, {foreignKey: 'userId'})

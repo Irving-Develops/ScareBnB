@@ -7,13 +7,13 @@ module.exports = {
       [
         {
           userId: 1,
-          name: "Adventurer's Dream",
+          name: "Prairie Rover",
           make: "Ford",
           model: "Transit",
-          year: 2019,
+          year: 2020,
           location: "1234 W Randolph St, Chicago, IL 60606",
           description:
-            "This van is perfect for adventurers looking for a comfortable and convenient way to travel. It has a queen-sized bed, a kitchenette, and plenty of storage space.",
+            "Prairie Rover is a luxury family van with a lot style. This extended Transit features a beetle kill pine tongue & groove ceiling, palm countertops, leather drawer pulls, upholstered wall panels, and seating for four. We love the ample storage and the open feel of this layout!",
           price: 150,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -47,9 +47,9 @@ module.exports = {
         {
           userId: 4,
           name: "Cozy Camper",
-          make: "Chevrolet",
-          model: "Express",
-          year: 2021,
+          make: "Mercedes",
+          model: "Sprinter",
+          year: 2022,
           location: "101 S Madison St, Bloomington, IL 61701",
           description:
             "This cozy van is perfect for a romantic getaway. It has a comfortable bed, a kitchenette, and a romantic ambience.",
@@ -59,13 +59,13 @@ module.exports = {
         },
         {
           userId: 5,
-          name: "Surfer's Paradise",
-          make: "Ford",
-          model: "E-Series",
-          year: 2017,
-          location: "1260 Meadow Rd, Northbrook, IL 60062",
+          name: "Adventurer's Dream",
+          make: "Mercedes",
+          model: "Sprinter",
+          year: 2016,
+          location: "50 Highway 145 S, Harrisburg, IL 62946",
           description:
-            "This van is perfect for surfers looking for a convenient way to hit the waves. It has a comfortable bed, a kitchenette, and plenty of storage space for your boards.",
+            "This van is perfect for adventurers looking for a comfortable and convenient way to travel. It has a queen-sized bed, a kitchenette, and plenty of storage space.",
           price: 140,
           createdAt: new Date(),
           updatedAt: new Date(),
