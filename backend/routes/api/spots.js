@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {Spot, Image, User, Amenity, SpotAmenity, Booking, Review} = require('../../db/models/');
+const {Van, Image, User, Amenity, SpotAmenity, Booking, Review} = require('../../db/models/');
 const bookingRouter = require('./bookings')
 
 const router = express.Router();
@@ -21,9 +21,11 @@ const router = express.Router();
 //READ for all and specific spot
 router.get('/', asyncHandler(async(req,res) => {
     // const spots = await Spot.findAll({include: [Image, User, Review, amenities]})
-    const spots = await Spot.findAll({include: [Image, User, Review, Amenity, Booking]})
+    // const vans = await Van.findAll()
 
+    const vans = await Van.findAll({include: [Image]})
 
+    console.log(vans)
 
 
 
@@ -42,8 +44,8 @@ router.get('/', asyncHandler(async(req,res) => {
 //     }
 //   ]
 // });
-    console.log("---------------", spots)
-    return res.json(spots)
+    console.log("--------------- inside")
+    return res.json(vans)
 }))
 
 router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {

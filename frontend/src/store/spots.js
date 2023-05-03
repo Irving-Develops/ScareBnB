@@ -84,7 +84,7 @@ export const thunkGetAllSpots = () => async (dispatch) => {
 
     return response
   }
-  return await response.json();
+  return response.json();
 };
 
 
@@ -138,21 +138,21 @@ export const thunkDeleteSpot = (spotId, history) => async (dispatch) => {
 
 //todo reducer
 
-const spotReducer = (state = {}, action) => {
-    let newState = {...state};
+const spotReducer = (state = [], action) => {
+    let newState = [...state];
     switch (action.type) {
         case CREATE_SPOT:
                 newState[action.spot.id]= action.spot
             return newState;
         case GET_SPOTS:
-            if(action.spots) {
+            // if(action.spots) {
                 action.spots.forEach(spot => {
                     newState[spot.id] = spot
                 })
-            }else {
-                console.log("in else", action.spot)
-                newState[action.spot.id] = action.spot
-            }
+            // }else {
+            //     console.log("in else", action.spot)
+            //     newState[action.spot.id] = action.spot
+            // }
             return newState;
         case GET_SPOT:
                 newState[action.spot.id] = action.spot
