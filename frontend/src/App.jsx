@@ -14,9 +14,11 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  console.log(sessionUser)
+
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<Home />}></Route>
+      <Route index element={isLoaded ? <Home /> : <>Loading</>}></Route>
     </Route>
   ))
 

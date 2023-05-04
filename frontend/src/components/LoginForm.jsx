@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import FormInput from "./FormInput";
 // import "./LoginFormModal.css";
 // import "../../index.css";
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isActive, setIsActive] = useState(false);
+  const sessionUser = useSelector(state => state.session.user)
 
+  console.log(sessionUser, "HERE =========")
   const demo = () => {
     setCredential("user1");
     setPassword("password");
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,10 +32,20 @@ function LoginForm() {
     );
   };
 
+  const logout = (e) => {
+    e.preventDefault();
+    return dispatch(sessionActions.logout(navigate("/")));
+  };
+
   return (
     <div id="form-wrapper">
       <div id="form-header">
         <p>Log In</p>
+        {sessionUser ? 
+        <p>Logged in as {sessionUser.username}</p>
+        :
+        <p>please log in</p>    
+    }   
       </div>
 
       <form onSubmit={handleSubmit} id="form-content">
@@ -44,31 +59,24 @@ function LoginForm() {
         </div>
         <div id="input-container">
           <input
-            style={{ backgroundColor: " white" }}
-            className={"form-input"}
             type="text"
-            value={credential}
             placeholder="Username or Email"
             onChange={(e) => setCredential(e.target.value)}
-            required
+            value={credential}
           />
-          <hr />
           <input
-            style={{ backgroundColor: " white" }}
-            className={"form-input"}
             type="password"
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
-          {/* </label> */}
         </div>
 
         <button type="submit">Log In</button>
         <button type="submit" onClick={demo}>
           Demo
         </button>
+        <button onClick={logout}>Logout</button>
       </form>
     </div>
   );
