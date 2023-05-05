@@ -1,55 +1,66 @@
 import React, { useEffect, useState } from "react";
 import * as sessionActions from "../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import FormInput from "./FormInput";
+import { useNavigate, redirect } from "react-router";
+import FloatingLabel from "./FloatingLabel";
+import FloatingInput from "./FloatingInput";
+import { Modal } from "../context/Modal";
+
 // import "./LoginFormModal.css";
 // import "../../index.css";
 
-function LoginForm() {
+function LoginForm({setShowModal}) {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector((state) => state.session.user);
 
-  console.log(sessionUser, "HERE =========")
-  const demo = () => {
-    setCredential("user1");
-    setPassword("password");
+  const demo = (e) => {
+    e.preventDefault();
+    dispatch(
+        sessionActions.login({ credential: "demo@user.io", password: "password" })
+        
+        ).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+      
+    });
+    setShowModal(false)
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     );
+    return setShowModal(false)
+    
   };
 
   const logout = (e) => {
     e.preventDefault();
-    return dispatch(sessionActions.logout(navigate("/")));
+     dispatch(sessionActions.logout(navigate("/")));
+     return setShowModal(false)
   };
 
   return (
     <div id="form-wrapper">
       <div id="form-header">
-        <p>Log In</p>
-        {sessionUser ? 
-        <p>Logged in as {sessionUser.username}</p>
-        :
-        <p>please log in</p>    
-    }   
+        {sessionUser ? (
+          <p>Logged in as {sessionUser.username}</p>
+        ) : (
+          <p>please log in</p>
+        )}
       </div>
 
       <form onSubmit={handleSubmit} id="form-content">
-        <h3 id="form-title">Welcome to ScareBnB</h3>
         <div id="errors">
           <ul>
             {errors.map((error, idx) => (
@@ -57,27 +68,30 @@ function LoginForm() {
             ))}
           </ul>
         </div>
-        <div id="input-container">
-          <input
-            type="text"
-            placeholder="Username or Email"
-            onChange={(e) => setCredential(e.target.value)}
+        <div className="relative mx-2">
+          <FloatingInput
+            type={"email"}
+            id={"email"}
+            placeholder={"email@example.io"}
             value={credential}
+            onChange={(e) => setCredential(e.target.value)}
           />
-          <input
-            type="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <FloatingLabel>Email Address</FloatingLabel>
         </div>
 
-        <button type="submit">Log In</button>
-        <button type="submit" onClick={demo}>
-          Demo
-        </button>
+        <div className="relative mx-2">
+          <FloatingInput
+          id={"password"}
+            type={"password"}
+            placeholder={"password"}
+            value={credential}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <FloatingLabel>Password</FloatingLabel>
+        </div>
         <button onClick={logout}>Logout</button>
       </form>
+      <button onClick={demo}>Demo</button>
     </div>
   );
 }
