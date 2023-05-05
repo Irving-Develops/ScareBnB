@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Modal } from "../context/Modal";
+import { ToggleModalContext } from "../context/Modal";
 
-const ModalComponent = ({ children, text, setShowModal, showModal }) => {
+const ModalComponent = ({ children, text}) => {
+      const { showModal, updateShowModal } = useContext(ToggleModalContext);
+      console.log(showModal, updateShowModal, "HERE");
   return (
     <>
-      <button className="btn" onClick={() => setShowModal(true)}>
+      <button className="text-left active:bg-rose-500" onClick={() => updateShowModal(true)}>
         {text}
       </button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClose={() => updateShowModal(false)}>
           <div className="bg-white w-full rounded">{children}</div>
         </Modal>
       )}

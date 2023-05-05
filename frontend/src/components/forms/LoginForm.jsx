@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import * as sessionActions from "../store/session";
+import React, { useEffect, useState, useContext } from "react";
+import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, redirect } from "react-router";
-import FloatingLabel from "./FloatingLabel";
-import FloatingInput from "./FloatingInput";
-import { Modal } from "../context/Modal";
+import FloatingLabel from "../FloatingLabel";
+import FloatingInput from "../FloatingInput";
+import { Modal, ToggleModalContext } from "../../context/Modal";
+import Logout from "../Logout";
 
-// import "./LoginFormModal.css";
-// import "../../index.css";
-
-function LoginForm({setShowModal}) {
+function LoginForm() {
+  const {updateShowModal } = useContext(ToggleModalContext);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -21,14 +19,12 @@ function LoginForm({setShowModal}) {
   const demo = (e) => {
     e.preventDefault();
     dispatch(
-        sessionActions.login({ credential: "demo@user.io", password: "password" })
-        
-        ).catch(async (res) => {
+      sessionActions.login({ credential: "demo@user.io", password: "password" })
+    ).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
-      
     });
-    setShowModal(false)
+    return updateShowModal(false);
   };
 
   const handleSubmit = (e) => {
@@ -40,14 +36,7 @@ function LoginForm({setShowModal}) {
         if (data && data.errors) setErrors(data.errors);
       }
     );
-    return setShowModal(false)
-    
-  };
-
-  const logout = (e) => {
-    e.preventDefault();
-     dispatch(sessionActions.logout(navigate("/")));
-     return setShowModal(false)
+    return updateShowModal(false);
   };
 
   return (
@@ -56,11 +45,12 @@ function LoginForm({setShowModal}) {
         {sessionUser ? (
           <p>Logged in as {sessionUser.username}</p>
         ) : (
-          <p>please log in</p>
+          <p>Login</p>
         )}
       </div>
 
-      <form onSubmit={handleSubmit} id="form-content">
+      <form onSubmit={handleSubmit}>
+        <h3>Welcome to vanbnb</h3>
         <div id="errors">
           <ul>
             {errors.map((error, idx) => (
@@ -81,15 +71,14 @@ function LoginForm({setShowModal}) {
 
         <div className="relative mx-2">
           <FloatingInput
-          id={"password"}
+            id={"password"}
             type={"password"}
             placeholder={"password"}
-            value={credential}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <FloatingLabel>Password</FloatingLabel>
         </div>
-        <button onClick={logout}>Logout</button>
       </form>
       <button onClick={demo}>Demo</button>
     </div>
