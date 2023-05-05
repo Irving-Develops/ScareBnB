@@ -34,13 +34,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-// import spotReducer from "./spots";
+import {spotSlice} from "./spots";
 // import bookingReducer from "./bookings";
 // import reviews from "./reviews";
 // import favorites from "./favorites";
 
 const rootReducer = {
   session: sessionReducer,
+  spots: spotSlice.reducer
 //   spots: spotReducer,
 //   bookingReducer,
 //   reviews,

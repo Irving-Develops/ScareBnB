@@ -9,7 +9,7 @@ import store from "./store";
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
-
+import { ThemeProvider } from "@material-tailwind/react";
 // const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
@@ -24,9 +24,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ThemeProvider>
         <ModalProvider>
-            <App />
+          <App />
         </ModalProvider>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );

@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { thunkGetAllSpots } from '../store/spots'
-import LoginForm from '../components/forms/LoginForm'
-import ModalComponent from '../components/ModalComponent'
+import React, { useEffect } from 'react'
+import {useDispatch, useSelector } from 'react-redux'
+import { getAllSpots } from '../store/spots';
+import Example from '../components/carousel/Carousel';
+// import { thunkGetAllSpots } from '../store/spots'
+
 
 const Home = () => {
     const dispatch = useDispatch()
+    const vans = useSelector(state => state.spots)
+
+    console.log(vans, "here")
 
 
     useEffect(() => {
-        dispatch(thunkGetAllSpots())
+        dispatch(getAllSpots())
     },[dispatch])
 
     
@@ -17,6 +21,17 @@ const Home = () => {
   return (
     <section>
       <h2>HomePage</h2>
+
+      {vans && vans.map(van => (
+        <Example van={van}/>
+        // <p>{van.name}</p>
+
+      ))}
+      {vans && (
+        <Example van={vans[0]}/>
+
+      )}
+
     </section>
   );
 }
