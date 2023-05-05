@@ -4,6 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import * as sessionActions from "./store/session";
 import Home from "./pages/Home";
 import RootLayout from "./components/RootLayout";
+import Login from "./pages/Login";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={isLoaded ? <Home /> : <>Loading</>}></Route>
+      <Route path="/login" element={<Login />}></Route>
     </Route>
   ))
 
