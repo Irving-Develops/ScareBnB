@@ -32,12 +32,12 @@ const DropDown = () => {
           className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <Link to="/profile" className="text-left active:bg-rose-500">
+            <Link to="/profile" className="text-left active:bg-rose">
               Profile
             </Link>
           </li>
           <li>
-            <Link to="/trips" className="text-left active:bg-rose-500">
+            <Link to="/trips" className="text-left active:bg-rose">
               Trips
             </Link>
           </li>

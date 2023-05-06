@@ -15,7 +15,7 @@ const Logout = () => {
     return updateShowModal(false);
   };
   return (
-    <button className="text-left active:bg-rose-500" onClick={logout}>
+    <button className="text-left active:bg-rose" onClick={logout}>
       Logout
     </button>
   );

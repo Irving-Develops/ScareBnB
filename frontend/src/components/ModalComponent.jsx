@@ -7,7 +7,7 @@ const ModalComponent = ({ children, text}) => {
       console.log(showModal, updateShowModal, "HERE");
   return (
     <>
-      <button className="text-left active:bg-rose-500" onClick={() => updateShowModal(true)}>
+      <button className="text-left active:bg-rose" onClick={() => updateShowModal(true)}>
         {text}
       </button>
       {showModal && (

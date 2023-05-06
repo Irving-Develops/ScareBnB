@@ -19,7 +19,12 @@ module.exports = withMT({
 ],
   
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'rose': '#ff385c',
+
+      }
+    },
   },
   plugins: [require("daisyui")],
 });

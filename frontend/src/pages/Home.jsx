@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {useDispatch, useSelector } from 'react-redux'
 import { getAllSpots } from '../store/spots';
-import Example from '../components/carousel/Carousel';
+import ImageCarousel from '../components/carousel/ImageCarousel';
 // import { thunkGetAllSpots } from '../store/spots'
 
 
@@ -20,18 +20,12 @@ const Home = () => {
 
   return (
     <section>
-      <h2>HomePage</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-16">
+        {vans && vans.map((van) => 
+        <ImageCarousel images={van.Images} 
 
-      {vans && vans.map(van => (
-        <Example van={van}/>
-        // <p>{van.name}</p>
-
-      ))}
-      {vans && (
-        <Example van={vans[0]}/>
-
-      )}
-
+        />)}
+      </div>
     </section>
   );
 }

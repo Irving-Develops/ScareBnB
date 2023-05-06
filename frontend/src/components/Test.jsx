@@ -2,7 +2,7 @@ import React from 'react'
 
 const Test = ({closeModal}) => {
   return (
-    <div>Test</div>
+    <div className='bg-red-500'>Test</div>
   )
 }
 
