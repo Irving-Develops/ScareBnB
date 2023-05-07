@@ -4,7 +4,6 @@ import { ToggleModalContext } from "../context/Modal";
 
 const ModalComponent = ({ children, text}) => {
       const { showModal, updateShowModal } = useContext(ToggleModalContext);
-      console.log(showModal, updateShowModal, "HERE");
   return (
     <>
       <button className="text-left active:bg-rose" onClick={() => updateShowModal(true)}>

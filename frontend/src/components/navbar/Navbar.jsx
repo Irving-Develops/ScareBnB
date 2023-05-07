@@ -12,7 +12,7 @@ library.add(faUser, faEnvelope);
 const Navbar = () => {
 
   return (
-    <div className="navbar bg-base-100 px-16 border border-2 mb-4 ">
+    <div className="navbar bg-base-100 px-16 border border-2 md:mb-4 ">
       <div className="flex-1">
         <Link to="/" className="text-xl 	text-rose !important">
           vanbnb

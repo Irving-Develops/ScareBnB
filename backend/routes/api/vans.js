@@ -1,16 +1,16 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const {Van, Image, User, Amenity, SpotAmenity, Booking, Review} = require('../../db/models/');
+const {Van, Image, User, Amenity, VanAmenity, Booking, Review} = require('../../db/models');
 const bookingRouter = require('./bookings')
 
 const router = express.Router();
 
 
-// router.use('/:spotId(\\d+)/bookings', bookingRouter)
+// router.use('/:vanId(\\d+)/bookings', bookingRouter)
 
 
-//DELETE for booking, I don't have access to booking id so I need spot and user id to delete specific booking
-// router.delete(`/:spotId(\\d+)/bookings/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
+//DELETE for booking, I don't have access to booking id so I need van and user id to delete specific booking
+// router.delete(`/:vanId(\\d+)/bookings/:bookingId(\\d+)`, asyncHandler(async (req, res) => {
 //         const {bookingId} = req.params;
 //         const booking = await Booking.findOne({where: {id: bookingId}})
 //         await booking.destroy()
@@ -18,12 +18,12 @@ const router = express.Router();
 // }))
 
 
-//READ for all and specific spot
+//READ for all and specific van
 router.get('/', asyncHandler(async(req,res) => {
-    // const spots = await Spot.findAll({include: [Image, User, Review, amenities]})
+    // const vans = await Van.findAll({include: [Image, User, Review, amenities]})
     // const vans = await Van.findAll()
 
-    const vans = await Van.findAll({include: [Image]})
+    const vans = await Van.findAll({include: [Image, Review]})
 
     console.log(vans)
 
@@ -36,7 +36,7 @@ router.get('/', asyncHandler(async(req,res) => {
 // const amenities = await Amenity.findAll({
 //   include: [
 //     {
-//       model: Spot,
+//       model: Van,
 //       as: 'amenities',
 //       through: {
 //         attributes: []
@@ -49,34 +49,34 @@ router.get('/', asyncHandler(async(req,res) => {
 }))
 
 router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
-    const spot = await Spot.findByPk(req.params.id, {include: [Image, User, Review]})
-    return res.json(spot)
+    const van = await Van.findByPk(req.params.id, {include: [Image, User, Review]})
+    return res.json(van)
 }))
 
 
 //UPDATE
 router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
-    const spot = await Spot.findByPk(req.params.id)
-    const updatedSpot = await spot.update(req.body)
-    const editedSpot = await Spot.findByPk(req.params.id, {include: [Image, User]})
-    return res.json(updatedSpot)
+    const van = await Van.findByPk(req.params.id)
+    const updatedVan = await van.update(req.body)
+    const editedVan = await Van.findByPk(req.params.id, {include: [Image, User]})
+    return res.json(updatedVan)
 
 }))
 
 //CREATE
 router.post('/', asyncHandler(async(req,res) => {
-    const newSpot = await Spot.create(req.body);
-        return res.json(newSpot)
+    const newVan = await Van.create(req.body);
+        return res.json(newVan)
 }))
 
 
 //DELETE
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     const id = req.params.id
-    const spot = await Spot.findByPk(id)
-    console.log(spot, "<=============== spot in delete")
+    const van = await Van.findByPk(id)
+    console.log(van, "<=============== van in delete")
     
-    await spot.destroy()
+    await van.destroy()
     res.json({message: 'Success!'})
     return res.redirect(`/`)
 

@@ -1,14 +1,14 @@
 // import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 // import thunk from 'redux-thunk';
 // import sessionReducer from './session';
-// import spotReducer from './spots'
+// import vanReducer from './vans'
 // import bookingReducer from './bookings';
 // import reviews from './reviews';
 // import favorites from './favorites';
 
 // const rootReducer = combineReducers({
 //     session: sessionReducer,
-//     spots: spotReducer,
+//     vans: vanReducer,
 //     bookingReducer,
 //     reviews,
 //     favorites
@@ -34,15 +34,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-import {spotSlice} from "./spots";
+import {vanSlice} from "./vans";
 // import bookingReducer from "./bookings";
 // import reviews from "./reviews";
 // import favorites from "./favorites";
 
 const rootReducer = {
   session: sessionReducer,
-  spots: spotSlice.reducer
-//   spots: spotReducer,
+  vans: vanSlice.reducer
+//   vans: vanReducer,
 //   bookingReducer,
 //   reviews,
 //   favorites,

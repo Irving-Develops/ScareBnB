@@ -22,7 +22,9 @@ module.exports = withMT({
     extend: {
       colors: {
         'rose': '#ff385c',
-
+      },
+      height: {
+        '60vh': '80vh',
       }
     },
   },
