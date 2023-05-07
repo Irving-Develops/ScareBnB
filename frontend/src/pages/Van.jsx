@@ -18,7 +18,7 @@ const Van = () => {
   return (
     <>
     {van && van.Images && van.Images.length > 0 && (
-        <Gallery images={van.Images}/>
+        <Gallery images={van.Images} van={van}/>
         
   )}
     </>

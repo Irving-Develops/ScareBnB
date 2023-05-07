@@ -19,9 +19,7 @@ const Home = () => {
         {vans && vans.length > 0 &&
           vans.map((van) => (
             <article>
-              <Link to={`/vans/${van.id}`}>
-                <ImageCarousel key={van.id} images={van.Images} />
-              </Link>
+              <ImageCarousel key={van.id} images={van.Images} vanId={van.id}/>
               <VanDetails key={van.id} van={van} />
             </article>
           ))}

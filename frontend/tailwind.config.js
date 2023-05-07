@@ -24,7 +24,8 @@ module.exports = withMT({
         'rose': '#ff385c',
       },
       height: {
-        '60vh': '80vh',
+        '60vh': '60vh',
+        '60%': '60%',
       }
     },
   },
