@@ -25,7 +25,7 @@ module.exports = withMT({
       },
       height: {
         '60vh': '60vh',
-        '60%': '60%',
+        '50vh': '50vh',
       }
     },
   },

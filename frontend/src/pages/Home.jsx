@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-4/5 mx-auto">
         {vans && vans.length > 0 &&
           vans.map((van) => (
             <article>

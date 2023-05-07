@@ -7,8 +7,10 @@ const Gallery = ({ images, van}) => {
   return (
     <>
       {/* Large Screens */}
-      <VanHeader van={van}/>
-      <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 md:gap-4 md:rounded-xl mx-auto overflow-hidden md:w-4/5 lg:h-60vh md:w-60%">
+      <div className="hidden md:block">
+      <VanHeader van={van}/>    
+      </div>
+      <div className="hidden md:grid md:grid-cols-4 md:grid-rows-2 md:gap-1.5 md:rounded-xl mx-auto overflow-hidden md:w-4/5 lg:h-60vh md:h-50vh">
         <div className="md:col-span-2 md:row-span-2 md:block carousel-item w-full">
           <img
             src={images[0].url}
@@ -83,6 +85,9 @@ const Gallery = ({ images, van}) => {
             className="object-cover object-center w-full"
           />
         </div>
+      </div>
+      <div className="md:hidden">
+        <VanHeader van={van}/>
       </div>
     </>
   );
