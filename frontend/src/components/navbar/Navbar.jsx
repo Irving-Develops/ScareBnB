@@ -11,10 +11,10 @@ library.add(faUser, faEnvelope);
 
 const Navbar = () => {
   return (
-    <div className="hidden md:block navbar bg-base-100 border border-2 md:mb-4 ">
-      <div className="flex justify-between w-4/5 mx-auto">
+    <div className="hidden md:block navbar bg-base-100 border border-2 md:mb-4 h-20 p-0">
+      <div className="flex justify-between w-4/5 mx-auto  h-full items-center">
         <div className="logo">
-          <Link to="/" className="text-xl 	text-rose !important">
+          <Link to="/" className="text-2xl  font-bold	text-rose !important">
             vanbnb
           </Link>
         </div>

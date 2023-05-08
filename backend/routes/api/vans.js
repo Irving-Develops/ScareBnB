@@ -23,8 +23,7 @@ router.get('/', asyncHandler(async(req,res) => {
     // const vans = await Van.findAll({include: [Image, User, Review, amenities]})
     // const vans = await Van.findAll()
 
-    const vans = await Van.findAll({include: [Image, Review]})
-
+    const vans = await Van.findAll({include: [Image]})
     console.log(vans)
 
 
@@ -49,7 +48,8 @@ router.get('/', asyncHandler(async(req,res) => {
 }))
 
 router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
-    const van = await Van.findByPk(req.params.id, {include: [Image, User, Review]})
+    const van = await Van.findByPk(req.params.id, {include: [Image, Review, User, {model: Booking, include: [User]}]})
+    console.log(van, "<================= van in backend")
     return res.json(van)
 }))
 
@@ -58,7 +58,7 @@ router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
 router.put(`/:id(\\d+)`, asyncHandler(async (req, res) => {
     const van = await Van.findByPk(req.params.id)
     const updatedVan = await van.update(req.body)
-    const editedVan = await Van.findByPk(req.params.id, {include: [Image, User]})
+    const editedVan = await Van.findByPk(req.params.id, {include: [Image]})
     return res.json(updatedVan)
 
 }))
