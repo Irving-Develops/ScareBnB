@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { getSingleVan } from '../store/vans'
 import Gallery from '../components/Gallery'
+import AboutVan from '../components/vanDetails/AboutVan'
 
 const Van = () => {
     const {id} = useParams()
@@ -14,11 +15,13 @@ const Van = () => {
         dispatch(getSingleVan(id))
     }, [dispatch, id])
 
-    console.log(van, id)
   return (
     <>
     {van && van.Images && van.Images.length > 0 && (
+      <>
         <Gallery images={van.Images} van={van}/>
+        <AboutVan van={van}/>
+      </>
         
   )}
     </>

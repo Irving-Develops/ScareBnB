@@ -48,7 +48,7 @@ router.get('/', asyncHandler(async(req,res) => {
 }))
 
 router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
-    const van = await Van.findByPk(req.params.id, {include: [Image, Review, User, {model: Booking, include: [User]}]})
+    const van = await Van.findByPk(req.params.id, {include: [Image, Review, User, Amenity, {model: Booking, include: [User]}]})
     console.log(van, "<================= van in backend")
     return res.json(van)
 }))
