@@ -1,5 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* TODO Add site wide styles */
-:root {
+/* :root {
     --main: #ff385c;
     --main-border: 2px solid #ff385c;
     --grey-border: 2px solid #dad4d3;
@@ -13,7 +17,7 @@
 body {
     background-color: white;
     color: #B1A9A8;
-}
+} */
 
 /* button {
     background-color: #A83D2E;

@@ -7,15 +7,15 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
+    vanId: DataTypes.INTEGER,
+    bookerId: DataTypes.INTEGER,
     startDate: DataTypes.DATEONLY,
     endDate: DataTypes.DATEONLY
   }, {});
   Booking.associate = function(models) {
     // associations can be defined here
-    // Booking.belongsTo(models.Spot, {foreignKey: 'spotId'});
-    // Booking.belongsToMany(models.User, {foreignKey: 'userId'});
+    Booking.belongsTo(models.User, {foreignKey: 'bookerId'})
+    Booking.belongsTo(models.Van, {foreignKey: 'vanId'})
   };
   return Booking;
 };

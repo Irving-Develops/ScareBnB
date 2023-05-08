@@ -10,72 +10,72 @@ module.exports = {
       */
    return queryInterface.bulkInsert('Bookings', [
 {
-spotId: 1,
-userId:1,
+vanId: 1,
+bookerId:9,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 2,
-userId:2,
+vanId: 2,
+bookerId:8,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 3,
-userId:3,
+vanId: 3,
+bookerId:7,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 4,
-userId:4,
+vanId: 4,
+bookerId:6,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 5,
-userId:5,
+vanId: 5,
+bookerId:4,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 6,
-userId:6,
+vanId: 6,
+bookerId:5,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 7,
-userId:7,
+vanId: 7,
+bookerId:3,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 8,
-userId:8,
+vanId: 8,
+bookerId:2,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
-spotId: 9,
-userId:9,
+vanId: 9,
+bookerId:1,
 startDate: '2022-07-01',
 endDate: '2022-07-06',
        createdAt: new Date(),

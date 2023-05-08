@@ -106,15 +106,22 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     // associations can be defined here
-    // User.hasMany(models.Spot, {foreignKey: 'userId'})
-    User.hasMany(models.Booking, {foreignKey: 'userId'})
+    // User.hasMany(models.Van, {foreignKey: 'userId'})
+    User.hasMany(models.Booking, {foreignKey: 'bookerId'})
     User.hasMany(models.Favorite, {foreignKey: 'userId'})
     User.hasMany(models.Review, {foreignKey: 'userId'})
-    User.belongsToMany(models.Spot, {
-      through: 'Booking',
-      otherKey: 'userId',
-      foreignKey: 'spotId',
-    })
+    User.hasMany(models.Van, {foreignKey: 'userId'})
+    User.belongsToMany(models.Van, {
+      through: "Booking",
+      otherKey: "vanId",
+      foreignKey: "bookerId",
+    });
+        // User.belongsToMany(models.Van, {
+        //   through: "Booking",
+        //   otherKey: "vanId",
+        //   foreignKey: "bookerId",
+        // });
+
   };
 
   return User;

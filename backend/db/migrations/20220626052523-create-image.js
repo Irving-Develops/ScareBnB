@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      spotId: {
+      vanId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {model: "Spots"}
+        references: {model: "Vans"}
       },
       url: {
         allowNull: false,
