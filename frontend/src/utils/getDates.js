@@ -1,12 +1,16 @@
+const moment = require("moment");
+
 export function getDates(startDate, endDate) {
+
   let dates = [];
-  let currentDate = new Date(startDate);
-  endDate = new Date(endDate);
+  let currentDate = moment(startDate);
+  endDate = moment(endDate);
 
   while (currentDate <= endDate) {
-    dates.push(new Date(currentDate));
-    currentDate.setDate(currentDate.getDate() + 1);
+    dates.push(currentDate.format("YYYY-MM-DD"));
+    currentDate.add(1, "day");
   }
 
   return dates;
+
 }

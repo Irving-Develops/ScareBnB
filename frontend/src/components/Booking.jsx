@@ -9,7 +9,7 @@ const Booking = ({bookings}) => {
   const [bookedDates, setBookedDates] = useState([]); //
 
 
-
+  console.log(tomorrow, "tomorrow")
   useEffect(() => {
     setBookedDates(getBookedDates(bookings))
   }, [bookings])
