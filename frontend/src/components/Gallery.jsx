@@ -3,7 +3,7 @@ import VanHeader from "./vanDetails/VanHeader";
 
 const Gallery = ({ images, van}) => {
 
-  console.log(images);
+
   return (
     <>
       {/* Large Screens */}

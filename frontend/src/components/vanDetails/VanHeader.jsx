@@ -18,9 +18,6 @@ const VanHeader = ({ van }) => {
     avgRating(Reviews);
   }, [Reviews]);
 
-  console.log(rating, "avgRating");
-
-  console.log(name, location, price, Reviews, make, model, year);
   return (
     <header className=" md:w-4/5 mx-auto py-6 px-8 md:px-0">
       <h1 className="text-2xl bold pb-2">

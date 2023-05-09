@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Van from "./pages/Van";
 import RootLayout from "./components/RootLayout";
 import Test from "./components/Test";
+import Booking from "./components/Booking";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
     <Route path="/" element={<RootLayout />}>
       <Route index element={isLoaded ? <Home /> : <>Loading</>}></Route>
       <Route path={`/vans/:id`} element={isLoaded ? <Van /> : <>Loading</>}></Route>
-      <Route  path="/test" element={<Test/>}></Route>
+      <Route  path="/test" element={<Booking/>}></Route>
     </Route>
   ))
 
