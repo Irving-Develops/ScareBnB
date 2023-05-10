@@ -11,9 +11,8 @@ export default function ImageCarousel({images, vanId}) {
       {images&&
         images.length > 0 &&
         images.map((image) => (
-          <Link to={`/vans/${vanId}`}>
+          <Link key={image.id} to={`/vans/${vanId}`}>
           <img
-            key={image.id}
             src={image.url}
             alt={image.id}
             className="h-full w-full object-cover"

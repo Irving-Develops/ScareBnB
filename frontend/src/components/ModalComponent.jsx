@@ -11,7 +11,7 @@ const ModalComponent = ({ children, text}) => {
       </button>
       {showModal && (
         <Modal onClose={() => updateShowModal(false)}>
-          <div className="bg-white w-full rounded">{children}</div>
+          <div className="rounded-full">{children}</div>
         </Modal>
       )}
     </>

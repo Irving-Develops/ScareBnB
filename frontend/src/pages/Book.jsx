@@ -1,19 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useMemo, useRef} from 'react'
 import { useParams } from 'react-router'
+import EditBooking from '../components/EditBooking';
 
 const Book = () => {
     const [booking, setBooking] = useState();
-    const {id} = useParams()
+    const {id} = useParams();
 
-    console.log(id, "id")
-
-    useEffect(() => {
-        setBooking(JSON.parse(localStorage.getItem(`van1-booking`)));
-    }, [id])
-    console.log(localStorage.getItem(`van${id}-booking`), "localStorage")
-
+      useEffect(() => {
+        setBooking(JSON.parse(localStorage.getItem(`van-${id}-booking`)));
+      }, [id]);
+      
   return (
-    <div>Book</div>
+    <section>
+      {booking && (
+        <EditBooking booking={booking}/>
+      )}
+    </section>
   )
 }
 

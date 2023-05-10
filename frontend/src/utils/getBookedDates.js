@@ -1,5 +1,5 @@
 import { getDates } from "./getDates";
-const moment = require("moment");
+import {moment} from ".";
 
 export function getBookedDates(bookings) {
     console.log(bookings, "bookings in getBookedDates")
@@ -12,3 +12,4 @@ export function getBookedDates(bookings) {
   });
   return bookedDates;
 }
+

@@ -5,6 +5,7 @@ import { addBooking, getVanBookings } from "../store/bookings";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 // ...
 
 const Booking = ({history}) => {
@@ -15,7 +16,7 @@ const Booking = ({history}) => {
   const [state, setState] = useState(initialState);
   const user = useSelector((state) => state.session.user);
   const bookedDates = useMemo(() => getBookedDates(bookings), [bookings]);
-
+  const [uuid, setUuid] = useState(uuidv4());
   useEffect(() => {
     dispatch(getVanBookings(id));
   }, [dispatch, id]);
@@ -28,7 +29,7 @@ const Booking = ({history}) => {
         vanId: id,
         bookerId: user.id,
       };
-      localStorage.setItem(`van${id}-booking`, JSON.stringify(booking));
+      localStorage.setItem(`van-${uuid}-${id}-booking`, JSON.stringify(booking));
     }
   };
 
@@ -41,7 +42,7 @@ const Booking = ({history}) => {
   };
 
   return (
-    <div onSubmit={handleBooking} className="w-4/5 mx-auto">
+    <div className="w-4/5 mx-auto">
       <div
         className="rainbow-align-content_center rainbow-p-vertical_xx-large rainbow-p-horizontal_medium"
         style={{ padding: "0", justifyContent: "start" }}
@@ -66,7 +67,7 @@ const Booking = ({history}) => {
           Clear Dates
         </button>
         <Link
-          to={`/book/${id}}`}
+          to={`/book/${uuid}-${id}`}
           className="btn btn-primary"
           onClick={handleBooking}
         >

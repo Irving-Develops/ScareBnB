@@ -21,7 +21,7 @@ function App() {
     <Route path="/" element={<RootLayout />}>
       <Route index element={isLoaded ? <Home /> : <>Loading</>}></Route>
       <Route path={`/vans/:id`} element={isLoaded ? <Van/> : <>Loading</>}></Route>
-      <Route path={`/book/:id`} element={isLoaded ? <Book/> : <>Loading</>}></Route>
+      <Route path={'/book/:id'} element={isLoaded ? <Book/> : <>Loading</>}></Route>
       <Route  path="/test" element={<Booking/>}></Route>
     </Route>
   ))
