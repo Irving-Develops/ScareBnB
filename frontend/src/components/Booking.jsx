@@ -1,30 +1,51 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Card, Calendar } from "react-rainbow-components";
 import { getBookedDates, tomorrow, nextYear } from "../utils";
-const Booking = ({bookings}) => {
+import { addBooking, getVanBookings } from "../store/bookings";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+// ...
 
-
-  const initialState = { date: tomorrow };
+const Booking = ({history}) => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const bookings = useSelector((state) => state.bookings);
+  const initialState = { date: null };
   const [state, setState] = useState(initialState);
-  const [bookedDates, setBookedDates] = useState([]); //
+  const user = useSelector((state) => state.session.user);
+  const bookedDates = useMemo(() => getBookedDates(bookings), [bookings]);
 
-
-  console.log(tomorrow, "tomorrow")
   useEffect(() => {
-    setBookedDates(getBookedDates(bookings))
-  }, [bookings])
+    dispatch(getVanBookings(id));
+  }, [dispatch, id]);
 
-  console.log(bookedDates, "bookedDays")
-  const calendarContainerStyles = {
-    width: "28rem",
-    height: "27rem",
+  const handleBooking = () => {
+    if (state.date && state.date.length === 2) {
+      const booking = {
+        startDate: state.date[0],
+        endDate: state.date[1],
+        vanId: id,
+        bookerId: user.id,
+      };
+      localStorage.setItem(`van${id}-booking`, JSON.stringify(booking));
+    }
   };
 
-
+  const calendarContainerStyles = {
+    width: "27rem",
+    height: "25rem",
+    border: "none",
+    boxShadow: "none",
+    padding: "0",
+  };
 
   return (
-    <div>
-      <div className="rainbow-align-content_center rainbow-p-vertical_xx-large rainbow-p-horizontal_medium">
+    <div onSubmit={handleBooking} className="w-4/5 mx-auto">
+      <div
+        className="rainbow-align-content_center rainbow-p-vertical_xx-large rainbow-p-horizontal_medium"
+        style={{ padding: "0", justifyContent: "start" }}
+      >
         <Card
           style={calendarContainerStyles}
           className="rainbow-p-around_large"
@@ -39,6 +60,18 @@ const Booking = ({bookings}) => {
             maxDate={nextYear}
           />
         </Card>
+      </div>
+      <div className="justify-end" style={{ width: "27rem" }}>
+        <button className="btn" onClick={() => setState(initialState)}>
+          Clear Dates
+        </button>
+        <Link
+          to={`/book/${id}}`}
+          className="btn btn-primary"
+          onClick={handleBooking}
+        >
+          Book Now
+        </Link>
       </div>
     </div>
   );

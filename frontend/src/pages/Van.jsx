@@ -7,7 +7,7 @@ import Gallery from '../components/Gallery'
 import AboutVan from '../components/vanDetails/AboutVan'
 import Booking from '../components/Booking'
 
-const Van = () => {
+const Van = ({history}) => {
     const {id} = useParams()
     const dispatch = useDispatch()
     const van = useSelector(state => state.vans)
@@ -22,7 +22,7 @@ const Van = () => {
       <>
         <Gallery images={van.Images} van={van}/>
         <AboutVan van={van}/>
-        <Booking  bookings={van.Bookings}/>
+        <Booking history={history} bookings={van.Bookings}/>
       </>
         
   )}

@@ -45,7 +45,7 @@ const VanHeader = ({ van }) => {
             )}
           </>
         ) : (
-            <Link to="#" className="link">
+            <Link to="#" className="link link-neutral">
               <p>Be the first to leave a review!</p>
             </Link>
         )}

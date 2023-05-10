@@ -1,7 +1,6 @@
 const moment = require("moment");
 
 export function getDates(startDate, endDate) {
-
   let dates = [];
   let currentDate = moment(startDate);
   endDate = moment(endDate);
@@ -12,5 +11,4 @@ export function getDates(startDate, endDate) {
   }
 
   return dates;
-
 }
