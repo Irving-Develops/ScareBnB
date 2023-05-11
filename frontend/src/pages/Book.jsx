@@ -13,7 +13,7 @@ const Book = () => {
   return (
     <section>
       {booking && (
-        <EditBooking booking={booking}/>
+        <EditBooking booking={booking} setBooking={setBooking} />
       )}
     </section>
   )

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 // ...
 
-const Booking = ({history}) => {
+const BookingCalendar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const bookings = useSelector((state) => state.bookings);
@@ -78,4 +78,4 @@ const Booking = ({history}) => {
   );
 };
 
-export default Booking;
+export default BookingCalendar;
