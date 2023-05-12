@@ -42,7 +42,7 @@ export function Modal({ onClose, children }) {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
-      <div className="flex box-border justify-center absolute bg-white min-w-[30%] h-[60%] rounded-4xl p-8 " >{children}</div>
+      <div className="flex box-border justify-center absolute bg-white min-w-[30%] min-h-[460px] rounded-2xl pt-16 px-8 pb-4 " >{children}</div>
     </div>,
     modalNode
   );

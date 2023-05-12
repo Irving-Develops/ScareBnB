@@ -41,7 +41,7 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
     setUpToDate(false)
   };
 
-  console.log(booking, )
+  console.log(booking, "state in select input" )
 
   return (
     <div>
@@ -52,7 +52,7 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
         <Calendar
           id="calendar-11"
           variant="double"
-          value={state.dateRange}
+          value={state?.dateRange}
           selectionType="range"
           onChange={(value) => handleChange(value)}
           disabledDays={bookedDates}
@@ -60,7 +60,11 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
           maxDate={nextYear}
         />
       </div>
-      <button onClick={handleClick}>Save</button>
+      <div className="flex justify-end mb-8">
+      <button className="btn btn-sm " disabled={state.dateRange.length === 2 ? false: true} onClick={handleClick}>
+        Save
+      </button>
+      </div>
     </div>
   );
 }

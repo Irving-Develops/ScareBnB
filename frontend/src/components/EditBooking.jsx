@@ -1,24 +1,45 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 import { daysBetweenDates } from "../utils";
 import { formatDateRange } from "../utils/formatDateRange";
 import ModalComponent from "./ModalComponent";
 import CalendarComponent from "./CalendarComponent";
 import SelectDateInput from "./SelectDateInput";
-const EditBooking = ({ booking, setBooking }) => {
-  const [upToDate, setUpToDate] = useState(true);
+import { moment } from "../utils";
+import { ToggleModalContext } from "../context/Modal";
+import XiconSvg from "./SVGS/XiconSvg";
 
-  // const nights = useMemo(
-  //   () => daysBetweenDates(booking.startDate, booking.endDate),
-  //   [booking]
-  // );
+const EditBooking = ({ booking, setBooking }) => {
+  const [state, setState] = useState({
+    dateRange: [moment(booking.startDate)._d, moment(booking.endDate)._d], // Set the initial range value to the booking range
+  });
+  const { showModal } = useContext(ToggleModalContext);
+
+  const nights = useMemo(
+    () => daysBetweenDates(state.dateRange[0], state.dateRange[1]),
+    [state]
+  );
   const formattedRange = useMemo(
     () => formatDateRange(booking.startDate, booking.endDate),
     [booking]
   );
+  console.log(showModal, "showModal in parent");
 
   useEffect(() => {
-  }, [booking]);
+    if (!showModal) {
+      setState({
+        dateRange: [moment(booking.startDate)._d, moment(booking.endDate)._d],
+      });
+    }
+  }, [booking, showModal]);
 
+  const svgStyles = {
+    height: "1rem",
+    width: "1rem",
+    position: "absolute",
+    top: "1.5rem",
+    left: "1.5rem",
+    strokeWidth: "3",
+  };
   return (
     <div>
       <h3>Your Trip</h3>
@@ -29,8 +50,25 @@ const EditBooking = ({ booking, setBooking }) => {
         </div>
 
         <ModalComponent text="Edit">
-          <SelectDateInput booking={booking} setBooking={setBooking} setUpToDate={setUpToDate} upToDate={upToDate}/>
-          <CalendarComponent booking={booking} setBooking={setBooking} upToDate={upToDate} setUpToDate={setUpToDate} />
+          <XiconSvg styles={svgStyles}/>
+          {state && state.dateRange && (
+            <div className="flex pb-4 justify-between h-[86px] align-top">
+              <p>{nights} Night</p>
+
+
+              <SelectDateInput
+                booking={booking}
+                setBooking={setBooking}
+                state={state}
+              />
+            </div>
+          )}
+          <CalendarComponent
+            booking={booking}
+            setBooking={setBooking}
+            state={state}
+            setState={setState}
+          />
         </ModalComponent>
       </div>
     </div>
