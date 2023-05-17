@@ -17,10 +17,10 @@ const Home = () => {
     <section>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-4/5 mx-auto">
         {vans && vans.length > 0 &&
-          vans.map((van) => (
-            <article>
-              <ImageCarousel key={van.id} images={van.Images} vanId={van.id}/>
-              <VanDetails key={van.id} van={van} />
+          vans.map((van, idx) => (
+            <article key={idx}>
+              <ImageCarousel images={van.Images} vanId={van.id}/>
+              <VanDetails van={van} />
             </article>
           ))}
       </div>

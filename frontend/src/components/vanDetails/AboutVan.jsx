@@ -1,9 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+
 const AboutVan = ({van}) => {
 
 
-  console.log(van.Amenities, "van")
   return (
     <>
     <h3 className='border-b-2 text-xl'>Hosted by {van?.User?.username}</h3>

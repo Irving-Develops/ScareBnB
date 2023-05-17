@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux'
 import { getSingleVan } from '../store/vans'
 import Gallery from '../components/Gallery'
 import AboutVan from '../components/vanDetails/AboutVan'
+import BookingCalendar from '../components/Booking/CreateBookingCalendar'
 
-const Van = () => {
+const Van = ({history}) => {
     const {id} = useParams()
     const dispatch = useDispatch()
     const van = useSelector(state => state.vans)
@@ -21,6 +22,7 @@ const Van = () => {
       <>
         <Gallery images={van.Images} van={van}/>
         <AboutVan van={van}/>
+        <BookingCalendar history={history} bookings={van.Bookings}/>
       </>
         
   )}

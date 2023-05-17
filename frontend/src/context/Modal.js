@@ -36,13 +36,12 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal({ onClose, children }) {
-  console.log(onClose, "inside modal")
   const modalNode = useContext(ModalContext);
   if (!modalNode) return null;
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
-      <div id="modal-content">{children}</div>
+      <div className="flex box-border justify-center absolute bg-white min-w-[30%] min-h-[460px] rounded-2xl pt-16 px-8 pb-4 " >{children}</div>
     </div>,
     modalNode
   );

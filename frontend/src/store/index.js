@@ -35,13 +35,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import {vanSlice} from "./vans";
+import { bookingSlice } from "./bookings";
 // import bookingReducer from "./bookings";
 // import reviews from "./reviews";
 // import favorites from "./favorites";
 
 const rootReducer = {
   session: sessionReducer,
-  vans: vanSlice.reducer
+  vans: vanSlice.reducer,
+  bookings: bookingSlice.reducer,
 //   vans: vanReducer,
 //   bookingReducer,
 //   reviews,

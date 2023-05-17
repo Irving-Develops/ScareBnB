@@ -12,72 +12,72 @@ module.exports = {
 {
 vanId: 1,
 bookerId:9,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-05-14',
+endDate: '2023-05-20',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 2,
 bookerId:8,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-06-05',
+endDate: '2023-06-07',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 3,
 bookerId:7,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 4,
 bookerId:6,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 5,
 bookerId:4,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 6,
 bookerId:5,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 7,
 bookerId:3,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 8,
 bookerId:2,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 },
 {
 vanId: 9,
 bookerId:1,
-startDate: '2022-07-01',
-endDate: '2022-07-06',
+startDate: '2023-07-01',
+endDate: '2023-07-06',
        createdAt: new Date(),
        updatedAt: new Date()
 }
