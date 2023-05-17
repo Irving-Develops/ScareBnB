@@ -22,7 +22,6 @@ const EditBooking = ({ booking, setBooking }) => {
     () => formatDateRange(booking.startDate, booking.endDate),
     [booking]
   );
-  console.log(showModal, "showModal in parent");
 
   useEffect(() => {
     if (!showModal) {

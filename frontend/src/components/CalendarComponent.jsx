@@ -41,7 +41,6 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
     setUpToDate(false)
   };
 
-  console.log(booking, "state in select input" )
 
   return (
     <div>
@@ -60,7 +59,8 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
           maxDate={nextYear}
         />
       </div>
-      <div className="flex justify-end mb-8">
+      <div className="flex justify-end mb-8 gap-4">
+      <button onClick={() => setState({dateRange: []})}>Clear dates</button>
       <button className="btn btn-sm " disabled={state.dateRange.length === 2 ? false: true} onClick={handleClick}>
         Save
       </button>
