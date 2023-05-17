@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState, useContext } from "react";
-import { daysBetweenDates } from "../utils";
-import { formatDateRange } from "../utils/formatDateRange";
-import ModalComponent from "./ModalComponent";
-import CalendarComponent from "./CalendarComponent";
+import { daysBetweenDates } from "../../utils";
+import { formatDateRange } from "../../utils/formatDateRange";
+import ModalComponent from "../ModalComponent";
+import CalendarComponent from "./EditBookingCalendar";
 import SelectDateInput from "./SelectDateInput";
-import { moment } from "../utils";
-import { ToggleModalContext } from "../context/Modal";
-import XiconSvg from "./SVGS/XiconSvg";
+import { moment } from "../../utils";
+import { ToggleModalContext } from "../../context/Modal";
+import XiconSvg from "../SVGS/XiconSvg";
 
 const EditBooking = ({ booking, setBooking }) => {
   const [state, setState] = useState({
@@ -49,11 +49,19 @@ const EditBooking = ({ booking, setBooking }) => {
         </div>
 
         <ModalComponent text="Edit">
-          <XiconSvg styles={svgStyles}/>
+          <XiconSvg styles={svgStyles} />
           {state && state.dateRange && (
-            <div className="flex pb-4 justify-between h-[86px] align-top">
-              <p>{nights} Night</p>
-
+            <div className="flex pb-4 justify-between h-[86px] align-top gap-16">
+              {nights.length === 1 ? (
+                <p>{nights} Night</p>
+              ) : nights.length > 1 ? (
+                <p>{nights} Nights</p>
+              ) : (
+                <div>
+                  <h3 className="text-xl font-bold">Select Dates</h3>
+                  <p className="sm text-[#717171]">Add your travel dates for exact pricing</p>
+                </div>
+              )}
 
               <SelectDateInput
                 booking={booking}

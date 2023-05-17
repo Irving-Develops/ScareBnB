@@ -5,8 +5,9 @@ import * as sessionActions from "./store/session";
 import Home from "./pages/Home";
 import Van from "./pages/Van";
 import RootLayout from "./components/RootLayout";
-import BookingCalendar from "./components/BookingCalendar";
+import BookingCalendar from "./components/Booking/CreateBookingCalendar";
 import Book from "./pages/Book";
+import MyTrips from "./pages/MyTrips";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
       <Route index element={isLoaded ? <Home /> : <>Loading</>}></Route>
       <Route path={`/vans/:id`} element={isLoaded ? <Van/> : <>Loading</>}></Route>
       <Route path={'/book/:id'} element={isLoaded ? <Book/> : <>Loading</>}></Route>
+      <Route path={'/trips'} element={isLoaded ? <MyTrips/> : <>Loading</>}></Route>
       <Route  path="/test" element={<BookingCalendar />}></Route>
     </Route>
   ))

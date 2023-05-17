@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getSingleVan } from '../store/vans'
 import Gallery from '../components/Gallery'
 import AboutVan from '../components/vanDetails/AboutVan'
-import BookingCalendar from '../components/BookingCalendar'
+import BookingCalendar from '../components/Booking/CreateBookingCalendar'
 
 const Van = ({history}) => {
     const {id} = useParams()

@@ -6,7 +6,7 @@ const ModalComponent = ({ children, text}) => {
       const { showModal, updateShowModal } = useContext(ToggleModalContext);
   return (
     <>
-      <button className="text-left active:bg-rose" onClick={() => updateShowModal(true)}>
+      <button className="text-left" onClick={() => updateShowModal(true)}>
         {text}
       </button>
       {showModal && (

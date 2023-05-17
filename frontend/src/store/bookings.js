@@ -177,6 +177,17 @@ export const getVanBookings = createAsyncThunk(
   }
 );
 
+export const getUserBookings = createAsyncThunk(
+  "bookings/getUserBookings",
+  async(id) => {
+    const response = await csrfFetch(`/api/bookings/mybookings/${id}`);
+    const data = await response.json();
+    if(!response.ok) {
+      throw new Error(data.message || "Failed to get your Trips");
+    }
+    return data
+  }
+);
 export const bookingSlice = createSlice({
   name: "bookings",
   initialState: [],
@@ -194,6 +205,12 @@ export const bookingSlice = createSlice({
       })
       .addCase(getVanBookings.rejected, (state, action) => {
        return state.error = action.error.message;
-      });
+      })
+      .addCase(getUserBookings.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(getUserBookings.rejected, (state, action) => { 
+        return state.error = action.error.message;
+      })
   },
 });

@@ -1,13 +1,13 @@
 import React, {useEffect, useState, useMemo, useContext} from "react";
 import { Calendar } from "react-rainbow-components";
-import { tomorrow, nextYear} from "../utils";
+import { tomorrow, nextYear} from "../../utils";
 import { useSelector } from "react-redux";
-import { getBookedDates } from "../utils";
-import { moment } from "../utils";
+import { getBookedDates } from "../../utils";
+import { moment } from "../../utils";
 import { useParams } from "react-router";
-import { ToggleModalContext } from "../context/Modal";
+import { ToggleModalContext } from "../../context/Modal";
 
-const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) => {
+const EditBookingCalendar = ({booking, setBooking, setUpToDate, state, setState}) => {
   const {updateShowModal} = useContext(ToggleModalContext);
   const bookings = useSelector((state) => state.bookings);
   const bookedDates = useMemo(() => getBookedDates(bookings), [bookings]);
@@ -45,7 +45,7 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
   return (
     <div>
       <div
-        className="rainbow-m_auto rainbow-align-content_center rainbow-p-vertical_xx-large"
+        className="rainbow-m_auto rainbow-align-content_center rainbow-p-vertical_xx-large "
         style={calendarContainerStyles}
       >
         <Calendar
@@ -59,8 +59,8 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
           maxDate={nextYear}
         />
       </div>
-      <div className="flex justify-end mb-8 gap-4">
-      <button onClick={() => setState({dateRange: []})}>Clear dates</button>
+      <div className="flex justify-end mb-8 gap-2">
+      <button className="px-2 py-1 border border-transparent rounded-lg bg-transparent underline hover:bg-gray-100 font-bold text-sm" onClick={() => setState({dateRange: []})}>Clear dates</button>
       <button className="btn btn-sm " disabled={state.dateRange.length === 2 ? false: true} onClick={handleClick}>
         Save
       </button>
@@ -69,5 +69,5 @@ const CalendarComponent = ({booking, setBooking, setUpToDate, state, setState}) 
   );
 }
 
-export default CalendarComponent
+export default EditBookingCalendar
 

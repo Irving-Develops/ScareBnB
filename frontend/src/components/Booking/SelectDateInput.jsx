@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, useContext, useRef } from "react";
-import { formatDate } from "../utils/formatDate";
-import XiconSvg from "./SVGS/XiconSvg";
-import { ToggleModalContext } from "../context/Modal";
+import { formatDate } from "../../utils/formatDate";
+import XiconSvg from "../SVGS/XiconSvg";
+import { ToggleModalContext } from "../../context/Modal";
 
 const SelectDateInput = ({ booking, state }) => {
   const { showModal } = useContext(ToggleModalContext);
@@ -46,7 +46,6 @@ const SelectDateInput = ({ booking, state }) => {
           readOnly
           placeholder="MM/DD/YYYY"
           ref={startDateRef}
-          autoFocus
           className="peer h-[56px] pt-[26px] px-3 pb-2 block min-h-[auto] w-[144px] rounded bg-transparent leading-[1.6] focus:outline-black  border-r-0 "
         />
         <XiconSvg styles={svgStyles} />

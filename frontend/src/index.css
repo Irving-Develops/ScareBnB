@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap');
+
 /* TODO Add site wide styles */
 /* :root {
     --main: #ff385c;
@@ -14,11 +16,11 @@
 * {
     box-sizing: border-box;
 }
-body {
-    background-color: white;
-    color: #B1A9A8;
-} */
 
 /* button {
     background-color: #A83D2E;
 } */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+} 

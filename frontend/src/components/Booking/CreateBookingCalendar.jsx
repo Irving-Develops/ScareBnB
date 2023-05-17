@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Card, Calendar } from "react-rainbow-components";
-import { getBookedDates, tomorrow, nextYear } from "../utils";
-import { addBooking, getVanBookings } from "../store/bookings";
+import { getBookedDates, tomorrow, nextYear } from "../../utils";
+import { addBooking, getVanBookings } from "../../store/bookings";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 // ...
 
-const BookingCalendar = () => {
+const CreateBookingCalendar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const bookings = useSelector((state) => state.bookings);
@@ -78,4 +78,4 @@ const BookingCalendar = () => {
   );
 };
 
-export default BookingCalendar;
+export default CreateBookingCalendar;
