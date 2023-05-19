@@ -32,16 +32,18 @@ const MyTrips = () => {
       <h2 className="text-3xl text-center">My Upcoming Trips</h2>
       {upComingTrips ? (
         upComingTrips.map((booking) => (
-          <>
+          <div className="flex items-center justify-center">
             <Card booking={booking} key={booking.id} past={false}/>
-          </>
+          </div>
         ))
       ) : (
         <>Book a Trip</>
       )}
     <h2 className="text-3xl text-center">My Past Trips</h2>
       {pastTrips.map((booking) => (
-        <Card booking={booking} key={booking.id} past={true}/>
+        <div className="flex justify-center">
+            <Card booking={booking} key={booking.id} past={true}/>
+        </div>
       ))}
     </div>
   );
