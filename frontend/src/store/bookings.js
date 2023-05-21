@@ -179,15 +179,32 @@ export const getVanBookings = createAsyncThunk(
 
 export const getUserBookings = createAsyncThunk(
   "bookings/getUserBookings",
-  async(id) => {
+  async (id) => {
     const response = await csrfFetch(`/api/bookings/mybookings/${id}`);
     const data = await response.json();
-    if(!response.ok) {
+    if (!response.ok) {
       throw new Error(data.message || "Failed to get your Trips");
     }
-    return data
+    return data;
   }
 );
+
+export const deleteBooking = createAsyncThunk(
+  "bookings/deleteBooking",
+  async (id) => {
+    const response = await csrfFetch(`/api/bookings/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to delete booking");
+    }
+
+    return data;
+  }
+);
+
 export const bookingSlice = createSlice({
   name: "bookings",
   initialState: [],
@@ -198,19 +215,23 @@ export const bookingSlice = createSlice({
         return [...state, action.payload];
       })
       .addCase(addBooking.rejected, (state, action) => {
-       return state.error = action.error.message;
+        return (state.error = action.error.message);
       })
       .addCase(getVanBookings.fulfilled, (state, action) => {
         return action.payload;
       })
       .addCase(getVanBookings.rejected, (state, action) => {
-       return state.error = action.error.message;
+        return (state.error = action.error.message);
       })
       .addCase(getUserBookings.fulfilled, (state, action) => {
         return action.payload;
       })
-      .addCase(getUserBookings.rejected, (state, action) => { 
-        return state.error = action.error.message;
+      .addCase(getUserBookings.rejected, (state, action) => {
+        return (state.error = action.error.message);
       })
+      .addCase(deleteBooking.fulfilled, (state, action) => {
+        console.log(state, "state in delete");
+        return state.filter((booking) => booking.id !== action.payload.id);
+      });
   },
 });
