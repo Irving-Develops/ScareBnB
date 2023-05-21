@@ -33,21 +33,19 @@ const MyTrips = () => {
   }, [user, navigate, dispatch]);
 
   return (
-    <div>
-      <h2 className="text-3xl text-center">My Upcoming Trips</h2>
-      {
-        !upComingTrips.length && (
-          <div className="flex flex-col items-start justify-center">
-            <h2 className="text-3xl text-center">No trips booked...yet</h2>
-            <p className="text-center">
-              Time to dust off your bags and start planning your next adventure
-            </p>
-            <Link to="/" className="btn btn-primary">
-              Book a Trip
-            </Link>
-          </div>
-        )
-      }
+    <div className="px-10">
+      <h2 className="text-3xl text-left">My Upcoming Trips</h2>
+      {!upComingTrips.length && (
+        <div className="flex flex-col items-start justify-center border-t border-b pt-8 pb-12  m-2">
+          <h2 className="text-3xl text-center">No trips booked...yet</h2>
+          <p className="text-center mt-2">
+            Time to dust off your bags and start planning your next adventure
+          </p>
+          <Link to="/" className="btn btn-outline mt-4">
+            Book a Trip
+          </Link>
+        </div>
+      )}
       {upComingTrips ? (
         upComingTrips.reverse().map((booking) => (
           <div key={booking.id} className="flex items-center justify-center">
@@ -71,7 +69,9 @@ const MyTrips = () => {
       ) : (
         <>Book a Trip</>
       )}
-      <h2 className="text-3xl text-center">My Past Trips</h2>
+      {pastTrips.length > 0 && (
+        <h2 className="text-3xl text-center">My Past Trips</h2>
+      )}
       {pastTrips.reverse().map((booking) => (
         <div key={booking.id} className="flex justify-center">
           <Card booking={booking} key={booking.id} past={true} />
