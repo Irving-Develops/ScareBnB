@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Amenity = sequelize.define('Amenity', {
     name: DataTypes.STRING,
+    url: DataTypes.STRING
   }, {});
   Amenity.associate = function(models) {
     // associations can be defined here
