@@ -19,7 +19,7 @@ const VanHeader = ({ van }) => {
   }, [Reviews]);
 
   return (
-    <header className=" md:w-4/5 mx-auto py-6 px-8 md:px-0">
+    <header className=" md:w-full mx-auto py-6 px-8 md:px-0">
       <h1 className="text-2xl bold pb-2">
         {name} - {year} {make} {model}
       </h1>

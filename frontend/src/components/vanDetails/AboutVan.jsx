@@ -1,20 +1,29 @@
-import React from 'react'
-import Amenities from './Amenities'
+import React from "react";
+import Amenities from "./Amenities";
+import Header from "../Header";
 
-const AboutVan = ({van}) => {
-console.log(van, "van in about van")
+const AboutVan = ({ van }) => {
+  console.log(van, "van in about van");
 
   return (
-    <div className="flex flex-col w-[45%] ml-24">
-    <h3 className='border-b-2 text-[22px] pt-12 pb-6'>{van?.name} hosted by {van?.User?.username}</h3>
-    <p className='text-base pt-8 pb-12'>{van?.description}</p>
+    <div className="flex flex-col w-[60%] ">
+      <div className="border-b-[1px] border-[#dddddd]  text-[22px] pt-12 pb-6">
+        <Header>
+          {van?.name} hosted by {van?.User?.username}
+        </Header>
+      </div>
+      <p className="text-base pt-8 pb-12 border-b-[1px] border-[#dddddd] ">
+        {van?.description}
+      </p>
 
-    <section>
-    
-    <Amenities van={van}/>
-    </section>
+      <section className="py-12 border-b-[1px] border-[#dddddd] ">
+        <div className="pb-6">
+          <Header>What this van offers</Header>
+        </div>
+        <Amenities van={van} />
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default AboutVan
+export default AboutVan;
