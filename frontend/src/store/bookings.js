@@ -150,7 +150,6 @@ import { createSlice } from "@reduxjs/toolkit";
 export const addBooking = createAsyncThunk(
   "bookings/addBooking",
   async (payload) => {
-    console.log(payload, "payload");
     const response = await csrfFetch("/api/bookings", {
       method: "POST",
       body: JSON.stringify(payload),
@@ -208,7 +207,8 @@ export const deleteBooking = createAsyncThunk(
 export const bookingSlice = createSlice({
   name: "bookings",
   initialState: [],
-  reducers: {},
+  reducers: {
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addBooking.fulfilled, (state, action) => {
@@ -230,7 +230,6 @@ export const bookingSlice = createSlice({
         return (state.error = action.error.message);
       })
       .addCase(deleteBooking.fulfilled, (state, action) => {
-        console.log(state, "state in delete");
         return state.filter((booking) => booking.id !== action.payload.id);
       });
   },

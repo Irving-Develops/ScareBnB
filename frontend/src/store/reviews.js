@@ -74,13 +74,11 @@ export const addReviewThunk = (review) => async(dispatch) => {
 
 export const editReviewThunk = (review, reviewId) => async (dispatch) => {
     try {
-        console.log(review, "review in edit")
         const res = await csrfFetch(`/api/reviews/${reviewId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify(review)
         })
-        console.log("edit review res", res)
         if(res.ok) {
             let editedReview = await res.json();
             dispatch(editReview(editedReview))

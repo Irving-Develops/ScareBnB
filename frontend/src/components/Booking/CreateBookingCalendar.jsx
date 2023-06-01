@@ -7,17 +7,22 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Header from "../Header";
+import BookingCard from "../Cards/BookingCard";
+import {setStartDate, setEndDate} from '../../store/bookingDates'
 // ...
 
 const CreateBookingCalendar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const bookings = useSelector((state) => state.bookings);
+  const bookingDates = useSelector((state) => state.bookingDates);
   const initialState = { date: null };
   const [state, setState] = useState(initialState);
   const user = useSelector((state) => state.session.user);
   const bookedDates = useMemo(() => getBookedDates(bookings), [bookings]);
   const [uuid, setUuid] = useState(uuidv4());
+
+  console.log(bookingDates, "important")
   useEffect(() => {
     dispatch(getVanBookings(id));
   }, [dispatch, id]);
@@ -37,6 +42,16 @@ const CreateBookingCalendar = () => {
     }
   };
 
+  const handleChange = async(value) => {
+    setState({ date: value });
+    if(!state.date || state.date.length ===2){
+    dispatch(setStartDate(value[0]))
+    dispatch(setEndDate(null))
+    }else if(state.date.length === 1){
+    dispatch(setEndDate(value[1]))
+    }
+  }
+
   const calendarContainerStyles = {
     width: "27rem",
     height: "25rem",
@@ -44,6 +59,7 @@ const CreateBookingCalendar = () => {
     boxShadow: "none",
     padding: "0",
   };
+
 
   return (
     <section className="w-3/5 py-12 border-b-[1px] border-[#dddddd] mb-4">
@@ -55,23 +71,17 @@ const CreateBookingCalendar = () => {
       </div>
       <div
         className="rainbow-align-content_center rainbow-p-vertical_xx-large rainbow-p-horizontal_medium !px-0 justify-start"
-        // style={{ padding: "0", justifyContent: "start" }}
       >
-        {/* <Card
-          style={calendarContainerStyles}
-          className="rainbow-p-around_large"
-        > */}
         <Calendar
           id="calendar-11"
           value={state.date}
           variant="double"
           selectionType="range"
-          onChange={(value) => setState({ date: value })}
+          onChange={(value) => handleChange(value)}
           disabledDays={bookedDates}
           minDate={tomorrow}
           maxDate={nextYear}
         />
-        {/* </Card> */}
       </div>
       <div className="flex justify-end">
         <button
@@ -90,6 +100,7 @@ const CreateBookingCalendar = () => {
           Book Now
         </Link>
       </div>
+      <BookingCard />
     </section>
   );
 };

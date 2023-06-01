@@ -1,11 +1,11 @@
 import React, { useMemo, useContext } from "react";
-import { formatDateRange } from "../utils/formatDateRange";
+import { formatDateRange } from "../../utils/formatDateRange";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { ToggleModalContext } from "../context/Modal";
-import ModalComponent from "./ModalComponent";
+import { ToggleModalContext } from "../../context/Modal";
+import ModalComponent from "../ModalComponent";
 
-const Card = ({ booking, past }) => {
+const VanCard = ({ booking, past }) => {
   const { updateShowModal } = useContext(ToggleModalContext);
   const navigate = useNavigate();
   const formattedRange = useMemo(
@@ -33,7 +33,6 @@ const Card = ({ booking, past }) => {
             <button
               onClick={() => { 
                 updateShowModal(true)
-                console.log(booking)
               }}
               className="btn btn-primary"
             >
@@ -46,4 +45,4 @@ const Card = ({ booking, past }) => {
   );
 };
 
-export default Card;
+export default VanCard;

@@ -24,7 +24,6 @@ router.get('/', asyncHandler(async(req,res) => {
     // const vans = await Van.findAll()
 
     const vans = await Van.findAll({include: [Image]})
-    console.log(vans)
 
 
 
@@ -43,13 +42,11 @@ router.get('/', asyncHandler(async(req,res) => {
 //     }
 //   ]
 // });
-    console.log("--------------- inside")
     return res.json(vans)
 }))
 
 router.get(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     const van = await Van.findByPk(req.params.id, {include: [Image, Review, User, Amenity, {model: Booking, include: [User]}]})
-    console.log(van, "<================= van in backend")
     return res.json(van)
 }))
 
@@ -74,7 +71,6 @@ router.post('/', asyncHandler(async(req,res) => {
 router.delete(`/:id(\\d+)`, asyncHandler(async(req,res) => {
     const id = req.params.id
     const van = await Van.findByPk(id)
-    console.log(van, "<=============== van in delete")
     
     await van.destroy()
     res.json({message: 'Success!'})

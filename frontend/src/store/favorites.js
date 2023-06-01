@@ -37,13 +37,11 @@ export const getFavoritesThunk = (userId) => async (dispatch) => {
 }
 
 export const addFavoriteThunk = (favorite) => async (dispatch) => {
-    console.log(favorite)
     const res = await csrfFetch(`/api/favorites/${favorite.spotId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(favorite)
     })
-    console.log(res, "res in fav")
 
     if(res.ok) {
         const favorite = await res.json()
@@ -53,7 +51,6 @@ export const addFavoriteThunk = (favorite) => async (dispatch) => {
 }
 
 export const deleteFavoriteThunk = (favorite) => async (dispatch) => {
-    console.log(favorite, "in delete")
     const res = await csrfFetch(`/api/favorites/${favorite.id}`, {
         method: 'DELETE',
     })

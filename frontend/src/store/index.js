@@ -36,6 +36,7 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import {vanSlice} from "./vans";
 import { bookingSlice } from "./bookings";
+import bookingDatesSlice from "./bookingDates";
 // import bookingReducer from "./bookings";
 // import reviews from "./reviews";
 // import favorites from "./favorites";
@@ -44,6 +45,7 @@ const rootReducer = {
   session: sessionReducer,
   vans: vanSlice.reducer,
   bookings: bookingSlice.reducer,
+  bookingDates: bookingDatesSlice.reducer,
 //   vans: vanReducer,
 //   bookingReducer,
 //   reviews,

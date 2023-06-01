@@ -3,7 +3,6 @@ import Amenities from "./Amenities";
 import Header from "../Header";
 
 const AboutVan = ({ van }) => {
-  console.log(van, "van in about van");
 
   return (
     <div className="flex flex-col w-[60%] ">
