@@ -7,7 +7,6 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Header from "../Header";
-import BookingCard from "../Cards/BookingCard";
 import {setStartDate, setEndDate} from '../../store/bookingDates'
 // ...
 
@@ -100,7 +99,6 @@ const CreateBookingCalendar = () => {
           Book Now
         </Link>
       </div>
-      <BookingCard />
     </section>
   );
 };

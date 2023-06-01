@@ -5,7 +5,7 @@ import Header from "../Header";
 const AboutVan = ({ van }) => {
 
   return (
-    <div className="flex flex-col w-[60%] ">
+    <div className="flex flex-col w-full">
       <div className="border-b-[1px] border-[#dddddd]  text-[22px] pt-12 pb-6">
         <Header>
           {van?.name} hosted by {van?.User?.username}
