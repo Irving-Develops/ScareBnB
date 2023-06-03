@@ -21,7 +21,6 @@ const CreateBookingCalendar = () => {
   const bookedDates = useMemo(() => getBookedDates(bookings), [bookings]);
   const [uuid, setUuid] = useState(uuidv4());
 
-  console.log(bookingDates, "important")
   useEffect(() => {
     dispatch(getVanBookings(id));
   }, [dispatch, id]);
