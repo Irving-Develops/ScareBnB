@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { getUserBookings } from "../store/bookings";
 import { isAfter } from "../utils";
-import Card from "../components/Card";
+import Card from "../components/Cards/VanCard";
 import { ToggleModalContext } from "../context/Modal";
 import ModalComponent from "../components/ModalComponent";
 import DeleteButton from "../components/DeleteButton";
@@ -27,7 +27,6 @@ const MyTrips = () => {
       try {
         dispatch(getUserBookings(user.id));
       } catch (e) {
-        console.log(e);
       }
     }
   }, [user, navigate, dispatch]);

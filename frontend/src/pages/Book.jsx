@@ -4,6 +4,7 @@ import EditBooking from "../components/Booking/EditBooking";
 import { addBooking } from "../store/bookings";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import BookingCard from "../components/Cards/BookingCard";
 const Book = () => {
   const [booking, setBooking] = useState();
   const { id } = useParams();
@@ -22,11 +23,9 @@ const Book = () => {
         navigate("/");
       }
     } catch (e) {
-      console.log(e);
     }
   };
 
-  console.log(booking);
 
   return (
     <section>

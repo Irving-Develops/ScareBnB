@@ -43,7 +43,7 @@ const EditBookingCalendar = ({booking, setBooking, setUpToDate, state, setState}
 
 
   return (
-    <div>
+    <>
       <div
         className="rainbow-m_auto rainbow-align-content_center rainbow-p-vertical_xx-large "
         style={calendarContainerStyles}
@@ -65,7 +65,7 @@ const EditBookingCalendar = ({booking, setBooking, setUpToDate, state, setState}
         Save
       </button>
       </div>
-    </div>
+    </>
   );
 }
 

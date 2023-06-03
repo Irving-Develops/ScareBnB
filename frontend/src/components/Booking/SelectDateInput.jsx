@@ -5,7 +5,6 @@ import { ToggleModalContext } from "../../context/Modal";
 
 const SelectDateInput = ({ booking, state }) => {
   const { showModal } = useContext(ToggleModalContext);
-  console.log(state, "state")
   const [startDate, setStartDate] = useState(formatDate(booking.startDate));
   const [endDate, setEndDate] = useState(formatDate(booking.endDate));
 
@@ -23,7 +22,6 @@ const SelectDateInput = ({ booking, state }) => {
 
   }, [state, showModal, booking, startDateRef, endDateRef]);
 
-  console.log(startDate, "start date")
   const svgStyles = {
     height: "12px",
     width: "12px",
