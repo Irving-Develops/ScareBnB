@@ -37,6 +37,7 @@ import sessionReducer from "./session";
 import {vanSlice} from "./vans";
 import { bookingSlice } from "./bookings";
 import bookingDatesSlice from "./bookingDates";
+import {reviewSlice} from "./reviews";
 // import bookingReducer from "./bookings";
 // import reviews from "./reviews";
 // import favorites from "./favorites";
@@ -46,6 +47,7 @@ const rootReducer = {
   vans: vanSlice.reducer,
   bookings: bookingSlice.reducer,
   bookingDates: bookingDatesSlice.reducer,
+  reviews: reviewSlice.reducer,
 //   vans: vanReducer,
 //   bookingReducer,
 //   reviews,

@@ -8,6 +8,7 @@ import RootLayout from "./components/RootLayout";
 import BookingCalendar from "./components/Booking/CreateBookingCalendar";
 import Book from "./pages/Book";
 import MyTrips from "./pages/MyTrips";
+import Test from "./pages/Test";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function App() {
       <Route path={`/vans/:id`} element={isLoaded ? <Van/> : <>Loading</>}></Route>
       <Route path={'/book/:id'} element={isLoaded ? <Book/> : <>Loading</>}></Route>
       <Route path={'/trips'} element={isLoaded ? <MyTrips/> : <>Loading</>}></Route>
-      <Route  path="/test" element={<BookingCalendar />}></Route>
+      <Route  path="/test" element={isLoaded ? <Test/> : <>Loading</>}></Route>
     </Route>
   ))
 

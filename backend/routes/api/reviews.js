@@ -4,7 +4,8 @@ const {Booking, Spot, Image, User, Review} = require('../../db/models')
 const router = express.Router();
 
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-    const reviews = await Review.findAll({where: {spotId: req.params.id}, include: [User]})
+    const reviews = await Review.findAll({where: {vanId: req.params.id}})
+    console.log(reviews, "<================= reviews in backend");
     return res.json(reviews)
 }))
 
