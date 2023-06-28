@@ -136,13 +136,30 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getReviews = createAsyncThunk(
   "reviews/getReviews",
   async (spotId) => {
-    console.log("spotId", spotId)
+    console.log("spotId", spotId);
     const response = await csrfFetch(`/api/reviews/${spotId}`);
     const data = await response.json();
 
-
     if (!response.ok) {
       throw new Error(data.message || "Failed to get vans");
+    }
+
+    return data;
+  }
+);
+
+export const createReview = createAsyncThunk(
+  "reviews/createReview",
+  async (review) => {
+    const response = await csrfFetch(`/api/reviews`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(review),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to create review");
     }
 
     return data;
@@ -157,5 +174,9 @@ export const reviewSlice = createSlice({
     builder.addCase(getReviews.fulfilled, (state, action) => {
       return action.payload;
     })
+    builder.addCase(createReview.fulfilled, (state, action) => {
+        state.push(action.payload);
+        }
+    )
   },
 });
