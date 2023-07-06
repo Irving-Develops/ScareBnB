@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Review from "../Review/Review";
 
 const VanHeader = ({ van }) => {
   const { name, location, price, Reviews, make, model, year } = van;
+  console.log(name, "van");
   const [rating, setRating] = useState(0);
 
   const avgRating = (Reviews) => {
@@ -27,29 +29,14 @@ const VanHeader = ({ van }) => {
         <input type="radio" name="rating-1" className="mask mask-star" />
         {rating ? (
           <>
-            <p> {rating}</p>
-            {Reviews.length > 1 ? (
-              <>
-                <span>&middot; </span>
-                <Link to="#" className="link">
-                  <p>{Reviews.length} reviews</p>
-                </Link>
-              </>
-            ) : (
-              <>
-                <span>&middot; </span>
-                <Link to="#" className="link">
-                  <p>{Reviews.length} review</p>
-                </Link>
-              </>
-            )}
+            <Review reviews={Reviews} />
           </>
         ) : (
-            <Link to="#" className="link link-neutral">
-              <p>Be the first to leave a review!</p>
-            </Link>
+          <Link to="#" className="link link-neutral">
+            <p>Be the first to leave a review!</p>
+          </Link>
         )}
-        <p className="hidden md:block">&middot; {location}</p>
+        <p className="hidden  md:flex md:items-center">&middot; {location}</p>
       </div>
       <p className="md:hidden">{location}</p>
     </header>

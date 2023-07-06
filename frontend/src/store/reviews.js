@@ -166,6 +166,22 @@ export const createReview = createAsyncThunk(
   }
 );
 
+export const editReview = createAsyncThunk(
+  "reviews/editReview",
+  async (review) => {
+    const response = await csrfFetch(`/api/reviews/${review.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(review),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  }
+);
+
 export const reviewSlice = createSlice({
   name: "reviews",
   initialState: [],
@@ -173,10 +189,15 @@ export const reviewSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getReviews.fulfilled, (state, action) => {
       return action.payload;
-    })
+    });
     builder.addCase(createReview.fulfilled, (state, action) => {
-        state.push(action.payload);
-        }
-    )
+      state.push(action.payload);
+    });
+    builder.addCase(editReview.fulfilled, (state, action) => {
+      const index = state.findIndex(
+        (review) => review.id === action.payload.id
+      );
+      state[index] = action.payload;
+    });
   },
 });

@@ -24,6 +24,7 @@ const VanCard = ({ booking, past }) => {
       <div className="card-body">
         <h2 className="card-title">{booking?.Van?.name}</h2>
         <p>{formattedRange}</p>
+        
         <div className="card-actions justify-end">
           {past ? (
             <Link to={`/vans/${booking.vanId}`} className="btn btn-primary">

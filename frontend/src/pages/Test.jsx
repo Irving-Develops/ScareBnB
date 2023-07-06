@@ -32,6 +32,10 @@ const Test = () => {
   }
 }
 
+const handleEdit = (e) => {
+    e.preventDefault();
+    console.log("edit");
+}
 
 
   console.log(user, "user");
@@ -43,6 +47,11 @@ const Test = () => {
             <h1>{review.review}</h1>
             <h1>{review.rating}</h1>
             <h1>{review.userId}</h1>
+            <button
+            className="btn"
+            onClick={handleEdit}
+            >edit</button>
+            
           </div>
         ))}
 
