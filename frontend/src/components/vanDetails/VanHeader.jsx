@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Review from "../Review/Review";
+import Review from "../Review/ReviewModal";
 
 const VanHeader = ({ van }) => {
   const { name, location, price, Reviews, make, model, year } = van;

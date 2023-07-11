@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ToggleModalContext } from "../../context/Modal";
 import ModalComponent from "../ModalComponent";
+import Reviews from "./Reviews";
 
 const Review = ({reviews}) => {
   const [rating, setRating] = useState(0);
@@ -20,7 +21,8 @@ const Review = ({reviews}) => {
     avgRating(reviews);
   }, [reviews]);
 
-  
+  console.log(reviews, "reviews")
+
   return (
     <>
       <p className="flex items-center"> {rating}</p>
@@ -35,7 +37,7 @@ const Review = ({reviews}) => {
         }
         styles="link flex items-center cursor-pointer"
       >
-
+        <Reviews reviews={reviews} />
       </ModalComponent>
     </>
   );
